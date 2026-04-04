@@ -8,38 +8,38 @@
 <meta property="og:title" content="Sumit Yadav — Strategy & Growth Professional"/>
 <meta property="og:description" content="IIM Calcutta MBA. 30 months at Blinkit, Shopdeck, Accenture S&C."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 /* ═══════════════════════════════
    DESIGN TOKENS
 ═══════════════════════════════ */
 :root {
-  /* Colors */
-  --c-bg:        #fafaf8;
+  /* ── Premium Dark-Accent Theme ── */
+  --c-bg:        #f8f7f4;
   --c-surface:   #ffffff;
-  --c-ink:       #09090b;
-  --c-ink-2:     #3f3f46;
-  --c-ink-3:     #71717a;
-  --c-border:    #e4e4e7;
-  --c-subtle:    #f4f4f5;
-  --c-blue:      #2563eb;
-  --c-blue-d:    #1d4ed8;
-  --c-blue-bg:   #eff6ff;
-  --c-green:     #16a34a;
-  --c-green-bg:  #f0fdf4;
-  --c-amber:     #d97706;
-  --c-amber-bg:  #fffbeb;
-  --c-violet:    #7c3aed;
+  --c-ink:       #111117;
+  --c-ink-2:     #363642;
+  --c-ink-3:     #6e6e80;
+  --c-border:    #e2e1dc;
+  --c-subtle:    #f2f1ed;
+  --c-blue:      #0f62fe;
+  --c-blue-d:    #0043ce;
+  --c-blue-bg:   #edf5ff;
+  --c-green:     #198038;
+  --c-green-bg:  #defbe6;
+  --c-amber:     #b45309;
+  --c-amber-bg:  #fef3c7;
+  --c-violet:    #6929c4;
   /* Typography */
-  --f-display:   'Instrument Serif', Georgia, serif;
-  --f-sans:      'Plus Jakarta Sans', system-ui, sans-serif;
-  --f-mono:      'JetBrains Mono', monospace;
+  --f-display:   'Cormorant Garamond', Georgia, serif;
+  --f-sans:      'Inter', system-ui, sans-serif;
+  --f-mono:      'IBM Plex Mono', monospace;
   /* Radii */
-  --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px;
+  --r-sm: 4px; --r-md: 8px; --r-lg: 14px; --r-xl: 20px;
   /* Shadows */
-  --sh-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-  --sh-md: 0 4px 16px rgba(0,0,0,.06), 0 2px 4px rgba(0,0,0,.04);
-  --sh-lg: 0 12px 40px rgba(0,0,0,.08), 0 4px 8px rgba(0,0,0,.04);
+  --sh-sm: 0 1px 4px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04);
+  --sh-md: 0 4px 20px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.04);
+  --sh-lg: 0 16px 48px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.05);
 }
 
 /* ═══════════════════════════════
@@ -112,14 +112,49 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
   display:grid; grid-template-rows:1fr auto;
   overflow:hidden; position:relative;
 }
+/* hero two-col on large screens */
+.hero-content {
+  display:grid !important;
+  grid-template-columns: 1fr 380px;
+  gap:60px;
+  align-items:center;
+}
+.hero-left { display:flex; flex-direction:column; }
+.hero-right {
+  display:flex; flex-direction:column; gap:12px;
+  padding:32px; background:var(--c-subtle);
+  border:1px solid var(--c-border); border-radius:var(--r-xl);
+  box-shadow:var(--sh-md);
+}
+.hero-right-title {
+  font-family:var(--f-mono); font-size:.65rem; font-weight:500;
+  text-transform:uppercase; letter-spacing:.12em;
+  color:var(--c-ink-3); margin-bottom:8px;
+  padding-bottom:8px; border-bottom:1px solid var(--c-border);
+}
+.hero-kv { display:flex; justify-content:space-between; align-items:baseline; padding:6px 0; border-bottom:1px solid var(--c-border); }
+.hero-kv:last-of-type { border-bottom:none; }
+.hero-kv-k { font-size:.75rem; font-weight:500; color:var(--c-ink-3); }
+.hero-kv-v { font-size:.82rem; font-weight:700; color:var(--c-ink); font-family:var(--f-mono); }
+.hero-kv-v.blue { color:var(--c-blue); }
+.hero-available-tag {
+  display:flex; align-items:center; gap:8px; margin-top:8px;
+  padding:10px 14px; background:var(--c-green-bg);
+  border:1px solid #a7f3d0; border-radius:var(--r-md);
+  font-size:.75rem; font-weight:700; color:var(--c-green);
+}
+@media(max-width:1024px){
+  .hero-content { grid-template-columns:1fr !important; gap:32px; }
+  .hero-right { display:none; }
+}
 
 /* animated gradient mesh */
 .hero-mesh {
   position:absolute; inset:0; pointer-events:none; z-index:0;
   background:
-    radial-gradient(ellipse 80% 50% at 70% 20%, rgba(37,99,235,.05) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(124,58,237,.04) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 60% at 90% 90%, rgba(22,163,74,.03) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 50% at 70% 20%, rgba(15,98,254,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(105,41,196,.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 90% 90%, rgba(25,128,56,.03) 0%, transparent 50%);
 }
 /* subtle grid lines */
 .hero-grid {
@@ -131,11 +166,11 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
   opacity:.3;
 }
 
-.hero-content {
-  display:flex; flex-direction:column; justify-content:center;
-  padding:110px 40px 48px;
+.hero-content-base {
+  padding:100px 40px 48px;
   max-width:1140px; margin:0 auto; width:100%;
   position:relative; z-index:1;
+  align-items:center;
 }
 
 /* availability badge */
@@ -159,8 +194,8 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
 /* hero name */
 .hero-name {
   font-family:var(--f-display);
-  font-size:clamp(3.5rem, 7.5vw, 7rem);
-  font-weight:400; /* Instrument Serif looks best at regular weight */
+  font-size:clamp(4rem, 8vw, 8rem);
+  font-weight:600; letter-spacing:-.05em;
   line-height:.95; letter-spacing:-.03em;
   color:var(--c-ink);
   margin-bottom:20px;
@@ -233,7 +268,7 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
 .hstat:hover { background:var(--c-subtle); }
 .hstat-n {
   font-family:var(--f-display); font-style:italic;
-  font-size:2.4rem; line-height:1;
+  font-size:2.6rem; line-height:1;
   letter-spacing:-.03em; color:var(--c-ink);
   margin-bottom:4px;
 }
@@ -274,7 +309,7 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
    SECTIONS
 ═══════════════════════════════ */
 .section { padding:96px 0; }
-.section-alt { background:var(--c-subtle); }
+.section-alt { background:#f5f4f0; }
 .section-dark { background:var(--c-ink); color:#fff; }
 
 .section-eyebrow {
@@ -288,7 +323,7 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
 
 .section-title {
   font-family:var(--f-display);
-  font-size:clamp(2rem,3.8vw,3.2rem);
+  font-size:clamp(2.2rem,4vw,3.5rem);
   font-weight:400; letter-spacing:-.03em; line-height:1.1;
   color:var(--c-ink); margin-bottom:10px;
 }
@@ -347,7 +382,7 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
 .icard:hover { background:rgba(255,255,255,.07); }
 .icard-n {
   font-family:var(--f-display); font-style:italic;
-  font-size:3rem; line-height:1; letter-spacing:-.04em;
+  font-size:3.4rem; line-height:1; letter-spacing:-.04em;
   color:#fff; margin-bottom:8px;
 }
 .icard-n .highlight { color:#60a5fa; }
@@ -517,12 +552,15 @@ button { font-family:inherit; cursor:pointer; border:none; background:none; }
 .cert-list { display:flex; flex-direction:column; gap:8px; }
 .cert-item {
   display:flex; align-items:center; gap:10px;
-  padding:12px 14px; background:var(--c-surface);
+  padding:11px 14px; background:var(--c-surface);
   border:1px solid var(--c-border); border-radius:var(--r-md);
-  box-shadow:var(--sh-sm);
-  transition:border-color .2s;
+  box-shadow:var(--sh-sm); color:inherit;
+  transition:border-color .2s, background .2s, transform .15s;
 }
-.cert-item:hover { border-color:var(--c-blue); }
+.cert-item:hover {
+  border-color:var(--c-blue); background:var(--c-blue-bg);
+  transform:translateX(3px);
+}
 .cert-ico {
   width:28px; height:28px; border-radius:7px;
   background:var(--c-subtle); display:flex;
@@ -677,7 +715,7 @@ footer {
 <!-- ═══ NAV ═══ -->
 <nav id="topnav">
   <div class="nav-inner">
-    <span class="nav-brand">Sumit Yadav</span>
+    <a href="#" class="nav-brand">Sumit Yadav</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -700,42 +738,58 @@ footer {
   <div class="hero-mesh"></div>
   <div class="hero-grid"></div>
 
-  <div class="hero-content">
-    <div class="avail-badge fade-up fd1">
-      <span class="avail-pulse"></span>
-      Open to New Roles
+  <div class="hero-content hero-content-base">
+    <!-- LEFT COL -->
+    <div class="hero-left">
+      <h1 class="hero-name fade-up fd1">
+        Sumit<br/>
+        <span class="accent italic">Yadav</span>
+      </h1>
+
+      <div class="hero-tags fade-up fd2">
+        <span class="htag"><span class="htag-dot" style="background:#f97316"></span>Strategy & Ops · Blinkit</span>
+        <span class="htag"><span class="htag-dot" style="background:#0f62fe"></span>MBA · IIM Calcutta</span>
+        <span class="htag"><span class="htag-dot" style="background:#6929c4"></span>Accenture S&C</span>
+        <span class="htag"><span class="htag-dot" style="background:#0369a1"></span>NIT Kurukshetra</span>
+      </div>
+
+      <p class="hero-bio fade-up fd3">
+        30+ months building at the intersection of strategy and execution —
+        <strong>2,000+ dark stores at Blinkit</strong>,
+        <strong>80+ D2C brands at Shopdeck</strong>, and
+        strategic mandates at <strong>Accenture Strategy & Consulting</strong>.
+        CAT 99.64 percentile. Indian Navy selectee.
+      </p>
+
+      <div class="hero-btns fade-up fd4">
+        <a href="#experience" class="btn-primary">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          View My Work
+        </a>
+        <a href="My_Resume.pdf" download="Sumit_Yadav_Resume.pdf" class="btn-accent">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Download CV
+        </a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
     </div>
 
-    <h1 class="hero-name fade-up fd2">
-      Sumit<br/>
-      <span class="accent italic">Yadav</span>
-    </h1>
-
-    <div class="hero-tags fade-up fd3">
-      <span class="htag"><span class="htag-dot" style="background:#f97316"></span>Strategy & Operations · Blinkit</span>
-      <span class="htag"><span class="htag-dot" style="background:#1d4ed8"></span>MBA · IIM Calcutta</span>
-      <span class="htag"><span class="htag-dot" style="background:#7c3aed"></span>Intern · Accenture S&C</span>
-      <span class="htag"><span class="htag-dot" style="background:#0369a1"></span>NIT Kurukshetra · B.Tech</span>
-    </div>
-
-    <p class="hero-bio fade-up fd4">
-      30+ months building at the intersection of strategy and execution —
-      <strong>2,000+ dark stores at Blinkit</strong>,
-      <strong>80+ D2C brands at Shopdeck</strong>, and
-      strategic mandates at <strong>Accenture Strategy & Consulting</strong>.
-      CAT 99.64 percentile. Indian Navy selectee.
-    </p>
-
-    <div class="hero-btns fade-up fd5">
-      <a href="#experience" class="btn-primary">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-        View My Work
-      </a>
-      <a href="My_Resume.pdf" download="Sumit_Yadav_Resume.pdf" class="btn-accent">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-        Download CV
-      </a>
-      <a href="#contact" class="btn-outline">Get in Touch</a>
+    <!-- RIGHT PANEL — quick facts card -->
+    <div class="hero-right fade-up fd5">
+      <div class="hero-right-title">Quick Profile</div>
+      <div class="hero-kv"><span class="hero-kv-k">Current Role</span><span class="hero-kv-v blue">Blinkit · Strategy</span></div>
+      <div class="hero-kv"><span class="hero-kv-k">MBA</span><span class="hero-kv-v">IIM Calcutta</span></div>
+      <div class="hero-kv"><span class="hero-kv-k">CAT Percentile</span><span class="hero-kv-v blue">99.64%ile</span></div>
+      <div class="hero-kv"><span class="hero-kv-k">B.Tech</span><span class="hero-kv-v">NIT Kurukshetra</span></div>
+      <div class="hero-kv"><span class="hero-kv-k">Full-Time Exp.</span><span class="hero-kv-v">30 Months</span></div>
+      <div class="hero-kv"><span class="hero-kv-k">Stores Impacted</span><span class="hero-kv-v blue">2,000+</span></div>
+      <div class="hero-kv"><span class="hero-kv-k">Revenue Generated</span><span class="hero-kv-v blue">₹100 Cr+</span></div>
+      <div class="hero-kv"><span class="hero-kv-k">Pilots Scaled</span><span class="hero-kv-v">15+ Pan-India</span></div>
+      <div class="hero-kv"><span class="hero-kv-k">Certifications</span><span class="hero-kv-v">8 (93%+ avg.)</span></div>
+      <div class="hero-available-tag">
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--c-green);animation:pulse 2.2s infinite;flex-shrink:0;display:inline-block;"></span>
+        Open to New Roles
+      </div>
     </div>
   </div>
 
@@ -796,7 +850,7 @@ footer {
         <p class="section-lead">Rigorous thinking + hands-on execution. Both, always.</p>
         <div class="about-body">
           <p>I am a Mechanical Engineer from NIT Kurukshetra who went to IIM Calcutta and spent the last 30 months inside some of India's most dynamic businesses — not advising them, but building inside them.</p>
-          <p>At <strong>Blinkit</strong>, I own location strategy and operational infrastructure across 1,800+ dark stores — the systems that power India's largest quick-commerce network at scale.</p>
+          <p>At <strong>Blinkit</strong>, I own location strategy and operational infrastructure across 2,000+ dark stores — the systems that power India's largest quick-commerce network at scale.</p>
           <p>At <strong>Shopdeck</strong>, I managed commercial growth for 80+ D2C brands — generating ₹100 Cr+ in annualised business. I learned what it truly means to own a P&L, not just advise on one.</p>
           <p>At <strong>Accenture S&C</strong>, I structured strategic procurement decisions under real stakes — should-cost modelling, vendor evaluation across 50+ metrics, and cross-stakeholder alignment.</p>
           <div class="about-pullquote">"Strategy without execution is just creative writing. I care deeply about both."</div>
@@ -810,7 +864,7 @@ footer {
         </div>
         <div class="acard">
           <div class="acard-icon">⚙️</div>
-          <div><div class="acard-head">NIT Kurukshetra · B.Tech Mechanical</div><div class="acard-body">CGPA 8.36/10. Ranked 1st in batch for 10 consecutive years. 10/10 GPA in Semester 6. Academic Excellence Award.</div></div>
+          <div><div class="acard-head">NIT Kurukshetra · B.Tech Mechanical</div><div class="acard-body">CGPA 8.36/10. 10/10 GPA in Semester 6. Academic Excellence Award.</div></div>
         </div>
         <div class="acard">
           <div class="acard-icon">⚓</div>
@@ -836,7 +890,7 @@ footer {
     <h2 class="section-title scroll-reveal">Impact at a <span class="it">Glance</span></h2>
     <p class="section-lead scroll-reveal">Key metrics across 30 months of full-time work and consulting.</p>
     <div class="impact-grid scroll-reveal">
-      <div class="icard"><div class="icard-n"><span class="highlight">1,800</span>+</div><div class="icard-l">Dark stores with<br/>100% layout digitization</div></div>
+      <div class="icard"><div class="icard-n"><span class="highlight">2,000</span>+</div><div class="icard-l">Dark stores with<br/>100% layout digitization</div></div>
       <div class="icard"><div class="icard-n"><span class="highlight">43</span>%</div><div class="icard-l">Variance reduction via<br/>prioritization dashboard</div></div>
       <div class="icard"><div class="icard-n">₹<span class="highlight">100</span>Cr+</div><div class="icard-l">Annual revenue generated<br/>for D2C client portfolio</div></div>
       <div class="icard"><div class="icard-n"><span class="highlight">118</span>%</div><div class="icard-l">Average profitability uplift<br/>across 42 client firms</div></div>
@@ -1058,7 +1112,7 @@ footer {
           </div>
         </div>
         <div class="pj-hero-r">
-          <div class="pj-stat-box"><div class="pj-stat-n">1,800+</div><div class="pj-stat-l">Stores impacted</div></div>
+          <div class="pj-stat-box"><div class="pj-stat-n">2,000+</div><div class="pj-stat-l">Stores impacted</div></div>
           <div class="pj-stat-box"><div class="pj-stat-n">10%</div><div class="pj-stat-l">Faster pick time</div></div>
           <div class="pj-stat-box"><div class="pj-stat-n">15+</div><div class="pj-stat-l">Pilots scaled</div></div>
         </div>
@@ -1148,19 +1202,64 @@ footer {
         </div>
       </div>
       <div>
-        <h3 style="font-family:var(--f-display);font-size:1.2rem;color:var(--c-ink);margin-bottom:16px;">Certifications</h3>
-        <div class="cert-list">
-          <div class="cert-item"><div class="cert-ico">📋</div><div><div class="cert-n">Diploma in Project Management</div><div class="cert-by">Alison · Nov 2024</div></div></div>
-          <div class="cert-item"><div class="cert-ico">📦</div><div><div class="cert-n">Product Management Basics</div><div class="cert-by">Pendo.io · Oct 2024</div></div></div>
-          <div class="cert-item"><div class="cert-ico">📱</div><div><div class="cert-n">Mobile Product Management Certification</div><div class="cert-by">UXCam · Oct 2024</div></div></div>
-          <div class="cert-item"><div class="cert-ico">🔍</div><div><div class="cert-n">Product Discovery Micro-Certification</div><div class="cert-by">Product School · Nov 2024</div></div></div>
-          <div class="cert-item"><div class="cert-ico">🎯</div><div><div class="cert-n">Product Management 101</div><div class="cert-by">Simplilearn · Nov 2024</div></div></div>
-          <div class="cert-item"><div class="cert-ico">📊</div><div><div class="cert-n">Product Management</div><div class="cert-by">Great Lakes Learning Academy · Nov 2024</div></div></div>
-          <div class="cert-item"><div class="cert-ico">💡</div><div><div class="cert-n">Understanding Product Management</div><div class="cert-by">Alison · Oct 2024</div></div></div>
-          <div class="cert-item"><div class="cert-ico">🧭</div><div><div class="cert-n">Introduction to Strategic Management</div><div class="cert-by">Alison · Nov 2024</div></div></div>
+        <h3 style="font-family:var(--f-display);font-size:1.2rem;color:var(--c-ink);margin-bottom:6px;">Certifications & Live Projects</h3>
+        <p style="font-size:.78rem;color:var(--c-ink-3);margin-bottom:16px;">Click any certificate to view the original document.</p>
+
+        <div style="margin-bottom:12px;">
+          <div style="font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--c-blue);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--c-border);">Consulting & Strategy</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <a href="Certifications-Consult.pdf" target="_blank" class="cert-item" style="text-decoration:none;">
+              <div class="cert-ico">🎓</div>
+              <div><div class="cert-n">Diploma in Project Management + Basics of Business Consulting + Introduction to Strategic Management</div><div class="cert-by">Alison (CPD Certified) · Nov 2024</div></div>
+              <span style="margin-left:auto;font-size:.65rem;color:var(--c-blue);font-weight:600;white-space:nowrap;padding-left:8px;">View PDF ↗</span>
+            </a>
+            <a href="Certifications-Consult.pdf" target="_blank" class="cert-item" style="text-decoration:none;">
+              <div class="cert-ico">🏛️</div>
+              <div><div class="cert-n">Certificate in Business Management + Strategic Planning (Short Course)</div><div class="cert-by">Oxford Home Study Centre (OHSC) · Nov–Dec 2024</div></div>
+              <span style="margin-left:auto;font-size:.65rem;color:var(--c-blue);font-weight:600;white-space:nowrap;padding-left:8px;">View PDF ↗</span>
+            </a>
+          </div>
         </div>
+
+        <div style="margin-bottom:12px;">
+          <div style="font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--c-blue);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--c-border);">Product Management</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <a href="Verification_Prod.pdf" target="_blank" class="cert-item" style="text-decoration:none;">
+              <div class="cert-ico">🔍</div>
+              <div><div class="cert-n">Product Discovery Micro-Certification</div><div class="cert-by">Product School · Nov 2024 &nbsp;·&nbsp; <strong style="color:var(--c-green)">Score: 93%</strong></div></div>
+              <span style="margin-left:auto;font-size:.65rem;color:var(--c-blue);font-weight:600;white-space:nowrap;padding-left:8px;">View PDF ↗</span>
+            </a>
+            <a href="Verification_Prod.pdf" target="_blank" class="cert-item" style="text-decoration:none;">
+              <div class="cert-ico">📱</div>
+              <div><div class="cert-n">Mobile App Product Management Certification</div><div class="cert-by">UXCam Academy · Oct 2024 &nbsp;·&nbsp; <strong style="color:var(--c-green)">Score: 95%</strong></div></div>
+              <span style="margin-left:auto;font-size:.65rem;color:var(--c-blue);font-weight:600;white-space:nowrap;padding-left:8px;">View PDF ↗</span>
+            </a>
+            <a href="Verification_Prod.pdf" target="_blank" class="cert-item" style="text-decoration:none;">
+              <div class="cert-ico">📦</div>
+              <div><div class="cert-n">Product Management Basics · Product Management 101 · Understanding Product Management · Diploma in PM</div><div class="cert-by">Pendo.io, Simplilearn, Alison, Great Lakes · Oct–Nov 2024 &nbsp;·&nbsp; <strong style="color:var(--c-green)">Avg: 93%</strong></div></div>
+              <span style="margin-left:auto;font-size:.65rem;color:var(--c-blue);font-weight:600;white-space:nowrap;padding-left:8px;">View PDF ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-bottom:12px;">
+          <div style="font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--c-blue);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--c-border);">Live Projects (Verified)</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <a href="Live_project_consult.pdf" target="_blank" class="cert-item" style="text-decoration:none;">
+              <div class="cert-ico">📋</div>
+              <div><div class="cert-n">Business Strategy & Growth Partner</div><div class="cert-by">Skilled Sapiens (MSME Certified, ISO 9001:2015) · Oct–Nov 2024</div></div>
+              <span style="margin-left:auto;font-size:.65rem;color:var(--c-blue);font-weight:600;white-space:nowrap;padding-left:8px;">View PDF ↗</span>
+            </a>
+            <a href="Live_project_prod.pdf" target="_blank" class="cert-item" style="text-decoration:none;">
+              <div class="cert-ico">🚀</div>
+              <div><div class="cert-n">Product Management Live Project</div><div class="cert-by">Skilled Sapiens (MSME Certified, ISO 9001:2015) · Nov 2024</div></div>
+              <span style="margin-left:auto;font-size:.65rem;color:var(--c-blue);font-weight:600;white-space:nowrap;padding-left:8px;">View PDF ↗</span>
+            </a>
+          </div>
+        </div>
+
         <div class="cert-badge-box">
-          <p>✦ &nbsp;8 globally recognised certifications · 93%+ average score</p>
+          <p>✦ &nbsp;10+ certifications across consulting, strategy & product management &nbsp;·&nbsp; 93%+ average score</p>
         </div>
       </div>
     </div>
@@ -1185,7 +1284,7 @@ footer {
           <div class="edu-card-top"><div class="edu-school">National Institute of Technology, Kurukshetra</div><div class="edu-yr">2017–2021</div></div>
           <div class="edu-degree">B.Tech — Mechanical Engineering</div>
           <div class="edu-score">CGPA: 8.36/10</div>
-          <div class="edu-note">Ranked 1st out of 100+ for 10 consecutive years · 10/10 GPA in Semester 6 · Academic Excellence Award · Secretary, Mechanical Society (₹4L+ budget, 100+ member team, 4K+ footfall)</div>
+          <div class="edu-note">10/10 GPA in Semester 6 · Academic Excellence Award · Secretary, Mechanical Society (₹4L+ budget, 100+ member team, 4K+ footfall)</div>
         </div>
         <div class="edu-card">
           <div class="edu-card-top"><div class="edu-school">CBSE — Class XII & Class X</div><div class="edu-yr">2016 / 2014</div></div>
@@ -1194,9 +1293,9 @@ footer {
         </div>
       </div>
       <div class="ach-list">
-        <div class="ach-item"><div class="ach-em">🎯</div><div class="ach-text"><strong>CAT 99.64 percentile</strong> — QA: 99.83%ile out of 2L+ candidates. Converted 12 out of 15 IIM interview calls.</div></div>
+        <div class="ach-item"><div class="ach-em">🎯</div><div class="ach-text"><strong>CAT 99.64 percentile</strong> — QA: 99.83%ile out of 2L+ candidates. Converted 12 out of 15 IIM interview calls. Ranked 1st out of 500+ students in school for 10 consecutive years.</div></div>
         <div class="ach-item"><div class="ach-em">⚓</div><div class="ach-text"><strong>Indian Navy Selectee</strong> — Shortlisted for 10+2 B.Tech Cadet Entry. Top 1.5%ile in the NDA written exam, twice.</div></div>
-        <div class="ach-item"><div class="ach-em">📐</div><div class="ach-text"><strong>GATE Top 2%ile</strong> — AIR 2070 out of 1.2L+ in GATE-ME. AIR 2184 out of 22K+ in GATE-XE. Entitled for NTPC EET.</div></div>
+        <a href="GATE.pdf" target="_blank" class="ach-item" style="text-decoration:none;color:inherit;"><div class="ach-em">📐</div><div class="ach-text"><strong>GATE Top 2%ile</strong> — AIR 2070 out of 1.2L+ in GATE-ME. Score: 696. AIR 2184 out of 22K+ in GATE-XE. Entitled for NTPC EET. <span style="color:var(--c-blue);font-weight:600;">View Scorecard ↗</span></div></a>
         <div class="ach-item"><div class="ach-em">🥇</div><div class="ach-text"><strong>National Competition Winner</strong> — 1st out of 20+ teams (₹10K), Junkyard War NIT KKR. 1st/8+ energy conversion. 2nd/50+ Roller Coaster design (₹6K).</div></div>
         <div class="ach-item"><div class="ach-em">👨‍💼</div><div class="ach-text"><strong>Secretary, Mechanical Society</strong> — ₹4L+ budget across 10 events, 100+ member team, 4K+ footfall at the annual technical fest.</div></div>
         <div class="ach-item"><div class="ach-em">🎪</div><div class="ach-text"><strong>Techspardha & Confluence, NIT KKR</strong> — Secretary Mechsoc (2020–21). Event Coordinator for both the technical and cultural fests (2017–2021).</div></div>
