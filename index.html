@@ -1207,3 +1207,18 @@ const cn=new IntersectionObserver(e=>{
         if(isNaN(target))return;
         let start=0;const dur=1800;const step=16;
         const inc=target/(dur/step);
+        const t=setInterval(()=>{
+          start=Math.min(start+inc,target);
+          s.textContent=target>=1000?Math.round(start).toLocaleString('en-IN'):
+            target<10?start.toFixed(2):Math.round(start);
+          if(start>=target)clearInterval(t);
+        },step);
+      });
+      cn.unobserve(x.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.icard,.hstat').forEach(el=>cn.observe(el));
+</script>
+</body>
+</html>
