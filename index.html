@@ -319,7 +319,8 @@ a{text-decoration:none;color:inherit;}
 .cv-bar-close:hover{background:rgba(255,255,255,.2);}
 .cv-bar-dl{background:var(--accent);color:#fff;}
 .cv-bar-dl:hover{background:#c4541f;}
-.cv-frame{flex:1;border:none;background:var(--bg);}
+.cv-frame{flex:1;display:flex;flex-direction:column;background:var(--bg);overflow-y:auto;align-items:center;padding:24px;}
+@keyframes spin{to{transform:rotate(360deg);}}
 
 /* ── FOOTER ── */
 footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
@@ -453,10 +454,27 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
     <span class="cv-bar-title">Sumit Yadav — Resume</span>
     <div class="cv-bar-actions">
       <button class="cv-bar-btn cv-bar-close" onclick="closeModal('cvModal')">✕ Close</button>
-      <a href="My_Resume.pdf" download="Sumit_Yadav_Resume.pdf" class="cv-bar-btn cv-bar-dl">↓ Download PDF</a>
+      <a href="My_Resume.pdf" download="Sumit_Yadav_Resume.pdf" class="cv-bar-btn cv-bar-dl" id="cvDlBtn">↓ Download PDF</a>
     </div>
   </div>
-  <iframe class="cv-frame" id="cvFrame" src="" title="Sumit Yadav Resume"></iframe>
+  <div class="cv-frame" id="cvFrame">
+    <div id="cvLoading" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;">
+      <div style="width:40px;height:40px;border:3px solid rgba(28,24,22,.1);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;"></div>
+      <p style="font-family:var(--sans);font-size:.85rem;color:var(--ink3);">Loading CV...</p>
+    </div>
+    <canvas id="cvCanvas" style="display:none;max-width:100%;box-shadow:0 4px 32px rgba(0,0,0,.15);border-radius:4px;"></canvas>
+    <div id="cvPagination" style="display:none;padding:16px;text-align:center;background:var(--bg2);border-top:1px solid var(--border);flex-shrink:0;">
+      <div style="display:inline-flex;align-items:center;gap:12px;">
+        <button onclick="cvPrevPage()" id="cvPrev" class="cv-bar-btn cv-bar-close" style="padding:6px 14px;">← Prev</button>
+        <span id="cvPageInfo" style="font-family:var(--mono);font-size:.72rem;color:var(--ink3);">Page 1 of 1</span>
+        <button onclick="cvNextPage()" id="cvNext" class="cv-bar-btn cv-bar-close" style="padding:6px 14px;">Next →</button>
+      </div>
+    </div>
+    <div id="cvFallback" style="display:none;padding:40px;text-align:center;">
+      <p style="font-family:var(--sans);font-size:.9rem;color:var(--ink2);margin-bottom:16px;">Preview not available in this browser.</p>
+      <a href="My_Resume.pdf" download="Sumit_Yadav_Resume.pdf" class="cv-bar-btn cv-bar-dl" style="display:inline-flex;">↓ Download Full CV</a>
+    </div>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -544,14 +562,14 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
 <div class="logos-band">
   <div class="logos-in">
     <span class="logos-lbl">Worked with &amp; Studied at</span>
-    <span class="logo-tag"><span class="logo-ico" style="background:#1a1a5e;color:white;font-size:.7rem;font-weight:700;">IIM</span>IIM Calcutta</span>
-    <span class="logo-tag"><span class="logo-ico" style="background:#003366;color:white;font-size:.6rem;font-weight:700;">NIT</span>NIT Kurukshetra</span>
-    <span class="logo-tag"><span class="logo-ico" style="background:#f97316;border-radius:50%;">⚡</span>Blinkit</span>
-    <span class="logo-tag"><span class="logo-ico" style="background:#7c3aed;border-radius:50%;color:white;font-size:.6rem;font-weight:700;">A</span>Accenture S&amp;C</span>
-    <span class="logo-tag"><span class="logo-ico" style="background:#0ea5e9;border-radius:50%;color:white;font-size:.6rem;font-weight:700;">S</span>Shopdeck</span>
-    <span class="logo-tag"><span class="logo-ico" style="background:#0369a1;border-radius:50%;color:white;font-size:.6rem;font-weight:700;">A</span>Adani</span>
-    <span class="logo-tag"><span class="logo-ico" style="background:#dc2626;border-radius:50%;color:white;font-size:.6rem;font-weight:700;">H</span>Honda</span>
-    <span class="logo-tag"><span class="logo-ico" style="background:#475569;border-radius:50%;color:white;font-size:.5rem;font-weight:700;">UPS</span>UPS Lakshmi</span>
+    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=iimcal.ac.in&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="IIM Calcutta logo"/>IIM Calcutta</span>
+    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=nitkkr.ac.in&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="NIT KKR logo"/>NIT Kurukshetra</span>
+    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=blinkit.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Blinkit logo"/>Blinkit</span>
+    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=accenture.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Accenture logo"/>Accenture S&amp;C</span>
+    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=shopdeck.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Shopdeck logo"/>Shopdeck</span>
+    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=adani.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Adani logo"/>Adani Enterprises</span>
+    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=honda.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Honda logo"/>Honda Motorcycles</span>
+    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=zomato.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Zomato logo"/>Zomato Group</span>
   </div>
 </div>
 
@@ -617,8 +635,8 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
         </div>
       </div>
       <div class="acards reveal">
-        <div class="ac"><div class="ac-ico">🎓</div><div><div class="ac-h">IIM Calcutta · MBA 2025</div><div class="ac-p">CAT 99.64%ile (QA: 99.83%ile). Converted 12/15 IIM calls including IIM-C, IIM-A, and IIFT.</div></div></div>
-        <div class="ac"><div class="ac-ico">⚙️</div><div><div class="ac-h">NIT Kurukshetra · B.Tech Mechanical</div><div class="ac-p">CGPA 8.36/10. 10/10 GPA Sem 6. Academic Excellence Award. Secretary, Mechanical Society.</div></div></div>
+        <div class="ac"><div class="ac-ico"><img src="https://www.google.com/s2/favicons?domain=iimcal.ac.in&sz=32" width="20" height="20" style="border-radius:4px;"/></div><div><div class="ac-h">IIM Calcutta · MBA 2025</div><div class="ac-p">CAT 99.64%ile (QA: 99.83%ile). Converted 12/15 IIM calls including IIM-C, IIM-A, and IIFT.</div></div></div>
+        <div class="ac"><div class="ac-ico"><img src="https://www.google.com/s2/favicons?domain=nitkkr.ac.in&sz=32" width="20" height="20" style="border-radius:4px;"/></div><div><div class="ac-h">NIT Kurukshetra · B.Tech Mechanical</div><div class="ac-p">CGPA 8.36/10. 10/10 GPA Sem 6. Academic Excellence Award. Secretary, Mechanical Society.</div></div></div>
         <div class="ac"><div class="ac-ico">⚓</div><div><div class="ac-h">Indian Navy Selectee</div><div class="ac-p">Shortlisted B.Tech Cadet Entry. Top 1.5%ile in NDA, twice. GATE AIR 2070/1.2L+ (Score: 696). <a href="GATE.pdf" target="_blank" style="color:var(--accent);font-size:.7rem;">View ↗</a></div></div></div>
         <div class="ac"><div class="ac-ico">🏆</div><div><div class="ac-h">National Competition Winner</div><div class="ac-p">1st/20+ teams (₹10K) Junkyard War NIT KKR. 1st/8+ energy conversion. 2nd/50+ Roller Coaster.</div></div></div>
         <div class="ac"><div class="ac-ico">❤️</div><div><div class="ac-h">Social Impact · Shiksha</div><div class="ac-p">1,000+ hours mentoring 100+ underprivileged children. Raised ₹3L+. Community library with 500+ books.</div></div></div>
@@ -646,7 +664,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
         <div class="tl-dot"></div>
         <div class="tl-date">May 2025<br/>Present</div>
         <div class="tl-co-logo">
-          <div class="co-logo-ic" style="background:#f97316;color:white;font-size:.7rem;font-weight:700;">B</div>
+          <img src="https://www.google.com/s2/favicons?domain=blinkit.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="Blinkit"/>
           <span style="font-size:.73rem;font-weight:700;color:var(--accent);font-family:var(--serif);">Blinkit</span>
         </div>
       </div>
@@ -671,7 +689,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
         <div class="tl-dot"></div>
         <div class="tl-date">Sep 2022<br/>May 2023</div>
         <div class="tl-co-logo">
-          <div class="co-logo-ic" style="background:#0ea5e9;color:white;font-size:.7rem;font-weight:700;">S</div>
+          <img src="https://www.google.com/s2/favicons?domain=shopdeck.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="Shopdeck"/>
           <span style="font-size:.73rem;font-weight:700;color:var(--accent);font-family:var(--serif);">Shopdeck</span>
         </div>
       </div>
@@ -693,7 +711,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
         <div class="tl-dot"></div>
         <div class="tl-date">Jan 2022<br/>Jul 2022</div>
         <div class="tl-co-logo">
-          <div class="co-logo-ic" style="background:#0369a1;color:white;font-size:.6rem;font-weight:700;">A</div>
+          <img src="https://www.google.com/s2/favicons?domain=adani.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="Adani"/>
           <span style="font-size:.73rem;font-weight:700;color:var(--accent);font-family:var(--serif);">Adani</span>
         </div>
       </div>
@@ -713,7 +731,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
         <div class="tl-dot"></div>
         <div class="tl-date">Jul 2021<br/>Jan 2022</div>
         <div class="tl-co-logo">
-          <div class="co-logo-ic" style="background:#475569;color:white;font-size:.5rem;font-weight:700;">UPS</div>
+          <img src="https://www.google.com/s2/favicons?domain=upslakshmi.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);background:#475569;" alt="UPS Lakshmi"/>
           <span style="font-size:.73rem;font-weight:700;color:var(--accent);font-family:var(--serif);">UPS Lakshmi</span>
         </div>
       </div>
@@ -742,7 +760,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
         <div class="tl-dot" style="background:#7c3aed;box-shadow:0 0 0 3px var(--bg),0 0 0 4px #7c3aed;"></div>
         <div class="tl-date">May 2024<br/>Jun 2024</div>
         <div class="tl-co-logo">
-          <div class="co-logo-ic" style="background:#7c3aed;color:white;font-size:.6rem;font-weight:700;">Ac</div>
+          <img src="https://www.google.com/s2/favicons?domain=accenture.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="Accenture"/>
           <span style="font-size:.73rem;font-weight:700;color:#7c3aed;font-family:var(--serif);">Accenture S&amp;C</span>
         </div>
       </div>
@@ -762,7 +780,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
         <div class="tl-dot" style="background:#6d28d9;box-shadow:0 0 0 3px var(--bg),0 0 0 4px #6d28d9;"></div>
         <div class="tl-date">Aug 2024<br/>Dec 2024</div>
         <div class="tl-co-logo">
-          <div class="co-logo-ic" style="background:#6d28d9;color:white;font-size:.6rem;font-weight:700;">X</div>
+          <img src="https://www.google.com/s2/favicons?domain=x-culture.org&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="X-Culture"/>
           <span style="font-size:.73rem;font-weight:700;color:#6d28d9;font-family:var(--serif);">X-Culture</span>
         </div>
       </div>
@@ -782,7 +800,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
         <div class="tl-dot" style="background:#dc2626;box-shadow:0 0 0 3px var(--bg),0 0 0 4px #dc2626;"></div>
         <div class="tl-date">Jan 2020<br/>Jun 2020</div>
         <div class="tl-co-logo">
-          <div class="co-logo-ic" style="background:#dc2626;color:white;font-size:.6rem;font-weight:700;">H</div>
+          <img src="https://www.google.com/s2/favicons?domain=honda.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="Honda"/>
           <span style="font-size:.73rem;font-weight:700;color:#dc2626;font-family:var(--serif);">Honda</span>
         </div>
       </div>
@@ -870,7 +888,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
         <div class="edu-c">
           <div class="edu-top">
             <div class="edu-logo-row">
-              <div class="edu-logo" style="background:#1a1a5e;color:white;font-size:.55rem;font-weight:700;letter-spacing:-.02em;">IIM<br/>C</div>
+              <div class="edu-logo"><img src="https://www.google.com/s2/favicons?domain=iimcal.ac.in&sz=64" width="26" height="26" style="object-fit:contain;" alt="IIM Calcutta"/></div>
               <div class="edu-school">Indian Institute of Management Calcutta</div>
             </div>
             <div class="edu-yr">2023–2025</div>
@@ -882,7 +900,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
         <div class="edu-c">
           <div class="edu-top">
             <div class="edu-logo-row">
-              <div class="edu-logo" style="background:#003366;color:white;font-size:.5rem;font-weight:700;letter-spacing:-.02em;">NIT<br/>KKR</div>
+              <div class="edu-logo"><img src="https://www.google.com/s2/favicons?domain=nitkkr.ac.in&sz=64" width="26" height="26" style="object-fit:contain;" alt="NIT KKR"/></div>
               <div class="edu-school">National Institute of Technology, Kurukshetra</div>
             </div>
             <div class="edu-yr">2017–2021</div>
@@ -973,12 +991,52 @@ document.getElementById('contactModal').addEventListener('click',function(e){
   if(e.target===this)closeModal('contactModal');
 });
 
-// ── CV Modal ──
+// ── CV Modal with PDF.js ──
+let pdfDoc=null,cvPage=1;
 function openCVModal(){
-  const frame=document.getElementById('cvFrame');
-  if(!frame.src||frame.src==='about:blank'||frame.src==='')frame.src='My_Resume.pdf';
   document.getElementById('cvModal').classList.add('open');
   document.body.style.overflow='hidden';
+  if(!pdfDoc) loadPDF();
+}
+function loadPDF(){
+  const script=document.createElement('script');
+  script.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+  script.onload=()=>{
+    pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    pdfjsLib.getDocument('My_Resume.pdf').promise.then(pdf=>{
+      pdfDoc=pdf;
+      document.getElementById('cvPageInfo').textContent='Page 1 of '+pdf.numPages;
+      if(pdf.numPages>1){document.getElementById('cvPagination').style.display='block';}
+      renderCVPage(1);
+    }).catch(()=>showCVFallback());
+  };
+  script.onerror=()=>showCVFallback();
+  document.head.appendChild(script);
+}
+function renderCVPage(n){
+  document.getElementById('cvLoading').style.display='flex';
+  document.getElementById('cvCanvas').style.display='none';
+  pdfDoc.getPage(n).then(page=>{
+    const vp=page.getViewport({scale:window.devicePixelRatio>1?2:1.5});
+    const canvas=document.getElementById('cvCanvas');
+    const ctx=canvas.getContext('2d');
+    canvas.height=vp.height;canvas.width=vp.width;
+    canvas.style.width=Math.min(vp.width/window.devicePixelRatio,860)+'px';
+    canvas.style.height='auto';
+    page.render({canvasContext:ctx,viewport:vp}).promise.then(()=>{
+      document.getElementById('cvLoading').style.display='none';
+      canvas.style.display='block';
+      document.getElementById('cvPageInfo').textContent='Page '+n+' of '+pdfDoc.numPages;
+      document.getElementById('cvPrev').disabled=n<=1;
+      document.getElementById('cvNext').disabled=n>=pdfDoc.numPages;
+    });
+  });
+}
+function cvPrevPage(){if(cvPage>1){cvPage--;renderCVPage(cvPage);}}
+function cvNextPage(){if(pdfDoc&&cvPage<pdfDoc.numPages){cvPage++;renderCVPage(cvPage);}}
+function showCVFallback(){
+  document.getElementById('cvLoading').style.display='none';
+  document.getElementById('cvFallback').style.display='block';
 }
 
 // ── Form submit ──
