@@ -3,952 +3,982 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Sumit Yadav — Strategy & Growth</title>
-<meta name="description" content="Sumit Yadav — IIM Calcutta MBA | Strategy & Operations at Blinkit | Accenture S&C | CAT 99.64 percentile"/>
+<title>Sumit Yadav — Strategy, Growth & Operations</title>
+<meta name="description" content="Sumit Yadav — IIM Calcutta MBA | Blinkit Strategy | Shopdeck | CAT 99.64%ile"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Sora:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
+/* ══════════════════════════════════════════
+   RESET & TOKENS
+══════════════════════════════════════════ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;}
-body{font-family:'Sora',sans-serif;background:#f5f1ea;color:#1c1816;overflow-x:hidden;}
+body{font-family:'DM Sans',sans-serif;background:#080808;color:#f0ede8;overflow-x:hidden;cursor:none;}
 a{text-decoration:none;color:inherit;}
-::-webkit-scrollbar{width:2px;background:transparent;}
-::-webkit-scrollbar-thumb{background:#c8bfb0;}
-::selection{background:#2d1f0e;color:#f5f1ea;}
+img{display:block;max-width:100%;}
+button{cursor:none;border:none;background:none;font-family:inherit;}
+::selection{background:#e05a1e;color:#fff;}
+::-webkit-scrollbar{width:3px;background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
 
 :root{
-  --bg:#f5f1ea; --bg2:#ede8df; --bg3:#e4ddd2;
-  --ink:#1c1816; --ink2:#52493e; --ink3:#9a9088;
-  --white:#fff;
-  --border:#ddd6cc;
-  --accent:#b5451b;   /* warm terracotta — like Prakhar's site */
-  --accent2:#2d4a22;  /* forest green for IIM/badges */
-  --blue:#1a3fcc;
-  --serif:'Playfair Display',Georgia,serif;
-  --sans:'Sora',sans-serif;
-  --mono:'DM Mono',monospace;
+  --ink:#080808; --ink2:#1a1a1a; --ink3:#2a2a2a;
+  --text:#f0ede8; --muted:#888; --dim:#555;
+  --orange:#e05a1e; --orange2:#f47c3c;
+  --green:#22c55e; --green-bg:rgba(34,197,94,.1);
+  --border:rgba(255,255,255,.08);
+  --border2:rgba(255,255,255,.04);
+  --glass:rgba(255,255,255,.04);
+  --serif:'Instrument Serif',serif;
+  --display:'Bebas Neue',sans-serif;
+  --body:'DM Sans',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --r8:8px; --r12:12px; --r16:16px; --r20:20px; --r24:24px; --r32:32px;
 }
 
-/* ── CUSTOM CURSOR ── */
-.cur{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;}
-.cur-r{position:fixed;width:34px;height:34px;border:1px solid rgba(28,24,22,.25);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s;}
-@media(hover:none){.cur,.cur-r{display:none;}}
+/* ══════════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════════ */
+#cursor{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .08s;mix-blend-mode:difference;}
+#cursor-trail{position:fixed;width:40px;height:40px;border:1px solid rgba(224,90,30,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s;}
+@media(hover:none){#cursor,#cursor-trail{display:none;}body{cursor:auto;}button{cursor:pointer;}}
 
-/* ── NAV ── */
-#nav{
-  position:fixed;inset:0 0 auto;z-index:500;height:60px;
-  display:flex;align-items:center;padding:0 5%;
-  background:rgba(245,241,234,.92);backdrop-filter:blur(24px) saturate(160%);
-  border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;
-}
-#nav.scrolled{border-color:var(--border);box-shadow:0 1px 0 var(--border);}
-.nav-in{width:100%;max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--ink);}
+/* ══════════════════════════════════════════
+   ANNOUNCEMENT BAR (moving)
+══════════════════════════════════════════ */
+.ann-bar{height:36px;background:var(--orange);overflow:hidden;position:relative;z-index:100;}
+.ann-track{display:flex;white-space:nowrap;animation:ann 18s linear infinite;height:100%;align-items:center;}
+.ann-track:hover{animation-play-state:paused;}
+.ann-item{display:inline-flex;align-items:center;gap:12px;padding:0 32px;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;flex-shrink:0;}
+.ann-sep{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.5);flex-shrink:0;}
+@keyframes ann{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+#nav{position:fixed;top:36px;left:0;right:0;z-index:400;height:56px;display:flex;align-items:center;padding:0 5%;transition:all .3s;}
+#nav.scrolled{background:rgba(8,8,8,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+.nav-in{width:100%;max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:var(--display);font-size:1.5rem;letter-spacing:.08em;color:var(--text);}
+.nav-logo span{color:var(--orange);}
 .nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{font-size:.7rem;font-weight:500;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;transition:color .2s;}
-.nav-links a:hover{color:var(--ink);}
+.nav-links a{font-size:.72rem;font-weight:500;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
 .nav-end{display:flex;gap:8px;align-items:center;}
-.nbtn{display:inline-flex;align-items:center;gap:6px;padding:7px 18px;border-radius:100px;font-size:.71rem;font-weight:600;transition:all .2s;letter-spacing:.02em;}
-.nbtn-ghost{background:transparent;color:var(--ink2);border:1px solid var(--border);}
-.nbtn-ghost:hover{border-color:var(--ink);color:var(--ink);}
-.nbtn-fill{background:var(--ink);color:var(--bg);}
-.nbtn-fill:hover{background:var(--accent);}
-.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:3px;}
-.ham span{display:block;width:20px;height:1.5px;background:var(--ink2);transition:all .3s;}
+.nbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;border-radius:100px;font-size:.72rem;font-weight:600;letter-spacing:.02em;transition:all .2s;}
+.nbtn-ghost{color:var(--muted);border:1px solid var(--border);}
+.nbtn-ghost:hover{color:var(--text);border-color:rgba(255,255,255,.3);}
+.nbtn-fill{background:var(--orange);color:#fff;}
+.nbtn-fill:hover{background:var(--orange2);transform:translateY(-1px);}
+.ham{display:none;flex-direction:column;gap:5px;padding:4px;}
+.ham span{display:block;width:22px;height:1.5px;background:var(--muted);transition:.3s;}
 
-/* ── MOBILE MENU ── */
-.mob{display:none;position:fixed;inset:0;z-index:490;background:rgba(245,241,234,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+/* mobile menu */
+.mob{display:none;position:fixed;inset:0;z-index:390;background:rgba(8,8,8,.98);flex-direction:column;align-items:center;justify-content:center;gap:28px;}
 .mob.open{display:flex;}
-.mob a{font-family:var(--serif);font-size:2.6rem;font-weight:700;font-style:italic;color:rgba(28,24,22,.25);transition:color .2s;}
-.mob a:hover{color:var(--ink);}
-.mob-x{position:absolute;top:22px;right:5%;font-size:1.3rem;color:var(--ink3);cursor:pointer;background:none;border:none;font-family:var(--sans);}
+.mob a{font-family:var(--display);font-size:3.2rem;color:rgba(240,237,232,.2);letter-spacing:.06em;transition:color .2s;}
+.mob a:hover{color:var(--text);}
+.mob-x{position:absolute;top:70px;right:5%;font-size:1.4rem;color:var(--dim);}
 
-/* ── HERO ── */
-.hero{min-height:100vh;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(28,24,22,.06) 1px,transparent 1px);background-size:30px 30px;pointer-events:none;z-index:0;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 30%,transparent 100%);}
-.hero-body{flex:1;display:grid;grid-template-columns:1fr 320px;gap:72px;align-items:center;padding:110px 5% 56px;max-width:1180px;margin:0 auto;width:100%;position:relative;z-index:1;}
-.avail{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:100px;background:#dcfce7;border:1px solid #bbf7d0;font-size:.67rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#166534;margin-bottom:24px;width:fit-content;}
-.pulse{width:7px;height:7px;border-radius:50%;background:#166534;animation:gp 2s infinite;}
-@keyframes gp{0%,100%{box-shadow:0 0 0 0 rgba(22,101,52,.4);}50%{box-shadow:0 0 0 6px rgba(22,101,52,0);}}
-.hero-name{font-family:var(--serif);font-size:clamp(3.8rem,8vw,7.8rem);font-weight:700;line-height:.92;letter-spacing:-.04em;color:var(--ink);margin-bottom:22px;}
-.hero-name em{font-style:italic;color:var(--accent);}
-.hero-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:26px;}
-.hpill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;background:var(--white);border:1px solid var(--border);font-size:.72rem;font-weight:500;color:var(--ink2);box-shadow:0 1px 3px rgba(0,0,0,.04);}
-.hpill-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-.hero-bio{font-size:.95rem;color:var(--ink2);line-height:1.85;max-width:500px;margin-bottom:34px;font-weight:300;}
-.hero-bio strong{color:var(--ink);font-weight:600;}
-.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;}
-.btn-p{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;border-radius:100px;background:var(--ink);color:var(--bg);font-size:.8rem;font-weight:600;transition:all .25s;}
-.btn-p:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 10px 28px rgba(181,69,27,.25);}
-.btn-s{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;border-radius:100px;background:transparent;color:var(--ink2);font-size:.8rem;font-weight:500;border:1.5px solid var(--border);transition:all .25s;}
-.btn-s:hover{border-color:var(--ink);color:var(--ink);}
-/* hero quick-card */
-.hcard{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:26px;box-shadow:0 6px 36px rgba(0,0,0,.07);position:relative;overflow:hidden;}
-.hcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),#e07040,transparent);}
-.hcard-eye{font-family:var(--mono);font-size:.58rem;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-.hrow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(28,24,22,.04);}
-.hrow:last-of-type{border-bottom:none;}
-.hk{font-size:.7rem;color:var(--ink3);}
-.hv{font-size:.74rem;font-weight:600;color:var(--ink);font-family:var(--mono);}
-.hv.a{color:var(--accent);}
-.hcard-open{margin-top:14px;display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:9px;background:#dcfce7;border:1px solid #bbf7d0;font-size:.71rem;font-weight:600;color:#166534;}
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero{min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden;padding-top:92px;}
 
-/* STATS */
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);background:var(--white);position:relative;z-index:1;}
-.hstat{padding:24px 28px;border-right:1px solid var(--border);transition:background .2s;}
-.hstat:last-child{border-right:none;}
-.hstat:hover{background:var(--bg2);}
-.hstat-n{font-family:var(--serif);font-style:italic;font-size:2.1rem;line-height:1;letter-spacing:-.03em;color:var(--ink);margin-bottom:4px;}
-.hstat-n .ac{color:var(--accent);}
-.hstat-l{font-size:.61rem;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;line-height:1.5;}
+/* animated gradient mesh background */
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(224,90,30,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(244,124,60,.07) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(224,90,30,.06) 0%, transparent 60%);
+  animation: bgpulse 8s ease-in-out infinite alternate;
+}
+@keyframes bgpulse{
+  0%{opacity:.7;}
+  100%{opacity:1;}
+}
 
-/* ── TICKER ── */
-.ticker{background:var(--ink);padding:12px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,.06);}
-.tick-t{display:flex;white-space:nowrap;animation:tickr 30s linear infinite;}
-.tick-t:hover{animation-play-state:paused;}
-@keyframes tickr{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.ti{display:inline-flex;align-items:center;gap:8px;padding:0 26px;font-size:.68rem;font-weight:500;color:rgba(255,255,255,.28);letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;border-right:1px solid rgba(255,255,255,.07);transition:color .2s;}
-.ti:hover{color:rgba(255,255,255,.65);}
-.tid{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+/* grid lines */
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 90% 80% at 50% 50%, black 0%, transparent 100%);
+}
 
-/* ── LOGOS BAND ── */
-.logos-band{background:var(--bg2);border-bottom:1px solid var(--border);padding:20px 5%;}
-.logos-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.logos-lbl{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;margin-right:8px;flex-shrink:0;}
-.logo-tag{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.73rem;font-weight:600;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.04);transition:border-color .2s,transform .2s;}
-.logo-tag:hover{border-color:var(--accent);transform:translateY(-2px);}
-.logo-ico{width:18px;height:18px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;}
+.hero-body{flex:1;display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center;padding:60px 5% 48px;max-width:1280px;margin:0 auto;width:100%;position:relative;z-index:2;}
 
-/* ── SHOWCASE (Netflix reel) ── */
-.showcase{padding:72px 0;background:var(--bg);overflow:hidden;}
-.sc-head{padding:0 5%;max-width:1180px;margin:0 auto 28px;}
-.sc-eye{font-family:var(--mono);font-size:.62rem;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
-.sc-eye::before{content:'//';opacity:.4;}
-.sc-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--ink);letter-spacing:-.03em;line-height:1.1;}
-.sc-title em{font-style:italic;color:var(--accent);}
-.reel-wrap{overflow:hidden;padding:4px 5% 20px;cursor:grab;}
-.reel-wrap:active{cursor:grabbing;}
-.reel{display:flex;gap:14px;animation:reel 50s linear infinite;}
-.reel:hover{animation-play-state:paused;}
-@keyframes reel{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.rcard{flex-shrink:0;width:300px;background:var(--white);border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .25s;position:relative;overflow:hidden;}
-.rcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity .3s;}
-.rcard:hover{transform:translateY(-7px) scale(1.01);box-shadow:0 20px 48px rgba(181,69,27,.1);border-color:var(--accent);}
-.rcard:hover::before{opacity:1;}
-.rc-tag{font-family:var(--mono);font-size:.59rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:9px;}
-.rc-title{font-family:var(--serif);font-size:1.03rem;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.3;}
-.rc-desc{font-size:.77rem;color:var(--ink2);line-height:1.7;margin-bottom:13px;font-weight:300;}
-.rc-chips{display:flex;flex-wrap:wrap;gap:4px;}
-.rchip{font-family:var(--mono);font-size:.6rem;padding:2px 8px;background:#fef3e2;border:1px solid #fcd9a0;border-radius:4px;color:#92600a;}
+/* availability pill */
+.avail-pill{display:inline-flex;align-items:center;gap:9px;padding:6px 16px;border-radius:100px;border:1px solid rgba(34,197,94,.3);background:rgba(34,197,94,.08);font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:28px;width:fit-content;}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);animation:livepulse 2s infinite;}
+@keyframes livepulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5);}50%{box-shadow:0 0 0 8px transparent;}}
 
-/* ── SECTIONS ── */
-.sec{padding:96px 5%;}
-.sec-alt{background:var(--bg2);}
-.sec-dark{background:var(--ink);color:var(--bg);}
-.wrap{max-width:1180px;margin:0 auto;}
-.eye{font-family:var(--mono);font-size:.62rem;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
-.eye::before{content:'//';opacity:.4;}
-.sec-dark .eye{color:rgba(255,255,255,.3);}
-.sh{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1.05;margin-bottom:10px;}
-.sh em{font-style:italic;color:var(--accent);}
-.sec-dark .sh{color:var(--bg);}
-.ss{font-size:.92rem;color:var(--ink2);max-width:52ch;line-height:1.85;margin-bottom:48px;font-weight:300;}
-.sec-dark .ss{color:rgba(245,241,234,.4);}
+/* HERO NAME — Apple-style big */
+.hero-name{font-family:var(--display);font-size:clamp(5rem,11vw,11rem);line-height:.88;letter-spacing:.04em;color:var(--text);margin-bottom:6px;}
+.hero-name-sub{font-family:var(--serif);font-size:clamp(1.8rem,4vw,4rem);font-style:italic;color:var(--orange);line-height:1;margin-bottom:28px;}
 
-/* ── ABOUT ── */
-.about-g{display:grid;grid-template-columns:1.3fr .7fr;gap:72px;align-items:start;}
-.about-body p{font-size:.92rem;color:var(--ink2);line-height:1.9;margin-bottom:13px;font-weight:300;}
-.about-body p strong{color:var(--ink);font-weight:600;}
-.pullq{font-family:var(--serif);font-style:italic;font-size:1.2rem;font-weight:700;color:var(--ink);border-left:2px solid var(--accent);padding:4px 0 4px 18px;margin:24px 0;line-height:1.5;}
-.acards{display:flex;flex-direction:column;gap:9px;}
-.ac{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 16px;display:flex;align-items:flex-start;gap:11px;box-shadow:0 1px 4px rgba(0,0,0,.03);transition:border-color .2s,transform .25s cubic-bezier(.34,1.56,.64,1);}
-.ac:hover{border-color:var(--accent);transform:translateX(5px);}
-.ac-ico{width:30px;height:30px;flex-shrink:0;border-radius:8px;background:#fef3e2;display:flex;align-items:center;justify-content:center;font-size:.85rem;}
-.ac-h{font-size:.74rem;font-weight:600;color:var(--ink);margin-bottom:2px;}
-.ac-p{font-size:.71rem;color:var(--ink2);line-height:1.5;font-weight:300;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+.htag{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid var(--border);font-size:.7rem;font-weight:500;color:var(--muted);}
+.htag-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
 
-/* ── IMPACT DARK ── */
-.impact-g{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;}
-.ic{background:rgba(255,255,255,.03);padding:28px 20px;text-align:center;transition:background .2s;}
-.ic:hover{background:rgba(255,255,255,.06);}
-.ic-n{font-family:var(--serif);font-style:italic;font-size:2.8rem;line-height:1;letter-spacing:-.04em;color:var(--bg);margin-bottom:6px;}
-.ic-n span{color:#fca572;}
-.ic-l{font-size:.62rem;font-weight:500;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;line-height:1.5;}
+.hero-bio{font-size:.96rem;color:var(--muted);line-height:1.85;max-width:520px;margin-bottom:36px;font-weight:300;}
+.hero-bio strong{color:var(--text);font-weight:600;}
 
-/* ── TIMELINE EXPERIENCE (like Prakhar) ── */
-.tl{display:grid;grid-template-columns:160px 1fr;gap:0;}
-.tl-spine{position:relative;padding-right:32px;}
-.tl-spine::after{content:'';position:absolute;right:0;top:8px;bottom:0;width:1px;background:var(--border);}
-.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);position:absolute;right:-5px;top:8px;box-shadow:0 0 0 3px var(--bg),0 0 0 4px var(--accent);}
-.tl-date{font-family:var(--mono);font-size:.65rem;color:var(--ink3);line-height:1.5;padding-right:16px;}
-.tl-co{font-size:.75rem;font-weight:700;color:var(--accent);margin-top:6px;padding-right:16px;font-family:var(--serif);}
-/* logo inside timeline */
-.tl-co-logo{display:flex;align-items:center;gap:6px;margin-top:6px;}
-.co-logo-ic{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;border:1px solid var(--border);}
-.tl-content{padding:0 0 52px 36px;}
-.tl-role{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:14px;line-height:1.2;}
-.tl-badge{display:inline-block;padding:2px 9px;font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border-radius:100px;margin-left:8px;vertical-align:middle;}
-.b-ft{background:#dcfce7;color:#15803d;}
-.b-in{background:#fef9c3;color:#92600a;}
-.b-lp{background:#ede9fe;color:#6d28d9;}
-.tl-ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
-/* ── POWER VERB HIGHLIGHTING — the key feature ── */
-.tl-ul li{font-size:.85rem;color:var(--ink2);padding-left:16px;position:relative;line-height:1.75;font-weight:300;}
-.tl-ul li::before{content:'–';position:absolute;left:0;color:var(--accent);font-size:.8rem;top:1px;}
-.tl-ul li strong.verb{color:var(--ink);font-weight:700;} /* power verb */
-.tl-ul li strong.num{color:var(--accent);font-weight:700;} /* numbers/metrics */
-.tl-ul li strong{color:var(--ink);font-weight:600;} /* regular bold */
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:100px;background:var(--orange);color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.02em;transition:all .25s;}
+.btn-primary:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 16px 40px rgba(224,90,30,.4);}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:100px;background:transparent;color:var(--muted);font-size:.82rem;font-weight:500;border:1px solid var(--border);transition:all .25s;}
+.btn-secondary:hover{color:var(--text);border-color:rgba(255,255,255,.3);}
 
-/* ── PROJECTS ── */
-.proj-g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.pcard{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;box-shadow:0 1px 6px rgba(0,0,0,.04);position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .25s;}
-.pcard:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(181,69,27,.1);border-color:var(--accent);}
-.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity .3s;}
-.pcard:hover::before{opacity:1;}
-.pcard.feat{grid-column:span 2;flex-direction:row;gap:32px;background:linear-gradient(135deg,#1e1a16 0%,#1c1816 100%);}
-.pcard.feat:hover{box-shadow:0 20px 56px rgba(0,0,0,.2);}
-.pf-l{flex:1;}
-.pf-r{display:flex;flex-direction:column;gap:10px;min-width:150px;justify-content:center;}
-.ps-box{padding:13px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;}
-.ps-n{font-family:var(--serif);font-style:italic;font-size:1.8rem;color:#fca572;line-height:1;letter-spacing:-.02em;}
-.ps-l{font-size:.58rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.07em;margin-top:3px;}
-.ptag{font-family:var(--mono);font-size:.59rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:8px;}
-.pcard.feat .ptag{color:rgba(255,255,255,.35);}
-.ptitle{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.3;}
-.pcard.feat .ptitle{color:var(--bg);font-size:1.12rem;}
-.pdesc{font-size:.78rem;color:var(--ink2);line-height:1.7;flex-grow:1;margin-bottom:13px;font-weight:300;}
-.pcard.feat .pdesc{color:rgba(245,241,234,.45);}
-.pchips{display:flex;flex-wrap:wrap;gap:5px;}
-.pchip{font-family:var(--mono);font-size:.59rem;padding:2px 8px;background:#fef3e2;border:1px solid #fcd9a0;border-radius:4px;color:#92600a;}
-.pcard.feat .pchip{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.6);}
+/* hero quick card */
+.qcard{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r20);padding:24px;position:relative;overflow:hidden;backdrop-filter:blur(10px);}
+.qcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--orange),transparent);}
+.qcard-label{font-family:var(--mono);font-size:.56rem;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border2);}
+.qrow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border2);}
+.qrow:last-of-type{border-bottom:none;}
+.qk{font-size:.66rem;color:var(--dim);}
+.qv{font-size:.7rem;font-weight:600;color:var(--text);font-family:var(--mono);}
+.qv.hi{color:var(--orange);}
+.qcard-foot{margin-top:14px;padding:9px 13px;border-radius:var(--r8);background:var(--green-bg);border:1px solid rgba(34,197,94,.2);display:flex;align-items:center;gap:8px;font-size:.66rem;font-weight:600;color:var(--green);}
 
-/* ── SKILLS ── */
-.skills-g{display:grid;grid-template-columns:1fr 1fr;gap:52px;}
-.skb{margin-bottom:20px;}
-.skb-l{font-size:.61rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:9px;padding-bottom:7px;border-bottom:1px solid var(--border);}
-.sk-wrap{display:flex;flex-wrap:wrap;gap:6px;}
-.sk{font-size:.73rem;font-weight:400;padding:4px 12px;background:var(--white);border:1px solid var(--border);border-radius:100px;color:var(--ink2);transition:all .15s;cursor:default;box-shadow:0 1px 2px rgba(0,0,0,.03);}
-.sk:hover{background:#fef3e2;border-color:var(--accent);color:var(--accent);}
-.cg-t{font-size:.61rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);}
-.citem{display:flex;align-items:center;gap:10px;padding:10px 13px;background:var(--white);border:1px solid var(--border);border-radius:10px;margin-bottom:6px;color:inherit;box-shadow:0 1px 3px rgba(0,0,0,.03);transition:border-color .2s,transform .25s cubic-bezier(.34,1.56,.64,1),background .2s;}
-.citem:hover{border-color:var(--accent);background:#fef3e2;transform:translateX(4px);}
-.cico{width:26px;height:26px;flex-shrink:0;border-radius:6px;background:#fef3e2;display:flex;align-items:center;justify-content:center;font-size:.8rem;}
-.cn{font-size:.74rem;font-weight:600;color:var(--ink);margin-bottom:1px;line-height:1.3;}
-.cb{font-size:.62rem;color:var(--ink3);font-family:var(--mono);}
-.cscore{display:inline-block;padding:1px 6px;background:#dcfce7;border:1px solid #bbf7d0;border-radius:3px;font-size:.59rem;color:#166534;font-weight:700;margin-left:4px;}
-.carr{margin-left:auto;font-size:.6rem;color:var(--accent);font-weight:600;white-space:nowrap;padding-left:8px;flex-shrink:0;}
-.cert-badge{margin-top:11px;padding:9px 13px;background:#fef3e2;border:1px solid #fcd9a0;border-radius:8px;}
-.cert-badge p{font-size:.73rem;color:#92600a;font-weight:600;}
+/* ══════════════════════════════════════════
+   HERO STATS — animated counters row
+══════════════════════════════════════════ */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);background:rgba(255,255,255,.02);position:relative;z-index:2;}
+.stat{padding:28px 32px;border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background .3s;}
+.stat:last-child{border-right:none;}
+.stat:hover{background:rgba(255,255,255,.03);}
+.stat::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(224,90,30,.06) 0%,transparent 100%);opacity:0;transition:.3s;}
+.stat:hover::before{opacity:1;}
+.stat-n{font-family:var(--display);font-size:2.8rem;letter-spacing:.04em;color:var(--text);line-height:1;margin-bottom:6px;}
+.stat-n .hi{color:var(--orange);}
+.stat-l{font-family:var(--mono);font-size:.58rem;font-weight:500;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;line-height:1.5;}
 
-/* ── EDUCATION ── */
-.edu-g{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-.edu-c{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:11px;box-shadow:0 1px 5px rgba(0,0,0,.04);transition:border-color .2s,transform .25s cubic-bezier(.34,1.56,.64,1);}
-.edu-c:hover{border-color:var(--accent);transform:translateY(-3px);}
-/* edu logo row */
-.edu-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;}
-.edu-logo-row{display:flex;align-items:center;gap:8px;}
-.edu-logo{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;overflow:hidden;background:var(--white);}
-.edu-logo img{width:100%;height:100%;object-fit:contain;}
-.edu-school{font-family:var(--serif);font-size:.93rem;font-weight:700;color:var(--ink);}
-.edu-yr{font-family:var(--mono);font-size:.62rem;color:var(--ink3);flex-shrink:0;}
-.edu-deg{font-size:.76rem;color:var(--ink2);margin-bottom:4px;font-weight:300;}
-.edu-score{font-family:var(--mono);font-size:.65rem;color:var(--accent);}
-.edu-note{font-size:.71rem;color:var(--ink3);padding-top:8px;border-top:1px solid var(--border);margin-top:8px;line-height:1.55;font-weight:300;}
-.ach-list{display:flex;flex-direction:column;gap:8px;}
-.ach-i{display:flex;gap:10px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:11px 13px;align-items:flex-start;box-shadow:0 1px 3px rgba(0,0,0,.03);transition:border-color .2s,transform .25s cubic-bezier(.34,1.56,.64,1);}
-.ach-i:hover{border-color:var(--accent);transform:translateX(4px);}
-.ach-em{width:25px;height:25px;flex-shrink:0;border-radius:6px;background:#fef3e2;display:flex;align-items:center;justify-content:center;font-size:.8rem;}
-.ach-tx{font-size:.76rem;color:var(--ink2);line-height:1.55;font-weight:300;}
-.ach-tx strong{color:var(--ink);font-weight:600;}
+/* ══════════════════════════════════════════
+   MOVING TICKER (brand logos)
+══════════════════════════════════════════ */
+.ticker-wrap{background:var(--ink2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;}
+.ticker-row{display:flex;white-space:nowrap;gap:0;}
+.ticker-track{display:flex;flex-shrink:0;gap:0;animation:ticker 25s linear infinite;}
+.ticker-track2{animation-direction:reverse;animation-duration:20s;}
+.ticker-track:hover{animation-play-state:paused;}
+.titem{display:inline-flex;align-items:center;gap:10px;padding:0 28px;font-size:.72rem;font-weight:600;color:rgba(240,237,232,.35);letter-spacing:.04em;flex-shrink:0;border-right:1px solid var(--border);}
+.titem:hover{color:rgba(240,237,232,.75);}
+.tdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-100%);}}
 
-/* ── CONTACT CTA BANNER ── */
-.cta-banner{padding:72px 5%;background:var(--ink);text-align:center;}
-.cta-banner-in{max-width:640px;margin:0 auto;}
-.cta-banner h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:700;font-style:italic;color:var(--bg);margin-bottom:12px;letter-spacing:-.03em;}
-.cta-banner p{font-size:.9rem;color:rgba(245,241,234,.45);line-height:1.7;margin-bottom:28px;font-weight:300;}
-.cta-banner .btn-p{font-size:.84rem;padding:15px 36px;}
+/* ══════════════════════════════════════════
+   SECTION BASE
+══════════════════════════════════════════ */
+.sec{padding:100px 5%;max-width:1280px;margin:0 auto;}
+.sec-wrap{padding:100px 0;}
+.sec-full{padding:0;}
+.eye{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--orange);text-transform:uppercase;letter-spacing:.18em;margin-bottom:12px;}
+.sh{font-family:var(--display);font-size:clamp(2.4rem,5vw,5.2rem);letter-spacing:.04em;color:var(--text);line-height:.95;margin-bottom:12px;}
+.sh-it{font-family:var(--serif);font-style:italic;color:var(--orange);font-size:clamp(2rem,4vw,4.4rem);}
+.ss{font-size:.88rem;color:var(--muted);line-height:1.8;max-width:600px;margin-bottom:48px;}
 
-/* ── CONTACT MODAL ── */
-.modal-overlay{display:none;position:fixed;inset:0;z-index:600;background:rgba(28,24,22,.6);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px;}
-.modal-overlay.open{display:flex;}
-.modal{background:var(--white);border-radius:20px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,.2);}
-.modal-head{background:var(--ink);border-radius:20px 20px 0 0;padding:28px 28px 24px;position:relative;}
-.modal-eye{font-family:var(--mono);font-size:.61rem;font-weight:500;color:rgba(245,241,234,.4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;}
-.modal-title{font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--bg);line-height:1.1;margin-bottom:8px;}
-.modal-sub{font-size:.83rem;color:rgba(245,241,234,.45);line-height:1.6;font-weight:300;}
-.modal-close{position:absolute;top:18px;right:18px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.1);border:none;cursor:pointer;font-size:.9rem;color:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;transition:background .2s;}
-.modal-close:hover{background:rgba(255,255,255,.2);}
+/* ══════════════════════════════════════════
+   IMPACT REEL — Netflix auto-scroll rows
+══════════════════════════════════════════ */
+.reel-section{background:var(--ink2);padding:60px 0;}
+.reel-head{padding:0 5%;max-width:1280px;margin:0 auto 28px;}
+
+/* ROW 1: cards scrolling left */
+.auto-row{overflow:hidden;padding:8px 0;}
+.auto-track{display:flex;gap:16px;animation:scrollLeft 40s linear infinite;}
+.auto-track:hover{animation-play-state:paused;}
+.auto-track-r{animation:scrollRight 35s linear infinite;}
+.auto-track-r:hover{animation-play-state:paused;}
+@keyframes scrollLeft{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+@keyframes scrollRight{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+
+.acard{flex-shrink:0;width:320px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r16);padding:22px;transition:all .3s cubic-bezier(.34,1.56,.64,1);}
+.acard:hover{border-color:rgba(224,90,30,.4);background:rgba(255,255,255,.07);transform:translateY(-4px) scale(1.01);}
+.acard-tag{font-family:var(--mono);font-size:.57rem;font-weight:600;color:var(--orange);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.acard-title{font-size:1rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:8px;line-height:1.2;}
+.acard-desc{font-size:.74rem;color:var(--muted);line-height:1.65;margin-bottom:12px;font-weight:300;}
+.acard-chips{display:flex;flex-wrap:wrap;gap:5px;}
+.achip{font-family:var(--mono);font-size:.56rem;padding:3px 8px;background:rgba(224,90,30,.12);border:1px solid rgba(224,90,30,.25);border-radius:4px;color:var(--orange);}
+
+/* ══════════════════════════════════════════
+   ABOUT SECTION
+══════════════════════════════════════════ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.about-text p{font-size:.9rem;color:var(--muted);line-height:1.9;margin-bottom:18px;font-weight:300;}
+.about-text strong{color:var(--text);font-weight:600;}
+.pullq{font-family:var(--serif);font-size:1.2rem;font-style:italic;color:var(--orange);border-left:2px solid var(--orange);padding:4px 0 4px 18px;margin:28px 0;line-height:1.5;}
+.acard-list{display:flex;flex-direction:column;gap:10px;}
+.alist-item{display:flex;gap:14px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r12);padding:14px;align-items:flex-start;transition:all .25s cubic-bezier(.34,1.56,.64,1);}
+.alist-item:hover{border-color:rgba(224,90,30,.3);transform:translateX(6px);background:rgba(255,255,255,.05);}
+.aitem-ico{width:30px;height:30px;flex-shrink:0;border-radius:8px;background:rgba(224,90,30,.12);display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+.aitem-h{font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:3px;}
+.aitem-p{font-size:.68rem;color:var(--dim);line-height:1.55;font-weight:300;}
+
+/* ══════════════════════════════════════════
+   EXPERIENCE TIMELINE
+══════════════════════════════════════════ */
+.tl-wrap{position:relative;padding-left:24px;}
+.tl-line{position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--orange) 0%,rgba(224,90,30,.1) 100%);}
+.tl-block{position:relative;margin-bottom:56px;padding-left:28px;}
+.tl-block::before{content:'';position:absolute;left:-24px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--orange);border:2px solid var(--ink);box-shadow:0 0 0 3px rgba(224,90,30,.25);}
+.tl-meta{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.tl-co{font-family:var(--display);font-size:1.6rem;letter-spacing:.06em;color:var(--text);}
+.tl-badge{font-family:var(--mono);font-size:.55rem;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.06em;}
+.tb-ft{background:rgba(224,90,30,.15);color:var(--orange);border:1px solid rgba(224,90,30,.3);}
+.tb-in{background:rgba(14,165,233,.12);color:#38bdf8;border:1px solid rgba(14,165,233,.2);}
+.tl-role{font-size:.82rem;font-weight:500;color:var(--muted);margin-bottom:4px;font-family:var(--mono);}
+.tl-date{font-family:var(--mono);font-size:.6rem;color:var(--dim);letter-spacing:.06em;margin-bottom:16px;}
+.tl-ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.tl-ul li{font-size:.8rem;color:var(--muted);line-height:1.65;font-weight:300;padding-left:16px;position:relative;}
+.tl-ul li::before{content:'→';position:absolute;left:0;color:var(--orange);font-size:.7rem;line-height:1.8;}
+.tl-ul .vb{font-weight:700;color:var(--text);}
+.tl-ul .nm{font-weight:700;color:var(--orange);}
+
+/* ══════════════════════════════════════════
+   FRAMEWORKS — poster grid with image cards
+══════════════════════════════════════════ */
+.fw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+.fw-card{background:var(--ink);position:relative;overflow:hidden;cursor:pointer;}
+.fw-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .7s ease,filter .5s ease;filter:brightness(.8);}
+.fw-card:hover .fw-card-img{transform:scale(1.06);filter:brightness(.65);}
+/* fallback gradient when no image */
+.fw-card-fallback{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,rgba(224,90,30,.15),rgba(224,90,30,.03));display:flex;align-items:center;justify-content:center;font-size:3.5rem;transition:transform .7s ease;}
+.fw-card:hover .fw-card-fallback{transform:scale(1.06);}
+.fw-card-over{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,8,8,.92) 100%);padding:28px;display:flex;flex-direction:column;justify-content:flex-end;transition:all .3s;}
+.fw-card:hover .fw-card-over{background:linear-gradient(180deg,transparent 10%,rgba(8,8,8,.97) 100%);}
+.fw-tag{font-family:var(--mono);font-size:.56rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px;transform:translateY(4px);transition:transform .3s;}
+.fw-card:hover .fw-tag{transform:translateY(0);}
+.fw-title{font-family:var(--display);font-size:1.5rem;letter-spacing:.04em;color:var(--text);margin-bottom:8px;line-height:.95;}
+.fw-desc{font-size:.75rem;color:rgba(240,237,232,.55);line-height:1.65;font-weight:300;max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s;}
+.fw-card:hover .fw-desc{max-height:120px;opacity:1;}
+.fw-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;opacity:0;transform:translateY(6px);transition:all .35s .05s;}
+.fw-card:hover .fw-chips{opacity:1;transform:translateY(0);}
+.fw-chip{font-family:var(--mono);font-size:.54rem;padding:2px 8px;background:rgba(224,90,30,.15);border:1px solid rgba(224,90,30,.3);border-radius:3px;color:var(--orange);}
+
+/* ══════════════════════════════════════════
+   PROJECTS
+══════════════════════════════════════════ */
+.proj-g{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+.pcard{background:var(--ink);padding:28px;transition:background .3s;}
+.pcard:hover{background:rgba(255,255,255,.04);}
+.pcard.feat{grid-column:span 3;display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:40px;align-items:center;}
+.pcard-tag{font-family:var(--mono);font-size:.57rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;}
+.pcard-title{font-family:var(--display);font-size:clamp(1.5rem,2vw,2rem);letter-spacing:.04em;color:var(--text);margin-bottom:12px;line-height:.95;}
+.pcard-desc{font-size:.78rem;color:var(--muted);line-height:1.7;margin-bottom:16px;font-weight:300;}
+.pchips{display:flex;flex-wrap:wrap;gap:6px;}
+.pchip{font-family:var(--mono);font-size:.56rem;padding:3px 9px;background:rgba(224,90,30,.1);border:1px solid rgba(224,90,30,.2);border-radius:4px;color:rgba(240,237,232,.6);}
+.pstats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+.pstat{background:var(--ink);padding:22px;text-align:center;}
+.pstat-n{font-family:var(--display);font-size:2.4rem;letter-spacing:.04em;color:var(--orange);line-height:1;}
+.pstat-l{font-family:var(--mono);font-size:.57rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-top:5px;line-height:1.4;}
+
+/* ══════════════════════════════════════════
+   DOCUMENTS SHELF (Netflix poster row)
+══════════════════════════════════════════ */
+.doc-shelf-section{background:var(--ink2);padding:60px 0;}
+.doc-shelf-head{padding:0 5%;max-width:1280px;margin:0 auto 24px;}
+.poster-row{overflow-x:auto;padding:4px 5%;scrollbar-width:none;}
+.poster-row::-webkit-scrollbar{display:none;}
+.poster-track{display:flex;gap:14px;width:max-content;}
+.poster-card{width:180px;flex-shrink:0;border-radius:var(--r12);overflow:hidden;background:var(--ink3);border:1px solid var(--border);transition:all .3s cubic-bezier(.34,1.56,.64,1);display:block;color:inherit;position:relative;}
+.poster-card:hover{transform:scale(1.06) translateY(-4px);box-shadow:0 24px 48px rgba(0,0,0,.6);border-color:rgba(224,90,30,.4);z-index:5;}
+.poster-card-thumb{width:100%;aspect-ratio:3/4;overflow:hidden;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;}
+.poster-card-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s;}
+.poster-card:hover .poster-card-thumb img{transform:scale(1.05);}
+.poster-placeholder{width:100%;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:2.5rem;}
+.poster-card-body{padding:12px 14px 14px;}
+.poster-type{font-family:var(--mono);font-size:.52rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px;}
+.poster-title{font-size:.77rem;font-weight:700;color:var(--text);letter-spacing:-.01em;line-height:1.25;margin-bottom:3px;}
+.poster-sub{font-size:.63rem;color:var(--dim);line-height:1.35;font-weight:300;}
+/* Netflix-style hover overlay */
+.poster-card::after{content:'↗ Open';position:absolute;inset:0 0 auto;height:40px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;transform:translateY(-100%);transition:transform .25s;}
+.poster-card:hover::after{transform:translateY(0);}
+
+/* ══════════════════════════════════════════
+   SKILLS
+══════════════════════════════════════════ */
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);}
+.skill-col{background:var(--ink);padding:28px;}
+.skill-col-label{font-family:var(--mono);font-size:.58rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.14em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.skill-tags{display:flex;flex-direction:column;gap:6px;}
+.stag{font-size:.74rem;font-weight:400;padding:7px 0;color:var(--muted);border-bottom:1px solid var(--border2);transition:all .2s;}
+.stag:hover{color:var(--text);padding-left:8px;}
+
+.cert-row{display:flex;flex-direction:column;gap:8px;margin-top:16px;}
+.cert-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r8);transition:all .2s;}
+.cert-item:hover{border-color:rgba(224,90,30,.3);background:rgba(255,255,255,.05);}
+.cert-ico{width:26px;height:26px;flex-shrink:0;border-radius:6px;background:rgba(224,90,30,.12);display:flex;align-items:center;justify-content:center;font-size:.8rem;}
+.cert-n{font-size:.72rem;font-weight:600;color:var(--text);margin-bottom:2px;}
+.cert-b{font-family:var(--mono);font-size:.59rem;color:var(--dim);}
+.cert-sc{font-family:var(--mono);font-size:.55rem;padding:1px 5px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);border-radius:3px;color:var(--green);}
+
+/* ══════════════════════════════════════════
+   EDUCATION
+══════════════════════════════════════════ */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);}
+.edu-col{background:var(--ink);padding:40px;}
+.edu-school-name{font-family:var(--display);font-size:2.2rem;letter-spacing:.04em;color:var(--text);line-height:.95;margin-bottom:8px;}
+.edu-degree{font-size:.78rem;color:var(--muted);margin-bottom:4px;font-weight:300;}
+.edu-score{font-family:var(--mono);font-size:.7rem;color:var(--orange);margin-bottom:10px;}
+.edu-note{font-size:.7rem;color:var(--dim);line-height:1.6;font-weight:300;padding-top:10px;border-top:1px solid var(--border);}
+.edu-yr{font-family:var(--mono);font-size:.62rem;color:var(--dim);margin-bottom:14px;letter-spacing:.06em;}
+
+.ach-grid{display:flex;flex-direction:column;gap:8px;}
+.ach-it{display:flex;gap:12px;padding:11px 13px;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:var(--r8);align-items:flex-start;transition:all .25s;}
+.ach-it:hover{border-color:rgba(224,90,30,.25);background:rgba(255,255,255,.05);}
+.ach-em{width:26px;height:26px;flex-shrink:0;border-radius:6px;background:rgba(224,90,30,.1);display:flex;align-items:center;justify-content:center;font-size:.8rem;}
+.ach-tx{font-size:.73rem;color:var(--muted);line-height:1.55;font-weight:300;}
+.ach-tx strong{color:var(--text);font-weight:700;}
+
+/* ══════════════════════════════════════════
+   CTA SECTION
+══════════════════════════════════════════ */
+.cta-sec{min-height:50vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5%;position:relative;overflow:hidden;}
+.cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(224,90,30,.12),transparent 70%);}
+.cta-sec::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:40px 40px;opacity:.5;}
+.cta-inner{position:relative;z-index:2;max-width:700px;}
+.cta-big{font-family:var(--display);font-size:clamp(3.5rem,8vw,8rem);letter-spacing:.06em;color:var(--text);line-height:.88;margin-bottom:8px;}
+.cta-sub{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.8rem);font-style:italic;color:var(--orange);margin-bottom:28px;}
+.cta-p{font-size:.9rem;color:var(--muted);line-height:1.75;max-width:500px;margin:0 auto 36px;}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer{background:var(--ink2);border-top:1px solid var(--border);padding:20px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.fl{font-family:var(--mono);font-size:.58rem;color:var(--dim);}
+.fr{display:flex;gap:22px;}
+.fr a{font-size:.65rem;color:var(--dim);transition:color .2s;}
+.fr a:hover{color:var(--text);}
+
+/* ══════════════════════════════════════════
+   MODALS
+══════════════════════════════════════════ */
+.modal-ov{display:none;position:fixed;inset:0;z-index:600;background:rgba(8,8,8,.8);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px;}
+.modal-ov.open{display:flex;}
+.modal{background:var(--ink2);border:1px solid var(--border);border-radius:var(--r20);width:100%;max-width:520px;max-height:92vh;overflow-y:auto;box-shadow:0 48px 96px rgba(0,0,0,.6);}
+.modal-head{background:rgba(255,255,255,.04);border-radius:var(--r20) var(--r20) 0 0;padding:28px;position:relative;border-bottom:1px solid var(--border);}
+.modal-eye{font-family:var(--mono);font-size:.57rem;font-weight:600;color:var(--orange);text-transform:uppercase;letter-spacing:.14em;margin-bottom:7px;}
+.modal-title{font-family:var(--display);font-size:2.4rem;letter-spacing:.06em;color:var(--text);line-height:.9;margin-bottom:8px;}
+.modal-sub{font-size:.8rem;color:var(--muted);line-height:1.65;font-weight:300;}
+.modal-close{position:absolute;top:18px;right:18px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--dim);transition:.2s;}
+.modal-close:hover{background:rgba(255,255,255,.15);color:var(--text);}
 .modal-body{padding:24px 28px;}
-/* contact links in modal */
-.mc-link{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--bg);border:1px solid var(--border);border-radius:12px;margin-bottom:9px;color:var(--ink2);transition:all .2s;}
-.mc-link:hover{border-color:var(--accent);background:#fef3e2;color:var(--ink);}
-.mc-ic{width:34px;height:34px;flex-shrink:0;background:#fef3e2;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.88rem;}
-.mc-lbl{font-size:.59rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px;}
-.mc-val{font-size:.82rem;color:var(--ink);font-weight:500;}
-.modal-divider{display:flex;align-items:center;gap:10px;margin:16px 0;}
-.modal-divider::before,.modal-divider::after{content:'';flex:1;height:1px;background:var(--border);}
-.modal-divider span{font-size:.68rem;color:var(--ink3);font-family:var(--mono);white-space:nowrap;}
-/* form */
+.mc-link{display:flex;align-items:center;gap:13px;padding:13px 15px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r12);margin-bottom:8px;transition:all .2s;}
+.mc-link:hover{border-color:rgba(224,90,30,.3);background:rgba(255,255,255,.05);}
+.mc-ic{width:34px;height:34px;flex-shrink:0;background:rgba(224,90,30,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.88rem;}
+.mc-lbl{font-family:var(--mono);font-size:.54rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px;}
+.mc-val{font-size:.8rem;color:var(--text);font-weight:500;}
+.mdiv{display:flex;align-items:center;gap:10px;margin:16px 0;}
+.mdiv::before,.mdiv::after{content:'';flex:1;height:1px;background:var(--border);}
+.mdiv span{font-family:var(--mono);font-size:.62rem;color:var(--dim);}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
-.form-group{display:flex;flex-direction:column;gap:5px;margin-bottom:10px;}
-.form-group label{font-size:.62rem;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;}
-.form-input{padding:11px 14px;background:var(--bg);border:1px solid var(--border);border-radius:9px;font-family:var(--sans);font-size:.82rem;color:var(--ink);transition:border-color .2s;outline:none;}
-.form-input:focus{border-color:var(--accent);}
-.form-input::placeholder{color:var(--ink3);}
-.form-select{padding:11px 14px;background:var(--bg);border:1px solid var(--border);border-radius:9px;font-family:var(--sans);font-size:.82rem;color:var(--ink);appearance:none;cursor:pointer;outline:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a9088' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
-.form-select:focus{border-color:var(--accent);}
-.form-textarea{padding:11px 14px;background:var(--bg);border:1px solid var(--border);border-radius:9px;font-family:var(--sans);font-size:.82rem;color:var(--ink);resize:vertical;min-height:90px;outline:none;transition:border-color .2s;}
-.form-textarea:focus{border-color:var(--accent);}
-.form-textarea::placeholder{color:var(--ink3);}
-.form-submit{width:100%;padding:14px;border-radius:100px;background:var(--ink);color:var(--bg);font-family:var(--sans);font-size:.82rem;font-weight:600;border:none;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;}
-.form-submit:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 10px 28px rgba(181,69,27,.25);}
-.form-note{text-align:center;font-size:.68rem;color:var(--ink3);margin-top:10px;line-height:1.5;}
-/* what I'm looking for box */
-.wlf-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:12px;}
-.wlf-box p{font-size:.77rem;color:var(--ink2);line-height:1.65;}
-.wlf-box p strong{color:var(--ink);font-weight:600;}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:10px;}
+.fg label{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.09em;}
+.fi{padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r8);font-family:var(--body);font-size:.8rem;color:var(--text);outline:none;transition:border-color .2s;}
+.fi:focus{border-color:var(--orange);}
+.fi::placeholder{color:var(--dim);}
+.fta{padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r8);font-family:var(--body);font-size:.8rem;color:var(--text);resize:vertical;min-height:80px;outline:none;transition:border-color .2s;}
+.fta:focus{border-color:var(--orange);}
+.fta::placeholder{color:var(--dim);}
+.fsub{width:100%;padding:14px;border-radius:100px;background:var(--orange);color:#fff;font-family:var(--body);font-size:.8rem;font-weight:700;cursor:pointer;transition:all .25s;margin-top:4px;}
+.fsub:hover{background:var(--orange2);transform:translateY(-1px);}
 
-/* ── CV VIEWER MODAL ── */
-.cv-modal{display:none;position:fixed;inset:0;z-index:610;background:rgba(28,24,22,.85);backdrop-filter:blur(12px);flex-direction:column;}
+/* CV modal */
+.cv-modal{display:none;position:fixed;inset:0;z-index:610;background:rgba(8,8,8,.92);backdrop-filter:blur(16px);flex-direction:column;}
 .cv-modal.open{display:flex;}
-.cv-bar{background:var(--ink);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-.cv-bar-title{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--bg);}
-.cv-bar-actions{display:flex;gap:8px;}
-.cv-bar-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:100px;font-size:.73rem;font-weight:600;cursor:pointer;border:none;font-family:var(--sans);transition:all .2s;}
-.cv-bar-close{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);}
-.cv-bar-close:hover{background:rgba(255,255,255,.2);}
-.cv-bar-dl{background:var(--accent);color:#fff;}
-.cv-bar-dl:hover{background:#c4541f;}
-.cv-frame{flex:1;display:flex;flex-direction:column;background:var(--bg);overflow-y:auto;align-items:center;padding:24px;}
+.cv-bar{background:var(--ink2);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
+.cv-bar-title{font-family:var(--display);font-size:1.1rem;letter-spacing:.06em;color:var(--text);}
+.cv-bar-acts{display:flex;gap:8px;align-items:center;}
+.cvbtn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:100px;font-size:.7rem;font-weight:600;cursor:pointer;border:none;font-family:var(--body);transition:.2s;}
+.cvbtn-close{background:rgba(255,255,255,.08);color:var(--muted);}
+.cvbtn-close:hover{background:rgba(255,255,255,.14);}
+.cvbtn-dl{background:var(--orange);color:#fff;}
+.cvbtn-dl:hover{background:var(--orange2);}
+.cv-frame{flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;padding:24px;background:#333;}
 @keyframes spin{to{transform:rotate(360deg);}}
 
-/* ── FOOTER ── */
-footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
-.fl{font-family:var(--mono);font-size:.61rem;color:rgba(255,255,255,.2);}
-.fr{display:flex;gap:20px;}
-.fr a{font-size:.67rem;color:rgba(255,255,255,.27);transition:color .2s;}
-.fr a:hover{color:rgba(255,255,255,.7);}
+/* ══════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+.rv.in{opacity:1;transform:translateY(0);}
+.rv2{opacity:0;transform:translateY(16px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1);}
+.rv2.in{opacity:1;transform:translateY(0);}
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
-.fu{opacity:0;animation:fadeUp .65s cubic-bezier(.16,1,.3,1) forwards;}
-.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
-.d4{animation-delay:.35s}.d5{animation-delay:.45s}.d6{animation-delay:.6s}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);}
-.reveal.in{opacity:1;transform:translateY(0);}
+/* staggered children */
+.stagger-kids > *{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);}
+.stagger-kids.in > *:nth-child(1){opacity:1;transform:none;transition-delay:.05s;}
+.stagger-kids.in > *:nth-child(2){opacity:1;transform:none;transition-delay:.12s;}
+.stagger-kids.in > *:nth-child(3){opacity:1;transform:none;transition-delay:.19s;}
+.stagger-kids.in > *:nth-child(4){opacity:1;transform:none;transition-delay:.26s;}
+.stagger-kids.in > *:nth-child(5){opacity:1;transform:none;transition-delay:.33s;}
+.stagger-kids.in > *:nth-child(6){opacity:1;transform:none;transition-delay:.40s;}
 
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
+/* hero entrance */
+.fu{opacity:0;animation:fadeup .8s cubic-bezier(.16,1,.3,1) forwards;}
+.fu.d1{animation-delay:.05s;}.fu.d2{animation-delay:.18s;}.fu.d3{animation-delay:.32s;}
+.fu.d4{animation-delay:.46s;}.fu.d5{animation-delay:.6s;}.fu.d6{animation-delay:.78s;}
+@keyframes fadeup{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media(max-width:1100px){
   .hero-body{grid-template-columns:1fr;gap:36px;}
-  .hcard{display:none;}
-  .about-g,.edu-g,.skills-g{grid-template-columns:1fr;gap:32px;}
+  .qcard{display:none;}
+  .about-grid{grid-template-columns:1fr;gap:48px;}
+  .edu-grid{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:repeat(2,1fr);}
   .proj-g{grid-template-columns:1fr 1fr;}
-  .pcard.feat{grid-column:span 2;flex-direction:column;gap:20px;}
-  .pf-r{flex-direction:row;flex-wrap:wrap;}
-  .impact-g{grid-template-columns:repeat(2,1fr);}
-  .hero-stats{grid-template-columns:repeat(2,1fr);}
-  .tl{grid-template-columns:130px 1fr;}
+  .pcard.feat{grid-column:span 2;grid-template-columns:1fr;gap:24px;}
+  .fw-grid{grid-template-columns:1fr 1fr;}
+  .stats-row{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:768px){
   .nav-links,.nbtn-ghost{display:none;}
   .ham{display:flex;}
   .sec{padding:60px 4%;}
-  .hero-body{padding:88px 4% 36px;}
-  .tl{grid-template-columns:1fr;gap:0;}
-  .tl-spine{display:none;}
-  .tl-content{padding:0 0 40px 0;}
-  .tl-role{font-size:1rem;}
-  .proj-g{grid-template-columns:1fr;}
+  .sec-wrap{padding:60px 0;}
+  .hero-body{padding:80px 4% 40px;}
+  .fw-grid,.proj-g{grid-template-columns:1fr;}
   .pcard.feat{grid-column:span 1;}
-  footer{padding:14px 4%;flex-direction:column;text-align:center;}
-  .hstat{padding:16px 14px;}
-  .hstat-n{font-size:1.8rem;}
+  .pstats{grid-template-columns:1fr 1fr 1fr;}
+  .edu-grid,.skills-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:repeat(2,1fr);}
+  .stat{padding:20px 18px;}
   .form-row{grid-template-columns:1fr;}
+  footer{flex-direction:column;text-align:center;padding:16px 4%;}
 }
 @media(max-width:480px){
-  .hero-name{font-size:3.4rem;}
-  .impact-g{grid-template-columns:1fr 1fr;}
-  .rcard{width:268px;}
-  .logos-band{overflow-x:auto;}
+  .hero-name{font-size:4.5rem;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .skills-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
 
-<!-- Custom cursor -->
-<div class="cur" id="cur"></div>
-<div class="cur-r" id="curR"></div>
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-trail"></div>
 
-<!-- Mobile Menu -->
+<!-- ═══ ANNOUNCEMENT BAR ═══ -->
+<div class="ann-bar">
+  <div class="ann-track">
+    <!-- first copy -->
+    <span class="ann-item">🎯 CAT 99.64%ile — QA 99.83%ile<span class="ann-sep"></span></span>
+    <span class="ann-item">⚡ 2,300+ Dark Stores Impacted at Blinkit<span class="ann-sep"></span></span>
+    <span class="ann-item">📈 ₹100Cr+ D2C Revenue at Shopdeck<span class="ann-sep"></span></span>
+    <span class="ann-item">🏛️ IIM Calcutta MBA 2025<span class="ann-sep"></span></span>
+    <span class="ann-item">🔑 43% Variance Reduction Across Network<span class="ann-sep"></span></span>
+    <span class="ann-item">💼 Open to Strategy, Growth & Ops Roles<span class="ann-sep"></span></span>
+    <span class="ann-item">🚀 15+ Pan-India Pilots Scaled<span class="ann-sep"></span></span>
+    <span class="ann-item">🏗️ ₹235Cr+ Capex Coordination at Adani<span class="ann-sep"></span></span>
+    <!-- second copy for seamless loop -->
+    <span class="ann-item">🎯 CAT 99.64%ile — QA 99.83%ile<span class="ann-sep"></span></span>
+    <span class="ann-item">⚡ 2,300+ Dark Stores Impacted at Blinkit<span class="ann-sep"></span></span>
+    <span class="ann-item">📈 ₹100Cr+ D2C Revenue at Shopdeck<span class="ann-sep"></span></span>
+    <span class="ann-item">🏛️ IIM Calcutta MBA 2025<span class="ann-sep"></span></span>
+    <span class="ann-item">🔑 43% Variance Reduction Across Network<span class="ann-sep"></span></span>
+    <span class="ann-item">💼 Open to Strategy, Growth & Ops Roles<span class="ann-sep"></span></span>
+    <span class="ann-item">🚀 15+ Pan-India Pilots Scaled<span class="ann-sep"></span></span>
+    <span class="ann-item">🏗️ ₹235Cr+ Capex Coordination at Adani<span class="ann-sep"></span></span>
+  </div>
+</div>
+
+<!-- ═══ MOBILE MENU ═══ -->
 <div class="mob" id="mob">
   <button class="mob-x" onclick="closeMob()">✕</button>
   <a href="#about" onclick="closeMob()">About</a>
   <a href="#experience" onclick="closeMob()">Experience</a>
+  <a href="#frameworks" onclick="closeMob()">Frameworks</a>
   <a href="#projects" onclick="closeMob()">Projects</a>
-  <a href="#skills" onclick="closeMob()">Skills</a>
-  <a href="#education" onclick="closeMob()">Education</a>
-  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="#documents" onclick="closeMob()">Documents</a>
 </div>
 
-<!-- Contact Modal -->
-<div class="modal-overlay" id="contactModal">
-  <div class="modal">
-    <div class="modal-head">
-      <div class="modal-eye">Let's Build Something</div>
-      <div class="modal-title">Work With Me</div>
-      <div class="modal-sub">Open to Strategy, Growth &amp; Ops, and Consulting roles. Based in Gurugram — open to relocation across India.</div>
-      <button class="modal-close" onclick="closeModal('contactModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <a href="mailto:sumity2025&#64;email&#46;iimcal&#46;ac&#46;in" class="mc-link">
-        <div class="mc-ic">✉</div>
-        <div><div class="mc-lbl">Email</div><div class="mc-val">sumity2025&#64;email&#46;iimcal&#46;ac&#46;in</div></div>
-      </a>
-      <a href="tel:+919728502596" class="mc-link">
-        <div class="mc-ic">📞</div>
-        <div><div class="mc-lbl">Phone / WhatsApp</div><div class="mc-val">+91 97285 02596</div></div>
-      </a>
-      <a href="https://www.linkedin.com/in/sumit-yadav1/" target="_blank" rel="noopener" class="mc-link">
-        <div class="mc-ic">💼</div>
-        <div><div class="mc-lbl">LinkedIn</div><div class="mc-val">linkedin.com/in/sumit-yadav1</div></div>
-      </a>
-      <a href="#" onclick="openCVModal();return false;" class="mc-link">
-        <div class="mc-ic">📄</div>
-        <div><div class="mc-lbl">Resume / CV</div><div class="mc-val">View &amp; Download Full CV →</div></div>
-      </a>
-      <div class="modal-divider"><span>Or — drop your details &amp; I'll reach out</span></div>
-      <div class="form-row">
-        <div class="form-group"><label>Your Name *</label><input class="form-input" type="text" placeholder="Rohan Sharma"/></div>
-        <div class="form-group"><label>Company / Role</label><input class="form-input" type="text" placeholder="Acme Corp / Hiring Manager"/></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Email</label><input class="form-input" type="email" placeholder="rohan@company.com"/></div>
-        <div class="form-group"><label>Phone / WhatsApp</label><input class="form-input" type="tel" placeholder="+91 98765 43210"/></div>
-      </div>
-      <div class="form-group">
-        <label>What's This About?</label>
-        <select class="form-select form-input">
-          <option value="">Select a reason</option>
-          <option>Job Opportunity</option>
-          <option>Consulting / Freelance</option>
-          <option>Collaboration</option>
-          <option>Just saying hi</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Quick Note <span style="font-weight:300;text-transform:none">(optional)</span></label>
-        <textarea class="form-textarea" placeholder="Tell me a little about what you have in mind..."></textarea>
-      </div>
-      <button class="form-submit" onclick="submitForm()">➤ &nbsp;Send — I'll get back within 24 hrs</button>
-      <div class="form-note">Your details are only used to contact you about this enquiry. No spam, ever.</div>
-      <div class="wlf-box">
-        <p><strong>What I'm looking for</strong> — roles where the problem is genuinely hard, the team is sharp, and there's room to build things that last. Strategy · Growth &amp; Ops · Consulting · Product.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CV Viewer Modal -->
-<div class="cv-modal" id="cvModal">
-  <div class="cv-bar">
-    <span class="cv-bar-title">Sumit Yadav — Resume</span>
-    <div class="cv-bar-actions">
-      <button class="cv-bar-btn cv-bar-close" onclick="closeModal('cvModal')">✕ Close</button>
-      <a href="My_Resume.pdf" download="Sumit_Yadav_Resume.pdf" class="cv-bar-btn cv-bar-dl" id="cvDlBtn">↓ Download PDF</a>
-    </div>
-  </div>
-  <div class="cv-frame" id="cvFrame">
-    <div id="cvLoading" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;">
-      <div style="width:40px;height:40px;border:3px solid rgba(28,24,22,.1);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;"></div>
-      <p style="font-family:var(--sans);font-size:.85rem;color:var(--ink3);">Loading CV...</p>
-    </div>
-    <canvas id="cvCanvas" style="display:none;max-width:100%;box-shadow:0 4px 32px rgba(0,0,0,.15);border-radius:4px;"></canvas>
-    <div id="cvPagination" style="display:none;padding:16px;text-align:center;background:var(--bg2);border-top:1px solid var(--border);flex-shrink:0;">
-      <div style="display:inline-flex;align-items:center;gap:12px;">
-        <button onclick="cvPrevPage()" id="cvPrev" class="cv-bar-btn cv-bar-close" style="padding:6px 14px;">← Prev</button>
-        <span id="cvPageInfo" style="font-family:var(--mono);font-size:.72rem;color:var(--ink3);">Page 1 of 1</span>
-        <button onclick="cvNextPage()" id="cvNext" class="cv-bar-btn cv-bar-close" style="padding:6px 14px;">Next →</button>
-      </div>
-    </div>
-    <div id="cvFallback" style="display:none;padding:40px;text-align:center;">
-      <p style="font-family:var(--sans);font-size:.9rem;color:var(--ink2);margin-bottom:16px;">Preview not available in this browser.</p>
-      <a href="My_Resume.pdf" download="Sumit_Yadav_Resume.pdf" class="cv-bar-btn cv-bar-dl" style="display:inline-flex;">↓ Download Full CV</a>
-    </div>
-  </div>
-</div>
-
-<!-- NAV -->
+<!-- ═══ NAV ═══ -->
 <nav id="nav">
   <div class="nav-in">
-    <a href="#" class="nav-logo">Sumit Yadav</a>
+    <div class="nav-logo">SUMIT<span>.</span>YADAV</div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#frameworks">Frameworks</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
+      <li><a href="#documents">Documents</a></li>
     </ul>
     <div class="nav-end">
-      <button class="nbtn nbtn-ghost" onclick="openModal('contactModal')">Contact</button>
-      <button class="nbtn nbtn-fill" onclick="openCVModal()">↓ CV</button>
+      <button class="nbtn nbtn-ghost" onclick="openCVModal()">↓ View CV</button>
+      <button class="nbtn nbtn-fill" onclick="openModal('contactModal')">Get in Touch</button>
     </div>
     <div class="ham" onclick="openMob()"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="about">
+  <div class="hero-bg"></div>
   <div class="hero-body">
     <div>
-      <div class="avail fu d1"><span class="pulse"></span>Open to New Roles</div>
-      <h1 class="hero-name fu d2">Sumit<br/><em>Yadav</em></h1>
-      <div class="hero-pills fu d3">
-        <span class="hpill"><span class="hpill-dot" style="background:#f97316"></span>Strategy &amp; Ops · Blinkit</span>
-        <span class="hpill"><span class="hpill-dot" style="background:#1a3fcc"></span>MBA · IIM Calcutta</span>
-        <span class="hpill"><span class="hpill-dot" style="background:#7c3aed"></span>Accenture S&amp;C</span>
-        <span class="hpill"><span class="hpill-dot" style="background:#0369a1"></span>NIT Kurukshetra</span>
+      <div class="avail-pill fu d1"><span class="dot-live"></span>Open to New Roles · Apr 2025</div>
+      <div class="hero-name fu d2">SUMIT<br/>YADAV</div>
+      <div class="hero-name-sub fu d3">Strategy, Growth &amp; Ops</div>
+      <div class="hero-tags fu d4">
+        <span class="htag"><span class="htag-dot" style="background:#f97316;"></span>Blinkit · Strategy</span>
+        <span class="htag"><span class="htag-dot" style="background:#7c3aed;"></span>Accenture S&amp;C</span>
+        <span class="htag"><span class="htag-dot" style="background:#0ea5e9;"></span>Shopdeck</span>
+        <span class="htag"><span class="htag-dot" style="background:var(--orange);"></span>IIM Calcutta</span>
       </div>
-      <p class="hero-bio fu d4">30+ months building at the intersection of strategy and execution — <strong>2,000+ dark stores at Blinkit</strong>, <strong>80+ D2C brands at Shopdeck</strong>, and strategic mandates at <strong>Accenture S&amp;C</strong>. CAT 99.64 percentile. Indian Navy selectee.</p>
-      <div class="hero-ctas fu d5">
-        <a href="#experience" class="btn-p">View My Work →</a>
-        <button class="btn-p" onclick="openCVModal()">↓ View &amp; Download CV</button>
-        <button class="btn-s" onclick="openModal('contactModal')">Get in Touch</button>
+      <p class="hero-bio fu d5">
+        <strong>MBA, IIM Calcutta.</strong> Built location strategy across <strong>2,300+ Blinkit dark stores.</strong> Scaled D2C orders from zero to 3M+/year for <strong>80+ brands at Shopdeck.</strong> CAT <strong>99.64%ile.</strong> 32 months building at India's highest-velocity companies.
+      </p>
+      <div class="hero-ctas fu d6">
+        <a href="#experience" class="btn-primary">View My Work →</a>
+        <button class="btn-primary" onclick="openCVModal()">↓ View &amp; Download CV</button>
+        <button class="btn-secondary" onclick="openModal('contactModal')">Get in Touch</button>
       </div>
     </div>
-    <div class="hcard fu d5">
-      <div class="hcard-eye">Quick Profile</div>
-      <div class="hrow"><span class="hk">Current Role</span><span class="hv a">Blinkit · Strategy</span></div>
-      <div class="hrow"><span class="hk">MBA</span><span class="hv">IIM Calcutta</span></div>
-      <div class="hrow"><span class="hk">CAT Percentile</span><span class="hv a">99.64%ile</span></div>
-      <div class="hrow"><span class="hk">B.Tech</span><span class="hv">NIT Kurukshetra</span></div>
-      <div class="hrow"><span class="hk">Full-Time Exp.</span><span class="hv">30 Months</span></div>
-      <div class="hrow"><span class="hk">Stores Impacted</span><span class="hv a">2,000+</span></div>
-      <div class="hrow"><span class="hk">Revenue Generated</span><span class="hv a">₹100 Cr+</span></div>
-      <div class="hrow"><span class="hk">Certifications</span><span class="hv">10+ (93%+ avg)</span></div>
-      <div class="hcard-open"><span style="width:7px;height:7px;border-radius:50%;background:#166534;animation:gp 2s infinite;display:inline-block;flex-shrink:0;"></span>Open to New Roles</div>
+    <div class="qcard fu d5">
+      <div class="qcard-label">Quick Profile</div>
+      <div class="qrow"><span class="qk">Current Role</span><span class="qv hi">Blinkit · Strategy &amp; Ops</span></div>
+      <div class="qrow"><span class="qk">MBA</span><span class="qv">IIM Calcutta</span></div>
+      <div class="qrow"><span class="qk">CAT Percentile</span><span class="qv hi">99.64%ile</span></div>
+      <div class="qrow"><span class="qk">B.Tech</span><span class="qv">NIT Kurukshetra · 8.36</span></div>
+      <div class="qrow"><span class="qk">Full-Time Exp.</span><span class="qv">32 Months</span></div>
+      <div class="qrow"><span class="qk">Stores Impacted</span><span class="qv hi">2,300+</span></div>
+      <div class="qrow"><span class="qk">D2C Revenue Gen.</span><span class="qv hi">₹100 Cr+/yr</span></div>
+      <div class="qrow"><span class="qk">Brands Managed</span><span class="qv">80+ D2C</span></div>
+      <div class="qrow"><span class="qk">Certifications</span><span class="qv">10+ · 93%+ avg</span></div>
+      <div class="qcard-foot"><span class="dot-live"></span>Open to New Roles</div>
     </div>
   </div>
-  <div class="hero-stats fu d6">
-    <div class="hstat"><div class="hstat-n"><span class="ac">2,000</span>+</div><div class="hstat-l">Dark stores impacted</div></div>
-    <div class="hstat"><div class="hstat-n">₹<span class="ac">100</span>Cr+</div><div class="hstat-l">Annual revenue generated</div></div>
-    <div class="hstat"><div class="hstat-n"><span class="ac">15</span>+</div><div class="hstat-l">Pan-India pilots scaled</div></div>
-    <div class="hstat"><div class="hstat-n">CAT <span class="ac">99.64</span></div><div class="hstat-l">Percentile · QA: 99.83</div></div>
+
+  <!-- ANIMATED STATS ROW -->
+  <div class="stats-row fu d6">
+    <div class="stat"><div class="stat-n"><span class="cnt" data-target="2300">0</span><span class="hi">+</span></div><div class="stat-l">Dark stores impacted</div></div>
+    <div class="stat"><div class="stat-n">₹<span class="cnt" data-target="100">0</span><span>Cr+</span></div><div class="stat-l">D2C revenue generated</div></div>
+    <div class="stat"><div class="stat-n"><span class="cnt" data-target="15">0</span><span class="hi">+</span></div><div class="stat-l">Pan-India pilots scaled</div></div>
+    <div class="stat"><div class="stat-n">CAT <span class="hi cnt-dec" data-target="99.64">0</span></div><div class="stat-l">Percentile · QA 99.83</div></div>
+  </div>
+</section>
+
+<!-- ═══ TICKER BAR ═══ -->
+<div class="ticker-wrap">
+  <div class="ticker-row">
+    <div class="ticker-track">
+      <span class="titem"><span class="tdot" style="background:#f97316;"></span>Blinkit · Zomato Group</span>
+      <span class="titem"><span class="tdot" style="background:#7c3aed;"></span>Accenture Strategy &amp; Consulting</span>
+      <span class="titem"><span class="tdot" style="background:#0ea5e9;"></span>Shopdeck · D2C Platform</span>
+      <span class="titem"><span class="tdot" style="background:#0369a1;"></span>Adani Enterprises</span>
+      <span class="titem"><span class="tdot" style="background:#64748b;"></span>Honeywell · Boeing Aerostructures</span>
+      <span class="titem"><span class="tdot" style="background:#dc2626;"></span>Honda Motorcycles India</span>
+      <span class="titem"><span class="tdot" style="background:#1a3fcc;"></span>X-Culture International Program</span>
+      <span class="titem"><span class="tdot" style="background:var(--orange);"></span>IIM Calcutta · NIT Kurukshetra</span>
+    </div>
+    <div class="ticker-track">
+      <span class="titem"><span class="tdot" style="background:#f97316;"></span>Blinkit · Zomato Group</span>
+      <span class="titem"><span class="tdot" style="background:#7c3aed;"></span>Accenture Strategy &amp; Consulting</span>
+      <span class="titem"><span class="tdot" style="background:#0ea5e9;"></span>Shopdeck · D2C Platform</span>
+      <span class="titem"><span class="tdot" style="background:#0369a1;"></span>Adani Enterprises</span>
+      <span class="titem"><span class="tdot" style="background:#64748b;"></span>Honeywell · Boeing Aerostructures</span>
+      <span class="titem"><span class="tdot" style="background:#dc2626;"></span>Honda Motorcycles India</span>
+      <span class="titem"><span class="tdot" style="background:#1a3fcc;"></span>X-Culture International Program</span>
+      <span class="titem"><span class="tdot" style="background:var(--orange);"></span>IIM Calcutta · NIT Kurukshetra</span>
+    </div>
   </div>
 </div>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="tick-t">
-    <span class="ti"><span class="tid" style="background:#f97316"></span>Blinkit · Zomato Group</span>
-    <span class="ti"><span class="tid" style="background:#7c3aed"></span>Accenture Strategy &amp; Consulting</span>
-    <span class="ti"><span class="tid" style="background:#0ea5e9"></span>Shopdeck</span>
-    <span class="ti"><span class="tid" style="background:#0369a1"></span>Adani Enterprises</span>
-    <span class="ti"><span class="tid" style="background:#64748b"></span>Honeywell · Boeing</span>
-    <span class="ti"><span class="tid" style="background:#dc2626"></span>Honda Motorcycles India</span>
-    <span class="ti"><span class="tid" style="background:#1a3fcc"></span>X-Culture International</span>
-    <span class="ti"><span class="tid" style="background:#92600a"></span>IIM Calcutta · NIT Kurukshetra</span>
-    <span class="ti"><span class="tid" style="background:#f97316"></span>Blinkit · Zomato Group</span>
-    <span class="ti"><span class="tid" style="background:#7c3aed"></span>Accenture Strategy &amp; Consulting</span>
-    <span class="ti"><span class="tid" style="background:#0ea5e9"></span>Shopdeck</span>
-    <span class="ti"><span class="tid" style="background:#0369a1"></span>Adani Enterprises</span>
-    <span class="ti"><span class="tid" style="background:#64748b"></span>Honeywell · Boeing</span>
-    <span class="ti"><span class="tid" style="background:#dc2626"></span>Honda Motorcycles India</span>
-    <span class="ti"><span class="tid" style="background:#1a3fcc"></span>X-Culture International</span>
-    <span class="ti"><span class="tid" style="background:#92600a"></span>IIM Calcutta · NIT Kurukshetra</span>
+<!-- ═══ AUTO-SCROLLING IMPACT REEL ═══ -->
+<div class="reel-section">
+  <div class="reel-head rv">
+    <div class="eye">Impact Highlights</div>
+    <div class="sh">What I've <span class="sh-it">Built</span></div>
   </div>
-</div>
 
-<!-- INSTITUTION LOGOS BAND -->
-<div class="logos-band">
-  <div class="logos-in">
-    <span class="logos-lbl">Worked with &amp; Studied at</span>
-    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=iimcal.ac.in&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="IIM Calcutta logo"/>IIM Calcutta</span>
-    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=nitkkr.ac.in&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="NIT KKR logo"/>NIT Kurukshetra</span>
-    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=blinkit.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Blinkit logo"/>Blinkit</span>
-    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=accenture.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Accenture logo"/>Accenture S&amp;C</span>
-    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=shopdeck.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Shopdeck logo"/>Shopdeck</span>
-    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=adani.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Adani logo"/>Adani Enterprises</span>
-    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=honda.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Honda logo"/>Honda Motorcycles</span>
-    <span class="logo-tag"><img src="https://www.google.com/s2/favicons?domain=zomato.com&sz=32" width="18" height="18" style="border-radius:3px;object-fit:contain;flex-shrink:0;" alt="Zomato logo"/>Zomato Group</span>
-  </div>
-</div>
-
-<!-- SHOWCASE -->
-<div class="showcase">
-  <div class="sc-head">
-    <div class="sc-eye">Impact Highlights</div>
-    <div class="sc-title">What I've <em>Built</em></div>
-  </div>
-  <div class="reel-wrap">
-    <div class="reel">
-      <div class="rcard"><div class="rc-tag">⚡ Blinkit · 2025</div><div class="rc-title">Dark Store Location Strategy</div><div class="rc-desc">Built location intelligence across 2,000+ dark stores — 100% layout digitization, bin-ID framework, and prioritization dashboard cutting variance by 43%.</div><div class="rc-chips"><span class="rchip">2,000+ Stores</span><span class="rchip">100% Digitized</span><span class="rchip">43% Variance ↓</span></div></div>
-      <div class="rcard"><div class="rc-tag">📈 Shopdeck · 2022–23</div><div class="rc-title">₹100 Cr+ D2C Growth Engine</div><div class="rc-desc">Scaled platform orders from 0 to 3M+/year for 80+ D2C clients. 118% avg profitability uplift across 42 firms through pricing and delivery optimization.</div><div class="rc-chips"><span class="rchip">₹100 Cr+ Revenue</span><span class="rchip">118% Profit Uplift</span><span class="rchip">9/10 CSAT</span></div></div>
-      <div class="rcard"><div class="rc-tag">🏪 Blinkit · Inventory</div><div class="rc-title">FEFO Inventory System</div><div class="rc-desc">Designed FEFO batch segregation for perishables and pharma. Digitized storage mapping, improving replenishment accuracy to 90%.</div><div class="rc-chips"><span class="rchip">90% Accuracy</span><span class="rchip">25% Complaints ↓</span><span class="rchip">100% Integration</span></div></div>
-      <div class="rcard"><div class="rc-tag">🧭 Accenture S&amp;C · 2024</div><div class="rc-title">Strategic Procurement Mandate</div><div class="rc-desc">Should-cost model across 15+ cost drivers, evaluating 5 international vendors across 50+ metrics — identifying 10% budget optimization.</div><div class="rc-chips"><span class="rchip">10% Budget Saved</span><span class="rchip">50+ Metrics</span><span class="rchip">5 Intl. Vendors</span></div></div>
-      <div class="rcard"><div class="rc-tag">🗺️ Blinkit · Spatial Analytics</div><div class="rc-title">Pick-Path Optimization</div><div class="rc-desc">4 diagnostic heatmaps and spatial analytics reduced per-item picking time by 10% and increased daily throughput by 7.5%.</div><div class="rc-chips"><span class="rchip">10% Faster Picks</span><span class="rchip">7.5% Throughput ↑</span><span class="rchip">22% Better Placement</span></div></div>
-      <div class="rcard"><div class="rc-tag">🏗️ Adani · 2022</div><div class="rc-title">₹235 Cr+ Capex Coordination</div><div class="rc-desc">SPOC for RMHS (₹180 Cr+) and Steam Dryer (₹55 Cr+). 200+ documents, 15+ intl. suppliers evaluated, 25% logistics cost cut.</div><div class="rc-chips"><span class="rchip">₹235 Cr+</span><span class="rchip">15+ Suppliers</span><span class="rchip">25% Cost ↓</span></div></div>
+  <!-- Row 1: scrolls left -->
+  <div class="auto-row">
+    <div class="auto-track">
+      <!-- 1st set -->
+      <div class="acard"><div class="acard-tag">⚡ Blinkit · 2025</div><div class="acard-title">Dark Store Location Strategy</div><div class="acard-desc">Built location intelligence across 2,300+ dark stores — 100% layout digitization, bin-ID framework, prioritization dashboard cutting variance 43%.</div><div class="acard-chips"><span class="achip">2,300+ Stores</span><span class="achip">43% Variance ↓</span><span class="achip">100% Digitized</span></div></div>
+      <div class="acard"><div class="acard-tag">📈 Shopdeck · 2022–23</div><div class="acard-title">₹100 Cr+ D2C Growth Engine</div><div class="acard-desc">Scaled orders from 0→3M+/year for 80+ D2C clients. Built dashboards, Campaign SOP, P&L tool, and RTO framework.</div><div class="acard-chips"><span class="achip">₹100 Cr+ Rev.</span><span class="achip">118% Profit Uplift</span><span class="achip">80+ Brands</span></div></div>
+      <div class="acard"><div class="acard-tag">🏪 Blinkit · Inventory</div><div class="acard-title">FEFO Inventory System</div><div class="acard-desc">Designed FEFO batch segregation for perishables and pharma. Replenishment accuracy to 90%, cutting complaints 25%.</div><div class="acard-chips"><span class="achip">90% Accuracy</span><span class="achip">25% Complaints ↓</span><span class="achip">100% Integration</span></div></div>
+      <div class="acard"><div class="acard-tag">🧭 Accenture S&C · 2024</div><div class="acard-title">Strategic Procurement Mandate</div><div class="acard-desc">Should-cost model across 15+ cost drivers, evaluating 5 international vendors across 50+ metrics. 10% budget optimization.</div><div class="acard-chips"><span class="achip">10% Budget Saved</span><span class="achip">50+ Metrics</span><span class="achip">Competition Winner</span></div></div>
+      <div class="acard"><div class="acard-tag">🗺️ Blinkit · Spatial Analytics</div><div class="acard-title">Pick-Path Optimization</div><div class="acard-desc">4 diagnostic heatmaps reduced per-item picking time 10% and increased daily throughput 7.5% across the network.</div><div class="acard-chips"><span class="achip">10% Faster</span><span class="achip">7.5% Throughput ↑</span><span class="achip">22% Better Placement</span></div></div>
+      <div class="acard"><div class="acard-tag">🏗️ Adani · 2022</div><div class="acard-title">₹235 Cr+ Capex Coordination</div><div class="acard-desc">SPOC for RMHS (₹180 Cr+) and Steam Dryer (₹55 Cr+). 200+ documents, 15+ intl. suppliers, 25% logistics cost cut.</div><div class="acard-chips"><span class="achip">₹235 Cr+</span><span class="achip">15+ Suppliers</span><span class="achip">25% Cost ↓</span></div></div>
+      <div class="acard"><div class="acard-tag">📋 Shopdeck · Frameworks</div><div class="acard-title">RTO Diagnostic Playbook</div><div class="acard-desc">Built structured diagnostic for high Return-to-Origin across product, campaign, audience, LP, and CX layers.</div><div class="acard-chips"><span class="achip">RTO Reduction</span><span class="achip">D2C Ops</span><span class="achip">Systematic Triage</span></div></div>
       <!-- duplicate for loop -->
-      <div class="rcard"><div class="rc-tag">⚡ Blinkit · 2025</div><div class="rc-title">Dark Store Location Strategy</div><div class="rc-desc">Built location intelligence across 2,000+ dark stores — 100% layout digitization, bin-ID framework, and prioritization dashboard cutting variance by 43%.</div><div class="rc-chips"><span class="rchip">2,000+ Stores</span><span class="rchip">100% Digitized</span><span class="rchip">43% Variance ↓</span></div></div>
-      <div class="rcard"><div class="rc-tag">📈 Shopdeck · 2022–23</div><div class="rc-title">₹100 Cr+ D2C Growth Engine</div><div class="rc-desc">Scaled platform orders from 0 to 3M+/year for 80+ D2C clients. 118% avg profitability uplift across 42 firms through pricing and delivery optimization.</div><div class="rc-chips"><span class="rchip">₹100 Cr+ Revenue</span><span class="rchip">118% Profit Uplift</span><span class="rchip">9/10 CSAT</span></div></div>
-      <div class="rcard"><div class="rc-tag">🏪 Blinkit · Inventory</div><div class="rc-title">FEFO Inventory System</div><div class="rc-desc">Designed FEFO batch segregation for perishables and pharma. Digitized storage mapping, improving replenishment accuracy to 90%.</div><div class="rc-chips"><span class="rchip">90% Accuracy</span><span class="rchip">25% Complaints ↓</span><span class="rchip">100% Integration</span></div></div>
-      <div class="rcard"><div class="rc-tag">🧭 Accenture S&amp;C · 2024</div><div class="rc-title">Strategic Procurement Mandate</div><div class="rc-desc">Should-cost model across 15+ cost drivers, evaluating 5 international vendors across 50+ metrics — identifying 10% budget optimization.</div><div class="rc-chips"><span class="rchip">10% Budget Saved</span><span class="rchip">50+ Metrics</span><span class="rchip">5 Intl. Vendors</span></div></div>
-      <div class="rcard"><div class="rc-tag">🗺️ Blinkit · Spatial Analytics</div><div class="rc-title">Pick-Path Optimization</div><div class="rc-desc">4 diagnostic heatmaps and spatial analytics reduced per-item picking time by 10% and increased daily throughput by 7.5%.</div><div class="rc-chips"><span class="rchip">10% Faster Picks</span><span class="rchip">7.5% Throughput ↑</span><span class="rchip">22% Better Placement</span></div></div>
-      <div class="rcard"><div class="rc-tag">🏗️ Adani · 2022</div><div class="rc-title">₹235 Cr+ Capex Coordination</div><div class="rc-desc">SPOC for RMHS (₹180 Cr+) and Steam Dryer (₹55 Cr+). 200+ documents, 15+ intl. suppliers evaluated, 25% logistics cost cut.</div><div class="rc-chips"><span class="rchip">₹235 Cr+</span><span class="rchip">15+ Suppliers</span><span class="rchip">25% Cost ↓</span></div></div>
+      <div class="acard"><div class="acard-tag">⚡ Blinkit · 2025</div><div class="acard-title">Dark Store Location Strategy</div><div class="acard-desc">Built location intelligence across 2,300+ dark stores — 100% layout digitization, bin-ID framework, prioritization dashboard cutting variance 43%.</div><div class="acard-chips"><span class="achip">2,300+ Stores</span><span class="achip">43% Variance ↓</span><span class="achip">100% Digitized</span></div></div>
+      <div class="acard"><div class="acard-tag">📈 Shopdeck · 2022–23</div><div class="acard-title">₹100 Cr+ D2C Growth Engine</div><div class="acard-desc">Scaled orders from 0→3M+/year for 80+ D2C clients. Built dashboards, Campaign SOP, P&L tool, and RTO framework.</div><div class="acard-chips"><span class="achip">₹100 Cr+ Rev.</span><span class="achip">118% Profit Uplift</span><span class="achip">80+ Brands</span></div></div>
+      <div class="acard"><div class="acard-tag">🏪 Blinkit · Inventory</div><div class="acard-title">FEFO Inventory System</div><div class="acard-desc">Designed FEFO batch segregation for perishables and pharma. Replenishment accuracy to 90%, cutting complaints 25%.</div><div class="acard-chips"><span class="achip">90% Accuracy</span><span class="achip">25% Complaints ↓</span><span class="achip">100% Integration</span></div></div>
+      <div class="acard"><div class="acard-tag">🧭 Accenture S&C · 2024</div><div class="acard-title">Strategic Procurement Mandate</div><div class="acard-desc">Should-cost model across 15+ cost drivers, evaluating 5 international vendors across 50+ metrics. 10% budget optimization.</div><div class="acard-chips"><span class="achip">10% Budget Saved</span><span class="achip">50+ Metrics</span><span class="achip">Competition Winner</span></div></div>
+      <div class="acard"><div class="acard-tag">🗺️ Blinkit · Spatial Analytics</div><div class="acard-title">Pick-Path Optimization</div><div class="acard-desc">4 diagnostic heatmaps reduced per-item picking time 10% and increased daily throughput 7.5% across the network.</div><div class="acard-chips"><span class="achip">10% Faster</span><span class="achip">7.5% Throughput ↑</span><span class="achip">22% Better Placement</span></div></div>
+      <div class="acard"><div class="acard-tag">🏗️ Adani · 2022</div><div class="acard-title">₹235 Cr+ Capex Coordination</div><div class="acard-desc">SPOC for RMHS (₹180 Cr+) and Steam Dryer (₹55 Cr+). 200+ documents, 15+ intl. suppliers, 25% logistics cost cut.</div><div class="acard-chips"><span class="achip">₹235 Cr+</span><span class="achip">15+ Suppliers</span><span class="achip">25% Cost ↓</span></div></div>
+      <div class="acard"><div class="acard-tag">📋 Shopdeck · Frameworks</div><div class="acard-title">RTO Diagnostic Playbook</div><div class="acard-desc">Built structured diagnostic for high Return-to-Origin across product, campaign, audience, LP, and CX layers.</div><div class="acard-chips"><span class="achip">RTO Reduction</span><span class="achip">D2C Ops</span><span class="achip">Systematic Triage</span></div></div>
+    </div>
+  </div>
+
+  <!-- Row 2: scrolls right -->
+  <div class="auto-row" style="margin-top:16px;">
+    <div class="auto-track auto-track-r">
+      <div class="acard"><div class="acard-tag">🔄 Picklist Suppression · Blinkit</div><div class="acard-title">Pick-Path Adherence Pilot</div><div class="acard-desc">Piloted picklist suppression feature to enforce pick-path adherence. Drove compliance from 43% → 92% pan-India.</div><div class="acard-chips"><span class="achip">43%→92% Adherence</span><span class="achip">10% PPI ↓</span><span class="achip">Network Scaled</span></div></div>
+      <div class="acard"><div class="acard-tag">📊 Shopdeck · Dashboards</div><div class="acard-title">20+ Apache Superset Dashboards</div><div class="acard-desc">Led migration from sheets to 20+ Superset dashboards — C2PR funnel, RTO split, rural/urban, Change Log, Product PNL, multi-level filters.</div><div class="acard-chips"><span class="achip">20+ Dashboards</span><span class="achip">Multi-Filter</span><span class="achip">Operational Intelligence</span></div></div>
+      <div class="acard"><div class="acard-tag">📱 Mobile App · Blinkit</div><div class="acard-title">Store Manager Mobile App Flows</div><div class="acard-desc">Designed aisle and rack selection flows on store manager app with embedded in-app training, reducing onboarding time.</div><div class="acard-chips"><span class="achip">UX Design</span><span class="achip">In-App Training</span><span class="achip">Self-Serve</span></div></div>
+      <div class="acard"><div class="acard-tag">📋 Shopdeck · SOP</div><div class="acard-title">Campaign Creation Handbook</div><div class="acard-desc">Built the complete Facebook Ads SOP — step-by-step guide from account setup to UTM parameters and ad publishing.</div><div class="acard-chips"><span class="achip">Facebook Ads</span><span class="achip">D2C Marketing</span><span class="achip">80+ Clients</span></div></div>
+      <div class="acard"><div class="acard-tag">⚙️ Honda · 2020</div><div class="acard-title">Zero-Defect Manufacturing Line</div><div class="acard-desc">Eliminated all production defects at Honda via root cause analysis. Line stoppage from 42 min → zero; overtime cut 63%.</div><div class="acard-chips"><span class="achip">0% Defect Rate</span><span class="achip">63% OT Cut</span><span class="achip">0 Min Stoppage</span></div></div>
+      <div class="acard"><div class="acard-tag">🔧 UPS Lakshmi · 2020</div><div class="acard-title">SMED Lean — 67% Setup Time Cut</div><div class="acard-desc">Re-engineered line processes using SMED Lean technique. Machine setup time reduced from 12 hrs to 4 hrs.</div><div class="acard-chips"><span class="achip">67% Faster Setup</span><span class="achip">SMED Lean</span><span class="achip">15% OEE ↑</span></div></div>
+      <div class="acard"><div class="acard-tag">🌍 X-Culture · Global</div><div class="acard-title">International Market Entry Strategy</div><div class="acard-desc">Led global consulting team — GTM plan, trade analysis. Top 40% of 1,000+ teams. Top 5% peer evaluation (4.9/5).</div><div class="acard-chips"><span class="achip">Top 40% Teams</span><span class="achip">Top 5% Peer Rating</span><span class="achip">Global GTM</span></div></div>
+      <!-- duplicates -->
+      <div class="acard"><div class="acard-tag">🔄 Picklist Suppression · Blinkit</div><div class="acard-title">Pick-Path Adherence Pilot</div><div class="acard-desc">Piloted picklist suppression feature to enforce pick-path adherence. Drove compliance from 43% → 92% pan-India.</div><div class="acard-chips"><span class="achip">43%→92% Adherence</span><span class="achip">10% PPI ↓</span><span class="achip">Network Scaled</span></div></div>
+      <div class="acard"><div class="acard-tag">📊 Shopdeck · Dashboards</div><div class="acard-title">20+ Apache Superset Dashboards</div><div class="acard-desc">Led migration from sheets to 20+ Superset dashboards — C2PR funnel, RTO split, rural/urban, Change Log, Product PNL, multi-level filters.</div><div class="acard-chips"><span class="achip">20+ Dashboards</span><span class="achip">Multi-Filter</span><span class="achip">Operational Intelligence</span></div></div>
+      <div class="acard"><div class="acard-tag">📱 Mobile App · Blinkit</div><div class="acard-title">Store Manager Mobile App Flows</div><div class="acard-desc">Designed aisle and rack selection flows on store manager app with embedded in-app training, reducing onboarding time.</div><div class="acard-chips"><span class="achip">UX Design</span><span class="achip">In-App Training</span><span class="achip">Self-Serve</span></div></div>
+      <div class="acard"><div class="acard-tag">📋 Shopdeck · SOP</div><div class="acard-title">Campaign Creation Handbook</div><div class="acard-desc">Built the complete Facebook Ads SOP — step-by-step guide from account setup to UTM parameters and ad publishing.</div><div class="acard-chips"><span class="achip">Facebook Ads</span><span class="achip">D2C Marketing</span><span class="achip">80+ Clients</span></div></div>
+      <div class="acard"><div class="acard-tag">⚙️ Honda · 2020</div><div class="acard-title">Zero-Defect Manufacturing Line</div><div class="acard-desc">Eliminated all production defects at Honda via root cause analysis. Line stoppage from 42 min → zero; overtime cut 63%.</div><div class="acard-chips"><span class="achip">0% Defect Rate</span><span class="achip">63% OT Cut</span><span class="achip">0 Min Stoppage</span></div></div>
+      <div class="acard"><div class="acard-tag">🔧 UPS Lakshmi · 2020</div><div class="acard-title">SMED Lean — 67% Setup Time Cut</div><div class="acard-desc">Re-engineered line processes using SMED Lean technique. Machine setup time reduced from 12 hrs to 4 hrs.</div><div class="acard-chips"><span class="achip">67% Faster Setup</span><span class="achip">SMED Lean</span><span class="achip">15% OEE ↑</span></div></div>
     </div>
   </div>
 </div>
 
-<!-- IMPACT NUMBERS -->
-<section class="sec sec-dark">
-  <div class="wrap">
-    <div class="eye reveal">Numbers</div>
-    <h2 class="sh reveal">Impact at a <em>Glance</em></h2>
-    <p class="ss reveal">Key metrics across 30 months of full-time work and consulting.</p>
-    <div class="impact-g reveal">
-      <div class="ic"><div class="ic-n"><span>2,000</span>+</div><div class="ic-l">Dark stores · 100% digitized</div></div>
-      <div class="ic"><div class="ic-n"><span>43</span>%</div><div class="ic-l">Variance reduction</div></div>
-      <div class="ic"><div class="ic-n">₹<span>100</span>Cr+</div><div class="ic-l">D2C revenue generated</div></div>
-      <div class="ic"><div class="ic-n"><span>118</span>%</div><div class="ic-l">Avg profitability uplift</div></div>
-      <div class="ic"><div class="ic-n"><span>90</span>%</div><div class="ic-l">Replenishment accuracy</div></div>
-      <div class="ic"><div class="ic-n"><span>25</span>%</div><div class="ic-l">Complaints reduction</div></div>
-      <div class="ic"><div class="ic-n">₹<span>235</span>Cr</div><div class="ic-l">Capex managed · Adani</div></div>
-      <div class="ic"><div class="ic-n"><span>15</span>+</div><div class="ic-l">Pilots scaled pan-India</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="sec sec-alt" id="about">
-  <div class="wrap">
-    <div class="about-g">
-      <div class="reveal">
+<!-- ═══ ABOUT ═══ -->
+<div style="background:#0d0d0d;padding:100px 0;" id="about-section">
+  <div class="sec rv">
+    <div class="about-grid">
+      <div class="about-text rv">
         <div class="eye">About</div>
-        <h2 class="sh">Engineer. <em>MBA.</em> Builder.</h2>
-        <p class="ss">Rigorous thinking meets hands-on execution. Both, always.</p>
-        <div class="about-body">
-          <p>I am a Mechanical Engineer from NIT Kurukshetra who went to IIM Calcutta and spent the last 30 months inside some of India's most dynamic businesses — not advising them, but building inside them.</p>
-          <p>At <strong>Blinkit</strong>, I own location strategy and operational infrastructure across 2,000+ dark stores — the systems powering India's largest quick-commerce network at scale.</p>
-          <p>At <strong>Shopdeck</strong>, I managed commercial growth for 80+ D2C brands — generating ₹100 Cr+ in annualised business. I learned what it truly means to own a P&amp;L, not just advise on one.</p>
-          <p>At <strong>Accenture S&amp;C</strong>, I structured strategic procurement decisions under real stakes — should-cost modelling, vendor evaluation, and cross-stakeholder alignment.</p>
-          <div class="pullq">"Strategy without execution is just creative writing. I care deeply about both."</div>
-          <p>Outside work, I think about how operational systems outlast their creators — and what separates a framework that looks good on a slide from one actually used in the field.</p>
-        </div>
+        <div class="sh">Engineer.<br/><span class="sh-it">MBA.</span><br/>Builder.</div>
+        <p class="ss" style="margin-bottom:24px;">Rigorous thinking meets hands-on execution. Both, always.</p>
+        <p>I am a Mechanical Engineer from NIT Kurukshetra who went to IIM Calcutta and spent the last 32 months inside some of India's most dynamic businesses — not advising them, but <strong>building inside them.</strong></p>
+        <p>At <strong>Blinkit</strong>, I own location strategy and operational infrastructure across 2,300+ dark stores — the systems powering India's largest quick-commerce network at scale.</p>
+        <p>At <strong>Shopdeck</strong>, I managed commercial growth for 80+ D2C brands — generating ₹100 Cr+ in annualised business. I built the entire growth infrastructure: dashboards, SOPs, RTO frameworks, and client onboarding systems.</p>
+        <p>At <strong>Accenture S&C</strong>, I structured strategic procurement decisions — should-cost modelling, vendor evaluation, cross-stakeholder alignment.</p>
+        <div class="pullq">"Strategy without execution is just creative writing. I care deeply about both."</div>
       </div>
-      <div class="acards reveal">
-        <div class="ac"><div class="ac-ico"><img src="https://www.google.com/s2/favicons?domain=iimcal.ac.in&sz=32" width="20" height="20" style="border-radius:4px;"/></div><div><div class="ac-h">IIM Calcutta · MBA 2025</div><div class="ac-p">CAT 99.64%ile (QA: 99.83%ile). Converted 12/15 IIM calls including IIM-C, IIM-A, and IIFT.</div></div></div>
-        <div class="ac"><div class="ac-ico"><img src="https://www.google.com/s2/favicons?domain=nitkkr.ac.in&sz=32" width="20" height="20" style="border-radius:4px;"/></div><div><div class="ac-h">NIT Kurukshetra · B.Tech Mechanical</div><div class="ac-p">CGPA 8.36/10. 10/10 GPA Sem 6. Academic Excellence Award. Secretary, Mechanical Society.</div></div></div>
-        <div class="ac"><div class="ac-ico">⚓</div><div><div class="ac-h">Indian Navy Selectee</div><div class="ac-p">Shortlisted B.Tech Cadet Entry. Top 1.5%ile in NDA, twice. GATE AIR 2070/1.2L+ (Score: 696). <a href="GATE.pdf" target="_blank" style="color:var(--accent);font-size:.7rem;">View ↗</a></div></div></div>
-        <div class="ac"><div class="ac-ico">🏆</div><div><div class="ac-h">National Competition Winner</div><div class="ac-p">1st/20+ teams (₹10K) Junkyard War NIT KKR. 1st/8+ energy conversion. 2nd/50+ Roller Coaster.</div></div></div>
-        <div class="ac"><div class="ac-ico">❤️</div><div><div class="ac-h">Social Impact · Shiksha</div><div class="ac-p">1,000+ hours mentoring 100+ underprivileged children. Raised ₹3L+. Community library with 500+ books.</div></div></div>
+      <div class="acard-list stagger-kids rv">
+        <div class="alist-item"><div class="aitem-ico"><img src="https://www.google.com/s2/favicons?domain=iimcal.ac.in&sz=32" width="18" height="18" style="border-radius:3px;"/></div><div><div class="aitem-h">IIM Calcutta · MBA 2025</div><div class="aitem-p">CAT 99.64%ile (QA: 99.83%ile). Converted 12/15 IIM calls including IIM-C, IIM-A, and IIFT.</div></div></div>
+        <div class="alist-item"><div class="aitem-ico"><img src="https://www.google.com/s2/favicons?domain=nitkkr.ac.in&sz=32" width="18" height="18" style="border-radius:3px;"/></div><div><div class="aitem-h">NIT Kurukshetra · B.Tech Mechanical</div><div class="aitem-p">CGPA 8.36/10. 10/10 GPA Sem 6. Academic Excellence Award. Secretary, Mechanical Society.</div></div></div>
+        <div class="alist-item"><div class="aitem-ico">⚓</div><div><div class="aitem-h">Indian Navy Selectee</div><div class="aitem-p">Top 1.5%ile in NDA twice. B.Tech Cadet Entry call letter. GATE AIR 2070/1.2L+.</div></div></div>
+        <div class="alist-item"><div class="aitem-ico">🏆</div><div><div class="aitem-h">National Competition Winner</div><div class="aitem-p">1st/20+ teams — ₹10K at NIT KKR Junkyard War. 1st/8+ energy conversion. 2nd/50+ Roller Coaster.</div></div></div>
+        <div class="alist-item"><div class="aitem-ico">❤️</div><div><div class="aitem-h">Social Impact · Shiksha</div><div class="aitem-p">1,000+ hours mentoring 100+ underprivileged children. Raised ₹3L+. Community library: 500+ books.</div></div></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE — TIMELINE like Prakhar's site -->
-<section class="sec" id="experience">
-  <div class="wrap">
-    <div class="eye reveal">Experience</div>
-    <h2 class="sh reveal">Work <em>History</em></h2>
-    <p class="ss reveal">30 months building at scale — across strategy, growth, and operations.</p>
-
-    <!-- FULL TIME LABEL -->
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:28px;" class="reveal">
-      <span style="font-family:var(--mono);font-size:.61rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;">Full-Time Experience</span>
-      <div style="flex:1;height:1px;background:var(--border);"></div>
-    </div>
-
-    <!-- BLINKIT -->
-    <div class="tl reveal">
-      <div class="tl-spine" style="position:relative;">
-        <div class="tl-dot"></div>
-        <div class="tl-date">May 2025<br/>Present</div>
-        <div class="tl-co-logo">
-          <img src="https://www.google.com/s2/favicons?domain=blinkit.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="Blinkit"/>
-          <span style="font-size:.73rem;font-weight:700;color:var(--accent);font-family:var(--serif);">Blinkit</span>
-        </div>
-      </div>
-      <div class="tl-content">
-        <div class="tl-role">Strategy &amp; Operations Analyst <span class="tl-badge b-ft">Full-Time</span> <a href="Sumit_Yadav__.pdf" target="_blank" style="font-size:.59rem;color:var(--accent);font-weight:700;border:1px solid rgba(181,69,27,.25);padding:1px 7px;border-radius:3px;background:#fef3e2;margin-left:4px;">Offer Letter ↗</a></div>
-        <ul class="tl-ul">
-          <li><strong class="verb">Built</strong> location strategy across <strong class="num">2,000+ dark stores</strong>, achieving <strong class="num">100% layout digitization</strong> and enforcing a unified bin-ID framework pan-India.</li>
-          <li><strong class="verb">Reduced</strong> variance by <strong class="num">43%</strong> by building and scaling a prioritization logic and execution dashboard across <strong class="num">2,000+ stores</strong>.</li>
-          <li><strong class="verb">Developed</strong> <strong class="num">4 diagnostic heatmaps</strong>, improving item placement accuracy by <strong class="num">22%</strong> and reducing missing-item complaints by <strong class="num">23%</strong>.</li>
-          <li><strong class="verb">Redesigned</strong> LT store layouts, increasing space utilisation by <strong class="num">1.5x</strong> and driving <strong class="num">18% GMV uplift</strong> per sq. ft. across redesigned stores.</li>
-          <li><strong class="verb">Designed</strong> and implemented FEFO inventory logic with batch segregation for perishables and pharma, reducing complaints by <strong class="num">25%</strong>.</li>
-          <li><strong class="verb">Improved</strong> replenishment accuracy to <strong class="num">90%</strong> by digitizing storage capacity mapping, eliminating manual inputs and enabling <strong class="num">100%</strong> layout integration.</li>
-          <li><strong class="verb">Reduced</strong> in-store picking time by <strong class="num">10%</strong> by optimizing pick-paths using spatial analytics, increasing throughput by <strong class="num">7.5%</strong>.</li>
-          <li><strong class="verb">Led</strong> a <strong class="num">10+ member</strong> cross-functional team to design, execute, and scale <strong class="num">15+ operational pilots</strong> across India.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- SHOPDECK -->
-    <div class="tl reveal">
-      <div class="tl-spine">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Sep 2022<br/>May 2023</div>
-        <div class="tl-co-logo">
-          <img src="https://www.google.com/s2/favicons?domain=shopdeck.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="Shopdeck"/>
-          <span style="font-size:.73rem;font-weight:700;color:var(--accent);font-family:var(--serif);">Shopdeck</span>
-        </div>
-      </div>
-      <div class="tl-content">
-        <div class="tl-role">Assistant Manager — Growth <span class="tl-badge b-ft">Full-Time</span></div>
-        <ul class="tl-ul">
-          <li><strong class="verb">Generated</strong> business worth <strong class="num">₹100 Cr+/annum</strong> for <strong class="num">80+ clients</strong>; increased order volume from <strong class="num">0 to 3M+/year</strong>.</li>
-          <li><strong class="verb">Boosted</strong> profitability of <strong class="num">42 firms (118% inc.)</strong> from portfolio of 80+ clients through persistent troubleshooting.</li>
-          <li><strong class="verb">Achieved</strong> <strong class="num">92% action compliance</strong> through de-bottlenecking query resolution; outperformed <strong class="num">15 managers</strong>.</li>
-          <li><strong class="verb">Attained</strong> <strong class="num">9/10 (50% higher)</strong> client satisfaction score; trained <strong class="num">50+ consultants</strong> on dashboard and ad-campaign tools.</li>
-          <li><strong class="verb">Managed</strong> pilot marketing ad-campaigns for <strong class="num">120+ clients</strong>; achieved highest <strong class="num">(9/10) go-live hygiene quality</strong> score.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ADANI -->
-    <div class="tl reveal">
-      <div class="tl-spine">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Jan 2022<br/>Jul 2022</div>
-        <div class="tl-co-logo">
-          <img src="https://www.google.com/s2/favicons?domain=adani.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="Adani"/>
-          <span style="font-size:.73rem;font-weight:700;color:var(--accent);font-family:var(--serif);">Adani</span>
-        </div>
-      </div>
-      <div class="tl-content">
-        <div class="tl-role">Senior Engineer <span class="tl-badge b-ft">Full-Time</span></div>
-        <ul class="tl-ul">
-          <li><strong class="verb">Acted</strong> as SPOC for RMHS (<strong class="num">₹180 Cr+</strong>) &amp; Steam Dryer (<strong class="num">₹55 Cr+</strong>); evaluated proposals from <strong class="num">15+ intl. suppliers</strong>.</li>
-          <li><strong class="verb">Reviewed</strong> <strong class="num">200+ documents</strong> from China Nerin &amp; TCE; compiled bid evaluation report for <strong class="num">10+ intl. suppliers</strong>.</li>
-          <li><strong class="verb">Managed</strong> vehicle logistics for <strong class="num">1,000+ employees</strong>; achieved <strong class="num">25% logistics cost reduction</strong> by strategic planning.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- UPS LAKSHMI -->
-    <div class="tl reveal">
-      <div class="tl-spine">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Jul 2021<br/>Jan 2022</div>
-        <div class="tl-co-logo">
-          <img src="https://www.google.com/s2/favicons?domain=upslakshmi.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);background:#475569;" alt="UPS Lakshmi"/>
-          <span style="font-size:.73rem;font-weight:700;color:var(--accent);font-family:var(--serif);">UPS Lakshmi</span>
-        </div>
-      </div>
-      <div class="tl-content">
-        <div class="tl-role">Graduate Engineer Trainee — B2B Sales <span class="tl-badge b-ft">Full-Time</span></div>
-        <ul class="tl-ul">
-          <li><strong class="verb">Served</strong> as SPOC for <strong class="num">9+ accounts</strong> including <strong>Honeywell and Boeing</strong>; generated highest-ever revenue of <strong class="num">₹5 Cr/month</strong>.</li>
-          <li><strong class="verb">Achieved</strong> <strong class="num">60% increase</strong> in Honeywell sales to <strong class="num">₹80L</strong>, upholding <strong class="num">95%+</strong> on-time delivery and quality standards.</li>
-          <li><strong class="verb">Coordinated</strong> procurement for <strong class="num">50+ critical items</strong> by analysing 3-year demand forecast; handled <strong class="num">100+ RFQs</strong>.</li>
-          <li><strong class="verb">Collaborated</strong> with <strong class="num">3 departments</strong> and pioneered <strong class="num">5 improvement projects</strong>; coordinated <strong>5S</strong> on shop floor.</li>
-          <li><strong class="verb">Reduced</strong> setup time by <strong class="num">67%</strong> (12 hrs to 4 hrs) by refurbishing machine, automating line processes &amp; SMED.</li>
-          <li><strong class="verb">Achieved</strong> <strong class="num">25% (₹80 lakh) cost reduction</strong>; saved <strong class="num">380+ man-hours</strong> applying six-sigma waste reduction tools.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- INTERNSHIP LABEL -->
-    <div style="display:flex;align-items:center;gap:10px;margin:8px 0 28px;" class="reveal">
-      <span style="font-family:var(--mono);font-size:.61rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;">Internship &amp; Live Projects</span>
-      <div style="flex:1;height:1px;background:var(--border);"></div>
-    </div>
-
-    <!-- ACCENTURE -->
-    <div class="tl reveal">
-      <div class="tl-spine">
-        <div class="tl-dot" style="background:#7c3aed;box-shadow:0 0 0 3px var(--bg),0 0 0 4px #7c3aed;"></div>
-        <div class="tl-date">May 2024<br/>Jun 2024</div>
-        <div class="tl-co-logo">
-          <img src="https://www.google.com/s2/favicons?domain=accenture.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="Accenture"/>
-          <span style="font-size:.73rem;font-weight:700;color:#7c3aed;font-family:var(--serif);">Accenture S&amp;C</span>
-        </div>
-      </div>
-      <div class="tl-content">
-        <div class="tl-role">Strategy Analyst Intern <span class="tl-badge b-in">Internship</span></div>
-        <ul class="tl-ul">
-          <li><strong class="verb">Scrutinized</strong> <strong class="num">5 intl. vendor proposals</strong>, leveraging <strong class="num">50+ metrics</strong> to curate an exhaustive bid evaluation report.</li>
-          <li><strong class="verb">Orchestrated</strong> <strong class="num">5+ query resolution meetings</strong>; reviewed <strong class="num">20+ proposal docs</strong> from vendors to optimize scope.</li>
-          <li><strong class="verb">Designed</strong> should-cost model; recommended levers analysing <strong class="num">15+ cost drivers</strong> for <strong class="num">10% budget optimization</strong>.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- X-CULTURE -->
-    <div class="tl reveal">
-      <div class="tl-spine">
-        <div class="tl-dot" style="background:#6d28d9;box-shadow:0 0 0 3px var(--bg),0 0 0 4px #6d28d9;"></div>
-        <div class="tl-date">Aug 2024<br/>Dec 2024</div>
-        <div class="tl-co-logo">
-          <img src="https://www.google.com/s2/favicons?domain=x-culture.org&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="X-Culture"/>
-          <span style="font-size:.73rem;font-weight:700;color:#6d28d9;font-family:var(--serif);">X-Culture</span>
-        </div>
-      </div>
-      <div class="tl-content">
-        <div class="tl-role">Independent International Business Consultant <span class="tl-badge b-lp">Live Project</span></div>
-        <ul class="tl-ul">
-          <li><strong class="verb">Led</strong> a global virtual consulting team across multiple time zones to deliver an <strong>international market entry strategy</strong>.</li>
-          <li><strong class="verb">Conducted</strong> competition benchmarking and trade regulation analysis to assess expansion feasibility across target markets.</li>
-          <li><strong class="verb">Developed</strong> comprehensive GTM plan — entry mode, marketing, promotion, and product adaptation strategies.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- HONDA -->
-    <div class="tl reveal">
-      <div class="tl-spine">
-        <div class="tl-dot" style="background:#dc2626;box-shadow:0 0 0 3px var(--bg),0 0 0 4px #dc2626;"></div>
-        <div class="tl-date">Jan 2020<br/>Jun 2020</div>
-        <div class="tl-co-logo">
-          <img src="https://www.google.com/s2/favicons?domain=honda.com&sz=32" width="22" height="22" style="border-radius:5px;border:1px solid var(--border);" alt="Honda"/>
-          <span style="font-size:.73rem;font-weight:700;color:#dc2626;font-family:var(--serif);">Honda</span>
-        </div>
-      </div>
-      <div class="tl-content">
-        <div class="tl-role">Summer Trainee — Process Improvement <span class="tl-badge b-in">Summer Trainee</span></div>
-        <ul class="tl-ul">
-          <li><strong class="verb">Accomplished</strong> flawless <strong class="num">0% mission case leakage</strong> rate; reduced <strong class="num">2 manpower/cycle</strong> required for defect repair.</li>
-          <li><strong class="verb">Achieved</strong> <strong class="num">0% operator fatigue</strong>; eliminated <strong class="num">100% line defects</strong> by analysing mission case leakage root causes.</li>
-          <li><strong class="verb">Reduced</strong> line stoppage from <strong class="num">42 minutes to 0</strong>; decreased <strong class="num">63% overtime</strong> from 2.4 man-hrs to 0.9.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section class="sec sec-alt" id="projects">
-  <div class="wrap">
-    <div class="eye reveal">Key Work</div>
-    <h2 class="sh reveal">Selected <em>Projects</em></h2>
-    <p class="ss reveal">Across strategy, operations, growth, and consulting.</p>
-    <div class="proj-g reveal">
-      <div class="pcard feat">
-        <div class="pf-l">
-          <div class="ptag">★ Featured · Blinkit · 2025</div>
-          <div class="ptitle">Dark Store Digitization &amp; Ops Strategy — 2,000+ Locations</div>
-          <div class="pdesc">End-to-end overhaul of Blinkit's dark store infrastructure. Built location intelligence frameworks, FEFO logic, spatial pick-path optimization, and execution dashboards — transforming a fragmented manual system into a digitized, scalable operating model. Led 10-member cross-functional team through 15+ pilots pan-India.</div>
-          <div class="pchips"><span class="pchip">100% Digitized</span><span class="pchip">43% Variance ↓</span><span class="pchip">18% GMV Uplift</span><span class="pchip">1.5× Space Util.</span><span class="pchip">90% Replenishment</span><span class="pchip">25% Complaints ↓</span></div>
-        </div>
-        <div class="pf-r">
-          <div class="ps-box"><div class="ps-n">2,000+</div><div class="ps-l">Stores impacted</div></div>
-          <div class="ps-box"><div class="ps-n">10%</div><div class="ps-l">Faster pick time</div></div>
-          <div class="ps-box"><div class="ps-n">15+</div><div class="ps-l">Pilots scaled</div></div>
-        </div>
-      </div>
-      <div class="pcard"><div class="ptag">📈 Growth · Shopdeck</div><div class="ptitle">D2C Growth Engine — 80+ Brands</div><div class="pdesc">Scaled orders from 0 to 3M+/year for 80+ D2C brands through pricing redesign and delivery optimization.</div><div class="pchips"><span class="pchip">₹100 Cr+ Revenue</span><span class="pchip">118% Profit Uplift</span><span class="pchip">9/10 CSAT</span></div></div>
-      <div class="pcard"><div class="ptag">🧭 Consulting · Accenture</div><div class="ptitle">Strategic Procurement — Should-Cost</div><div class="pdesc">Should-cost model across 15+ drivers, evaluating 5 international vendors across 50+ metrics for 10% budget optimization.</div><div class="pchips"><span class="pchip">10% Budget Saved</span><span class="pchip">5 Vendors</span><span class="pchip">50+ Metrics</span></div></div>
-      <div class="pcard"><div class="ptag">🏗️ Capex · Adani</div><div class="ptitle">₹235 Cr+ Capex Coordination</div><div class="pdesc">SPOC for RMHS (₹180 Cr+) and Steam Dryer (₹55 Cr+). 15+ international suppliers, 200+ documents, 25% logistics cost cut.</div><div class="pchips"><span class="pchip">₹235 Cr+</span><span class="pchip">15+ Suppliers</span><span class="pchip">25% Cost ↓</span></div></div>
-      <div class="pcard"><div class="ptag">🌍 International · X-Culture</div><div class="ptitle">Global Market Entry Strategy</div><div class="pdesc">Led distributed international consulting team across time zones — competition benchmarking, trade regulation analysis, full GTM plan.</div><div class="pchips"><span class="pchip">Multi-Market</span><span class="pchip">Full GTM Plan</span><span class="pchip">Global Team Lead</span></div></div>
-      <div class="pcard"><div class="ptag">⚙️ Engineering · Honda</div><div class="ptitle">Zero-Defect Manufacturing Line</div><div class="pdesc">Eliminated all production line defects at Honda via root cause analysis. Line stoppage from 42 minutes to zero, overtime cut 63%.</div><div class="pchips"><span class="pchip">0% Defect Rate</span><span class="pchip">63% OT Cut</span><span class="pchip">0 Min Stoppage</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section class="sec" id="skills">
-  <div class="wrap">
-    <div class="eye reveal">Capabilities</div>
-    <h2 class="sh reveal">Skills &amp; <em>Certifications</em></h2>
-    <p class="ss reveal">Built in the field. Used daily. 10+ certifications at 93%+ average score.</p>
-    <div class="skills-g reveal">
-      <div>
-        <div class="skb"><div class="skb-l">Strategy &amp; Consulting</div><div class="sk-wrap"><span class="sk">Issue Tree Structuring</span><span class="sk">Problem Framing</span><span class="sk">Market Sizing (TAM/SAM/SOM)</span><span class="sk">Should-Cost Modeling</span><span class="sk">Bid Evaluation</span><span class="sk">Competitive Benchmarking</span><span class="sk">Business Case Development</span><span class="sk">Market Entry Strategy</span></div></div>
-        <div class="skb"><div class="skb-l">Growth &amp; Commercial</div><div class="sk-wrap"><span class="sk">Go-to-Market Planning</span><span class="sk">Unit Economics</span><span class="sk">Pricing Strategy</span><span class="sk">Funnel Diagnosis</span><span class="sk">P&amp;L Modeling</span><span class="sk">Revenue Growth Management</span><span class="sk">Client Portfolio Management</span><span class="sk">Demand Forecasting</span></div></div>
-        <div class="skb"><div class="skb-l">Program &amp; Operations</div><div class="sk-wrap"><span class="sk">Pilot Design &amp; Scaling</span><span class="sk">Cross-functional Execution</span><span class="sk">Stakeholder Management</span><span class="sk">Spatial Analytics</span><span class="sk">Heatmap Analysis</span><span class="sk">Inventory Systems</span><span class="sk">Vendor Management</span><span class="sk">Process Improvement</span></div></div>
-        <div class="skb"><div class="skb-l">Tools</div><div class="sk-wrap"><span class="sk">Advanced Excel (Macros, Pivots, Solver)</span><span class="sk">PowerPoint</span><span class="sk">Tableau</span><span class="sk">Dashboard Design</span><span class="sk">Data Analysis</span></div></div>
-      </div>
-      <div>
-        <h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:6px;">Certifications &amp; Live Projects</h3>
-        <p style="font-size:.72rem;color:var(--ink3);margin-bottom:13px;font-weight:300;">Click any to view the original document.</p>
-        <div class="cg-t">Consulting &amp; Strategy</div>
-        <a href="Certifications-Consult.pdf" target="_blank" class="citem"><div class="cico">🎓</div><div><div class="cn">Diploma in PM + Basics of Business Consulting + Intro to Strategic Management</div><div class="cb">Alison (CPD Certified) · Nov 2024</div></div><span class="carr">View ↗</span></a>
-        <a href="Certifications-Consult.pdf" target="_blank" class="citem"><div class="cico">🏛️</div><div><div class="cn">Certificate in Business Management + Strategic Planning</div><div class="cb">Oxford Home Study Centre · Nov–Dec 2024</div></div><span class="carr">View ↗</span></a>
-        <div class="cg-t" style="margin-top:13px">Product Management</div>
-        <a href="Verification_Prod.pdf" target="_blank" class="citem"><div class="cico">🔍</div><div><div class="cn">Product Discovery Micro-Certification<span class="cscore">93%</span></div><div class="cb">Product School · Nov 2024</div></div><span class="carr">View ↗</span></a>
-        <a href="Verification_Prod.pdf" target="_blank" class="citem"><div class="cico">📱</div><div><div class="cn">Mobile App Product Management Certification<span class="cscore">95%</span></div><div class="cb">UXCam Academy · Oct 2024</div></div><span class="carr">View ↗</span></a>
-        <a href="Verification_Prod.pdf" target="_blank" class="citem"><div class="cico">📦</div><div><div class="cn">PM Basics · PM 101 · Understanding PM · Diploma in PM<span class="cscore">Avg 93%</span></div><div class="cb">Pendo.io · Simplilearn · Alison · Great Lakes · Oct–Nov 2024</div></div><span class="carr">View ↗</span></a>
-        <div class="cg-t" style="margin-top:13px">Live Projects (ISO 9001:2015 Verified)</div>
-        <a href="Live_project_consult.pdf" target="_blank" class="citem"><div class="cico">📋</div><div><div class="cn">Business Strategy &amp; Growth Partner</div><div class="cb">Skilled Sapiens (MSME Certified) · Oct–Nov 2024</div></div><span class="carr">View ↗</span></a>
-        <a href="Live_project_prod.pdf" target="_blank" class="citem"><div class="cico">🚀</div><div><div class="cn">Product Management Live Project</div><div class="cb">Skilled Sapiens (MSME Certified) · Nov 2024</div></div><span class="carr">View ↗</span></a>
-        <div class="cert-badge"><p>✦ 10+ certifications · consulting, strategy &amp; product management · 93%+ avg score</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section class="sec sec-alt" id="education">
-  <div class="wrap">
-    <div class="eye reveal">Academic Background</div>
-    <h2 class="sh reveal">Education &amp; <em>Achievements</em></h2>
-    <p class="ss reveal">Consistent top performance across engineering and management.</p>
-    <div class="edu-g reveal">
-      <div>
-        <div class="edu-c">
-          <div class="edu-top">
-            <div class="edu-logo-row">
-              <div class="edu-logo"><img src="https://www.google.com/s2/favicons?domain=iimcal.ac.in&sz=64" width="26" height="26" style="object-fit:contain;" alt="IIM Calcutta"/></div>
-              <div class="edu-school">Indian Institute of Management Calcutta</div>
-            </div>
-            <div class="edu-yr">2023–2025</div>
-          </div>
-          <div class="edu-deg">Master of Business Administration (MBA)</div>
-          <div class="edu-score">CGPA: 6.44/9</div>
-          <div class="edu-note">CAT 99.64%ile (QA: 99.83%ile) · Converted 12/15 IIM calls including IIM-C, IIM-A, and IIFT</div>
-        </div>
-        <div class="edu-c">
-          <div class="edu-top">
-            <div class="edu-logo-row">
-              <div class="edu-logo"><img src="https://www.google.com/s2/favicons?domain=nitkkr.ac.in&sz=64" width="26" height="26" style="object-fit:contain;" alt="NIT KKR"/></div>
-              <div class="edu-school">National Institute of Technology, Kurukshetra</div>
-            </div>
-            <div class="edu-yr">2017–2021</div>
-          </div>
-          <div class="edu-deg">B.Tech — Mechanical Engineering</div>
-          <div class="edu-score">CGPA: 8.36/10</div>
-          <div class="edu-note">10/10 GPA Sem 6 · Academic Excellence Award · Secretary, Mechanical Society (₹4L+ budget, 100+ team, 4K+ footfall)</div>
-        </div>
-        <div class="edu-c">
-          <div class="edu-top">
-            <div class="edu-logo-row">
-              <div class="edu-logo" style="background:#e8e4dc;color:var(--ink);font-size:.65rem;font-weight:700;">📚</div>
-              <div class="edu-school">CBSE — Class XII &amp; Class X</div>
-            </div>
-            <div class="edu-yr">2016 / 2014</div>
-          </div>
-          <div class="edu-deg">Class XII: 87.2% &nbsp;·&nbsp; Class X: 10/10 CGPA</div>
-          <div class="edu-score">Ranked 1st in school among 1,000+ students for 10 consecutive years · Head Boy · Student of the Year</div>
-        </div>
-      </div>
-      <div class="ach-list">
-        <div class="ach-i"><div class="ach-em">🎯</div><div class="ach-tx"><strong>CAT 99.64%ile / 2L+ candidates</strong> — QA: 99.83%ile. Converted 12/15 calls including IIMs and IIFT.</div></div>
-        <a href="GATE.pdf" target="_blank" class="ach-i" style="color:inherit;"><div class="ach-em">📐</div><div class="ach-tx"><strong>GATE AIR 2070/1.2L+</strong> in ME (Score: 696); AIR 2184/22K+ in XE. Entitled for NTPC's EET. <span style="color:var(--accent);font-weight:600;">View ↗</span></div></a>
-        <div class="ach-i"><div class="ach-em">⚓</div><div class="ach-tx"><strong>Attained top 1.5%ile in NDA twice</strong>; received call letter for 10+2 B.Tech Cadet Entry in Indian Navy.</div></div>
-        <div class="ach-i"><div class="ach-em">🥇</div><div class="ach-tx"><strong>1st/20+ national teams</strong> and awarded ₹10K for quadricycle design in NIT KKR's Junkyard War event.</div></div>
-        <div class="ach-i"><div class="ach-em">🥇</div><div class="ach-tx"><strong>1st/8+ teams</strong> and received ₹10K in national-level innovative energy conversion contraption event.</div></div>
-        <div class="ach-i"><div class="ach-em">🥈</div><div class="ach-tx"><strong>2nd/50+ national teams</strong> and won ₹6K in designing prototype of complex loop Roller Coaster event.</div></div>
-        <div class="ach-i"><div class="ach-em">🤖</div><div class="ach-tx"><strong>Live Project — Product Management (2024):</strong> Integrated AI &amp; gamification → user engagement +35%. Customer satisfaction +30%. Enrollment diversity +25%.</div></div>
-        <div class="ach-i"><div class="ach-em">📈</div><div class="ach-tx"><strong>Live Project — Business Strategy &amp; Growth (2024):</strong> Pricing &amp; delivery models → satisfaction +25% &amp; revenue +20%. Mentorship program → engagement +25% &amp; participation +40%. Career readiness +35%.</div></div>
-        <div class="ach-i"><div class="ach-em">🏅</div><div class="ach-tx"><strong>Certifications (2024):</strong> 5+ globally recognised PM certifications averaging <strong>93%+</strong>. 5+ business management certifications including <strong>2 from Oxford University</strong>.</div></div>
-        <div class="ach-i"><div class="ach-em">👦</div><div class="ach-tx"><strong>Head Boy</strong> elected from 1,000+ students. Student of the Year. Head of Mess Committee (400+ students, 90%+ satisfaction).</div></div>
-        <div class="ach-i"><div class="ach-em">❤️</div><div class="ach-tx"><strong>Shiksha Social Initiative</strong> — 1,000+ hours mentoring 100+ children. Raised ₹3L+. Community library: 500+ books in Year 1.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA BANNER -->
-<div class="cta-banner" id="contact">
-  <div class="cta-banner-in">
-    <h2>Ready to work<br/>together?</h2>
-    <p>Open to Strategy, Growth &amp; Ops, Consulting, and Program Management roles across India. If the problem is hard and the team is sharp — let's talk.</p>
-    <button class="btn-p" onclick="openModal('contactModal')" style="margin:0 auto;display:inline-flex;">✉ &nbsp;Get in Touch →</button>
   </div>
 </div>
 
+<!-- ═══ EXPERIENCE ═══ -->
+<div style="background:var(--ink);" id="experience">
+  <div class="sec rv">
+    <div class="eye">Work History</div>
+    <div class="sh">32 Months<br/><span class="sh-it">at Scale</span></div>
+    <p class="ss">Full-time building across strategy, growth, and operations.</p>
+
+    <div class="tl-wrap">
+      <div class="tl-line"></div>
+
+      <!-- BLINKIT -->
+      <div class="tl-block rv">
+        <div class="tl-meta"><div class="tl-co">BLINKIT</div><span class="tl-badge tb-ft">Full-Time</span><a href="Sumit_Yadav__.pdf" target="_blank" style="font-size:.58rem;color:var(--orange);font-weight:700;border:1px solid rgba(224,90,30,.3);padding:2px 8px;border-radius:3px;background:rgba(224,90,30,.1);">Offer Letter ↗</a></div>
+        <div class="tl-role">Generalist — Product, Strategy &amp; Operations</div>
+        <div class="tl-date">May 2025 → Present · Gurugram</div>
+        <ul class="tl-ul">
+          <li><span class="vb">Owned</span> product vision and defined location strategy for <span class="nm">2,300+ dark stores</span>; achieved <span class="nm">100% layout digitization</span> and standardized a bin-ID framework adopted network-wide.</li>
+          <li><span class="vb">Designed and shipped</span> a prioritization engine and execution dashboard from <span class="nm">0→1</span>, cutting variance by <span class="nm">43%</span> with full network rollout.</li>
+          <li><span class="vb">Piloted</span> picklist suppression to enforce pick-path adherence; drove compliance from <span class="nm">43% → 92%</span> pan-India, reducing PPI by a further <span class="nm">10%</span>.</li>
+          <li><span class="vb">Built</span> FEFO inventory logic with batch segregation for perishables and pharma; drove replenishment accuracy to <span class="nm">90%</span>.</li>
+          <li><span class="vb">Developed</span> aisle/rack selection flows on store manager mobile app with embedded training videos, enabling self-serve navigation.</li>
+          <li><span class="vb">Led</span> a <span class="nm">10+ member</span> cross-functional team (product, engg, ops) to define, ship, and scale <span class="nm">15+ pilots</span> pan-India.</li>
+          <li><span class="vb">Redesigned</span> LT store layouts; increased space utilisation <span class="nm">1.5×</span> and drove <span class="nm">18% GMV uplift</span> per sq. ft.</li>
+        </ul>
+      </div>
+
+      <!-- SHOPDECK -->
+      <div class="tl-block rv">
+        <div class="tl-meta"><div class="tl-co">SHOPDECK</div><span class="tl-badge tb-ft">Full-Time</span></div>
+        <div class="tl-role">Growth Consultant — D2C Brand Management</div>
+        <div class="tl-date">Apr 2022 → Jun 2023 · Bengaluru</div>
+        <ul class="tl-ul">
+          <li><span class="vb">Generated</span> business worth <span class="nm">₹100 Cr+/annum</span> for <span class="nm">80+ clients</span>; scaled order volume from <span class="nm">0 → 3 million orders/year</span>.</li>
+          <li><span class="vb">Boosted</span> profitability of <span class="nm">42 firms (118% uplift)</span> via pricing redesign, delivery optimization, and weekly growth troubleshooting.</li>
+          <li><span class="vb">Designed</span> the client P&L dashboard (0→1) — previously only available in spreadsheets on request; now real-time visibility for all clients.</li>
+          <li><span class="vb">Led</span> migration from sheets to <span class="nm">20+ Apache Superset dashboards</span> — C2PR funnel, RTO split, rural/urban cohorts, Change Log, Product PNL with multi-level filters.</li>
+          <li><span class="vb">Owned</span> client onboarding assets: Pre-Live checklist (100-point), Campaign Handbook (Facebook Ads SOP), and Pre-Live PPT for onboarding calls.</li>
+          <li><span class="vb">Migrated</span> all task management from spreadsheets to <span class="nm">Asana</span>, improving tracking and visibility across 80+ accounts.</li>
+        </ul>
+      </div>
+
+      <!-- ADANI -->
+      <div class="tl-block rv">
+        <div class="tl-meta"><div class="tl-co">ADANI</div><span class="tl-badge tb-ft">Full-Time</span></div>
+        <div class="tl-role">Management Trainee — Operations &amp; Strategy</div>
+        <div class="tl-date">Jun 2021 → Apr 2022 · Ahmedabad</div>
+        <ul class="tl-ul">
+          <li><span class="vb">SPOC</span> for RMHS (<span class="nm">₹180 Cr+</span>) and Steam Dryer (<span class="nm">₹55 Cr+</span>); evaluated proposals from <span class="nm">15+ international suppliers</span>, driving vendor shortlisting.</li>
+          <li><span class="vb">Managed</span> 200+ technical documents; cut freight costs <span class="nm">25%</span> through vendor consolidation and route optimization.</li>
+        </ul>
+      </div>
+
+      <!-- ACCENTURE -->
+      <div class="tl-block rv" style="margin-bottom:0;">
+        <div class="tl-meta"><div class="tl-co">ACCENTURE S&C</div><span class="tl-badge tb-in">Project</span></div>
+        <div class="tl-role">Strategy Consultant — Competition Winner</div>
+        <div class="tl-date">Oct 2024 → Nov 2024</div>
+        <ul class="tl-ul">
+          <li><span class="vb">Built</span> should-cost model across <span class="nm">15+ cost drivers</span>; evaluated <span class="nm">5 international vendors</span> across <span class="nm">50+ metrics</span>, identifying <span class="nm">10% budget optimization</span>.</li>
+          <li><span class="vb">Selected</span> as competition winner by Accenture partner panel for rigour of analysis.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FRAMEWORKS GALLERY (cinematic) ═══ -->
+<div id="frameworks">
+  <div style="padding:60px 5%;max-width:1280px;margin:0 auto;" class="rv">
+    <div class="eye">Shopdeck · Intellectual Property</div>
+    <div class="sh">Frameworks I <span class="sh-it">Built</span></div>
+    <p class="ss">Operational playbooks used daily across 80+ D2C brands.</p>
+  </div>
+  <div class="fw-grid rv">
+    <div class="fw-card">
+      <img class="fw-card-img" src="WhatsApp-Image-2026-04-14-at-5.21.03-AM.jpg" alt="RTO Framework" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fw-card-fallback" style="display:none;">📋</div>
+      <div class="fw-card-over">
+        <div class="fw-tag">🔁 RTO · Diagnostic Framework</div>
+        <div class="fw-title">RTO ROOT CAUSE PLAYBOOK</div>
+        <div class="fw-desc">Two-part diagnostic: (1) Always-high RTO — unique vs commodity product diagnosis across pricing, listing, quality, ads, CX; (2) Recent spike — inflection analysis across product, campaign, audience, LP, and CX with specific validation steps.</div>
+        <div class="fw-chips"><span class="fw-chip">Unique Product</span><span class="fw-chip">Commodity</span><span class="fw-chip">Campaign Analysis</span><span class="fw-chip">LP Validation</span></div>
+      </div>
+    </div>
+    <div class="fw-card">
+      <img class="fw-card-img" src="WhatsApp-Image-2026-04-14-at-5.21.04-AM.jpg" alt="Marketing Framework" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fw-card-fallback" style="display:none;">📊</div>
+      <div class="fw-card-over">
+        <div class="fw-tag">📉 Marketing · Diagnosis</div>
+        <div class="fw-title">MARKETING GONE BAD TRIAGE</div>
+        <div class="fw-desc">3-step structured diagnostic: (1) Find inflection date; (2) Cross-section to isolate — campaigns, audience, product; (3) Trace possible changes — spend split, pricing/AOV, listing, assets, audience overlap, domain, EDD, CX.</div>
+        <div class="fw-chips"><span class="fw-chip">Inflection Analysis</span><span class="fw-chip">Cross-Section Drill</span><span class="fw-chip">Funnel CPC</span><span class="fw-chip">Page Quality</span></div>
+      </div>
+    </div>
+    <div class="fw-card">
+      <img class="fw-card-img" src="WhatsApp-Image-2026-04-14-at-5.21.04-AM-1.jpg" alt="Scaling Issues Framework" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fw-card-fallback" style="display:none;">📈</div>
+      <div class="fw-card-over">
+        <div class="fw-tag">⚡ Scale · Issue Taxonomy</div>
+        <div class="fw-title">15 REASONS MKT DEGRADES AT SCALE</div>
+        <div class="fw-desc">A complete taxonomy of why FB/IG marketing performance degrades as spend scales: audience size, retargeting budget, product issues, pricing, PQ, incorrect scaling, audience overlap, customer service, creative fatigue, stock, demand shortfall, and more.</div>
+        <div class="fw-chips"><span class="fw-chip">Audience Overlap</span><span class="fw-chip">Creative Fatigue</span><span class="fw-chip">Scale Diagnosis</span><span class="fw-chip">FB/IG Ads</span></div>
+      </div>
+    </div>
+    <div class="fw-card">
+      <img class="fw-card-img" src="WhatsApp-Image-2026-04-14-at-5.21.04-AM-2.jpg" alt="Fluctuations Framework" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="fw-card-fallback" style="display:none;">📆</div>
+      <div class="fw-card-over">
+        <div class="fw-tag">💸 Budget Lane · Fluctuation Audit</div>
+        <div class="fw-title">16-VAR MARKETING FLUCTUATION AUDIT</div>
+        <div class="fw-desc">Comprehensive budget-lane diagnostic: AOV fluctuation, product mix, audience composition, stock, spend pacing, seller-side changes, learning issues, audience overlap, day-of-week, time-of-day, external factors, budget, ad count, audience size, creative fatigue, multi-asset conflicts.</div>
+        <div class="fw-chips"><span class="fw-chip">AOV Fluctuation</span><span class="fw-chip">Learning Issues</span><span class="fw-chip">Day/Time Effect</span><span class="fw-chip">Creative Fatigue</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROJECTS ═══ -->
+<div style="background:#0d0d0d;" id="projects">
+  <div style="padding:60px 5%;max-width:1280px;margin:0 auto;" class="rv">
+    <div class="eye">Case Studies</div>
+    <div class="sh">Featured <span class="sh-it">Projects</span></div>
+    <p class="ss">Highest-impact work across operations, growth, and strategy.</p>
+  </div>
+  <div class="proj-g rv">
+    <div class="pcard feat">
+      <div>
+        <div class="pcard-tag">★ Featured · Blinkit · 2025</div>
+        <div class="pcard-title">DARK STORE DIGITIZATION &amp; OPS STRATEGY</div>
+        <div class="pcard-desc">End-to-end overhaul of Blinkit's dark store infrastructure. Built location intelligence frameworks, FEFO logic, spatial pick-path optimization, and execution dashboards — transforming a fragmented manual system into a digitized, scalable operating model. Led 10-member cross-functional team through 15+ pilots pan-India.</div>
+        <div class="pchips"><span class="pchip">100% Digitized</span><span class="pchip">43% Variance ↓</span><span class="pchip">18% GMV Uplift</span><span class="pchip">1.5× Space Util.</span><span class="pchip">90% Replenishment</span><span class="pchip">25% Complaints ↓</span></div>
+      </div>
+      <div class="pstats">
+        <div class="pstat"><div class="pstat-n">2,300+</div><div class="pstat-l">Stores impacted</div></div>
+        <div class="pstat"><div class="pstat-n">10%</div><div class="pstat-l">Faster pick time</div></div>
+        <div class="pstat"><div class="pstat-n">15+</div><div class="pstat-l">Pilots scaled</div></div>
+      </div>
+    </div>
+    <div class="pcard"><div class="pcard-tag">📈 Growth · Shopdeck</div><div class="pcard-title">D2C GROWTH ENGINE</div><div class="pcard-desc">Scaled orders from 0→3M+/year for 80+ brands. Built 20+ dashboards, Campaign SOP, RTO playbook, P&L tool. 118% avg profitability uplift.</div><div class="pchips"><span class="pchip">₹100 Cr+</span><span class="pchip">118% Profit Uplift</span><span class="pchip">20+ Dashboards</span></div></div>
+    <div class="pcard"><div class="pcard-tag">🧭 Consulting · Accenture</div><div class="pcard-title">STRATEGIC PROCUREMENT</div><div class="pcard-desc">Should-cost model across 15+ drivers, 5 international vendors, 50+ metrics. 10% budget optimization. Competition winner.</div><div class="pchips"><span class="pchip">10% Budget Saved</span><span class="pchip">Competition Winner</span><span class="pchip">50+ Metrics</span></div></div>
+    <div class="pcard"><div class="pcard-tag">🏗️ Capex · Adani</div><div class="pcard-title">₹235 CR+ CAPEX COORD.</div><div class="pcard-desc">SPOC for RMHS (₹180 Cr+) and Steam Dryer (₹55 Cr+). 15+ intl. suppliers, 200+ documents, 25% logistics cost cut.</div><div class="pchips"><span class="pchip">₹235 Cr+</span><span class="pchip">15+ Suppliers</span><span class="pchip">25% Cost ↓</span></div></div>
+    <div class="pcard"><div class="pcard-tag">🌍 International · X-Culture</div><div class="pcard-title">GLOBAL MARKET ENTRY</div><div class="pcard-desc">Led global consulting team across time zones. GTM plan, trade regulation analysis, competitive benchmarking. Top 40% of 1,000+ teams.</div><div class="pchips"><span class="pchip">Top 40%</span><span class="pchip">Top 5% Peer Eval</span><span class="pchip">Full GTM</span></div></div>
+    <div class="pcard"><div class="pcard-tag">⚙️ Engineering · Honda</div><div class="pcard-title">ZERO-DEFECT MFG LINE</div><div class="pcard-desc">Eliminated all production line defects. Line stoppage 42 min → zero. Overtime cut 63%. Root cause analysis led.</div><div class="pchips"><span class="pchip">0% Defect Rate</span><span class="pchip">63% OT Cut</span><span class="pchip">0 Min Stoppage</span></div></div>
+  </div>
+</div>
+
+<!-- ═══ DOCUMENTS SHELF (Netflix poster row) ═══ -->
+<div class="doc-shelf-section" id="documents">
+  <div class="doc-shelf-head rv">
+    <div class="eye">Work Artifacts</div>
+    <div class="sh">Documents &amp; <span class="sh-it">Proof of Work</span></div>
+    <p class="ss" style="margin-bottom:28px;">Resumes, SOPs, frameworks, certifications — hover and click to open.</p>
+
+    <div style="font-family:var(--mono);font-size:.58rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;">Resumes</div>
+    <div class="poster-row" style="padding:4px 0 20px;">
+      <div class="poster-track">
+        <a class="poster-card" href="My_Resume.pdf" target="_blank">
+          <div class="poster-card-thumb"><img src="resume-preview.jpg" alt="Resume" onerror="this.parentElement.innerHTML='<div class=poster-placeholder style=background:linear-gradient(135deg,rgba(224,90,30,.2),rgba(224,90,30,.04)>📄</div>'"/></div>
+          <div class="poster-card-body"><div class="poster-type">Resume</div><div class="poster-title">Strategy &amp; Ops CV</div><div class="poster-sub">Primary resume — full work history</div></div>
+        </a>
+        <a class="poster-card" href="My_Resume-1.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(14,165,233,.18),rgba(14,165,233,.04));">📄</div></div>
+          <div class="poster-card-body"><div class="poster-type">Resume</div><div class="poster-title">Product &amp; Growth CV</div><div class="poster-sub">Alternate — PM roles</div></div>
+        </a>
+      </div>
+    </div>
+
+    <div style="font-family:var(--mono);font-size:.58rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;">Shopdeck SOPs &amp; Client Materials</div>
+    <div class="poster-row" style="padding:4px 0 20px;">
+      <div class="poster-track">
+        <a class="poster-card" href="Campaign-Handbook-2.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(34,197,94,.04));">📋</div></div>
+          <div class="poster-card-body"><div class="poster-type">SOP · PDF</div><div class="poster-title">Campaign Creation Handbook</div><div class="poster-sub">Facebook Ads SOP for D2C sellers</div></div>
+        </a>
+        <a class="poster-card" href="Pre-Live-PPT-Final-1.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(124,58,237,.04));">📊</div></div>
+          <div class="poster-card-body"><div class="poster-type">Deck · PDF</div><div class="poster-title">Pre-Live D2C Enabler Deck</div><div class="poster-sub">Client onboarding presentation</div></div>
+        </a>
+        <a class="poster-card" href="Pre-Live-PPT-Final-1-1.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(234,179,8,.2),rgba(234,179,8,.04));">📊</div></div>
+          <div class="poster-card-body"><div class="poster-type">Deck · PDF</div><div class="poster-title">Pre-Live Deck v2</div><div class="poster-sub">Updated with success stories</div></div>
+        </a>
+        <a class="poster-card" href="Checklist-Handbook.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(34,197,94,.15),rgba(16,185,129,.04));">✅</div></div>
+          <div class="poster-card-body"><div class="poster-type">Checklist</div><div class="poster-title">Pre-Live Checklist Handbook</div><div class="poster-sub">100-point go-live checklist</div></div>
+        </a>
+      </div>
+    </div>
+
+    <div style="font-family:var(--mono);font-size:.58rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;">Certifications &amp; Credentials</div>
+    <div class="poster-row" style="padding:4px 0 20px;">
+      <div class="poster-track">
+        <a class="poster-card" href="GATE.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(234,179,8,.2),rgba(234,179,8,.05));">📐</div></div>
+          <div class="poster-card-body"><div class="poster-type">Certificate</div><div class="poster-title">GATE AIR 2070</div><div class="poster-sub">ME · 1.2L+ candidates · Score 696</div></div>
+        </a>
+        <a class="poster-card" href="Certifications-Consult.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(124,58,237,.05));">🏛️</div></div>
+          <div class="poster-card-body"><div class="poster-type">Certificates</div><div class="poster-title">Strategy &amp; Consulting</div><div class="poster-sub">Oxford + Alison (CPD)</div></div>
+        </a>
+        <a class="poster-card" href="Verification_Prod.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(34,197,94,.2),rgba(34,197,94,.05));">🚀</div></div>
+          <div class="poster-card-body"><div class="poster-type">Certificates</div><div class="poster-title">Product Management</div><div class="poster-sub">Product School · UXCam · 93%+</div></div>
+        </a>
+        <a class="poster-card" href="Sumit_Yadav__.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(249,115,22,.2),rgba(249,115,22,.05));">⚡</div></div>
+          <div class="poster-card-body"><div class="poster-type">Document</div><div class="poster-title">Blinkit Offer Letter</div><div class="poster-sub">Full-time · Strategy &amp; Ops</div></div>
+        </a>
+        <a class="poster-card" href="Live_project_consult.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(14,165,233,.18),rgba(14,165,233,.04));">📋</div></div>
+          <div class="poster-card-body"><div class="poster-type">Live Project</div><div class="poster-title">Business Strategy &amp; Growth</div><div class="poster-sub">Skilled Sapiens · ISO Verified</div></div>
+        </a>
+        <a class="poster-card" href="Live_project_prod.pdf" target="_blank">
+          <div class="poster-card-thumb"><div class="poster-placeholder" style="background:linear-gradient(135deg,rgba(234,179,8,.15),rgba(234,179,8,.04));">🎯</div></div>
+          <div class="poster-card-body"><div class="poster-type">Live Project</div><div class="poster-title">Product Management</div><div class="poster-sub">Skilled Sapiens · MSME Certified</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SKILLS ═══ -->
+<div style="background:var(--ink);" id="skills">
+  <div style="padding:60px 5%;max-width:1280px;margin:0 auto;" class="rv">
+    <div class="eye">Capabilities</div>
+    <div class="sh">Skills &amp; <span class="sh-it">Certifications</span></div>
+    <p class="ss">Built in the field. Used daily. 10+ certs at 93%+ average.</p>
+  </div>
+  <div class="skills-grid rv">
+    <div class="skill-col">
+      <div class="skill-col-label">Strategy &amp; Consulting</div>
+      <div class="skill-tags"><span class="stag">Issue Tree Structuring</span><span class="stag">MECE Frameworks</span><span class="stag">Market Sizing (TAM/SAM/SOM)</span><span class="stag">Should-Cost Modeling</span><span class="stag">Competitive Benchmarking</span><span class="stag">Scenario Planning</span><span class="stag">Business Case Development</span></div>
+    </div>
+    <div class="skill-col">
+      <div class="skill-col-label">Growth &amp; Commercial</div>
+      <div class="skill-tags"><span class="stag">GTM Strategy</span><span class="stag">Unit Economics</span><span class="stag">Pricing Strategy</span><span class="stag">Funnel Diagnosis</span><span class="stag">P&amp;L Modeling</span><span class="stag">Cohort Analysis</span><span class="stag">LTV/CAC</span><span class="stag">D2C Marketing</span></div>
+    </div>
+    <div class="skill-col">
+      <div class="skill-col-label">Program &amp; Operations</div>
+      <div class="skill-tags"><span class="stag">Pilot Design &amp; Scaling</span><span class="stag">Cross-functional Execution</span><span class="stag">Stakeholder Management</span><span class="stag">Spatial Analytics</span><span class="stag">Inventory Systems</span><span class="stag">Heatmap Analysis</span><span class="stag">OKR/KPI Tracking</span></div>
+    </div>
+    <div class="skill-col">
+      <div class="skill-col-label">Tools &amp; Certifications</div>
+      <div class="skill-tags" style="margin-bottom:14px;"><span class="stag">Advanced Excel (Macros, Pivots)</span><span class="stag">Apache Superset</span><span class="stag">Tableau</span><span class="stag">Asana</span><span class="stag">Figma</span><span class="stag">SQL</span></div>
+      <div class="cert-row">
+        <a href="Certifications-Consult.pdf" target="_blank" class="cert-item"><div class="cert-ico">🏛️</div><div><div class="cert-n">Oxford University · Strategy &amp; PM</div><div class="cert-b">Business Management + Strategic Planning</div></div><span class="cert-sc">93%+</span></a>
+        <a href="Verification_Prod.pdf" target="_blank" class="cert-item"><div class="cert-ico">🚀</div><div><div class="cert-n">Product School + UXCam · PM Certs</div><div class="cert-b">Product Discovery · Mobile App PM</div></div><span class="cert-sc">95%</span></a>
+        <a href="Verification_Prod.pdf" target="_blank" class="cert-item"><div class="cert-ico">📦</div><div><div class="cert-n">Pendo · Simplilearn · Great Lakes</div><div class="cert-b">PM Basics · PM 101 · Diploma in PM</div></div><span class="cert-sc">Avg 93%</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ EDUCATION ═══ -->
+<div style="background:#0d0d0d;" id="education">
+  <div style="padding:60px 5%;max-width:1280px;margin:0 auto;" class="rv">
+    <div class="eye">Academic Background</div>
+    <div class="sh">Education &amp; <span class="sh-it">Achievements</span></div>
+    <p class="ss">Top performance across engineering and management, consistently.</p>
+  </div>
+  <div class="edu-grid rv">
+    <div class="edu-col">
+      <div class="edu-school-name">IIM CALCUTTA</div>
+      <div class="edu-yr">2023 → 2025</div>
+      <div class="edu-degree">Master of Business Administration (MBA)</div>
+      <div class="edu-score">CGPA: 6.44/9</div>
+      <div class="edu-note">CAT 99.64%ile (QA: 99.83%ile) · Converted 12/15 IIM calls including IIM-C, IIM-A, and IIFT</div>
+      <br/>
+      <div class="edu-school-name" style="font-size:1.6rem;">NIT KURUKSHETRA</div>
+      <div class="edu-yr">2017 → 2021</div>
+      <div class="edu-degree">B.Tech — Mechanical Engineering</div>
+      <div class="edu-score">CGPA: 8.36/10 · 10/10 GPA Sem 6</div>
+      <div class="edu-note">Academic Excellence Award · Secretary, Mechanical Society (₹4L+ budget, 100+ team, 4K+ footfall)</div>
+      <br/>
+      <div class="edu-school-name" style="font-size:1.4rem;">CBSE — CLASS XII &amp; X</div>
+      <div class="edu-yr">2016 / 2014</div>
+      <div class="edu-degree">Class XII: 87.2% · Class X: 10/10 CGPA</div>
+      <div class="edu-score">Ranked 1st among 1,000+ students · 10 consecutive years · Head Boy</div>
+    </div>
+    <div class="edu-col">
+      <div class="eye" style="margin-bottom:20px;">Achievements</div>
+      <div class="ach-grid">
+        <div class="ach-it"><div class="ach-em">🎯</div><div class="ach-tx"><strong>CAT 99.64%ile / 2L+ candidates</strong> — QA: 99.83%ile. Converted 12/15 calls including IIMs &amp; IIFT.</div></div>
+        <a href="GATE.pdf" target="_blank" class="ach-it" style="color:inherit;"><div class="ach-em">📐</div><div class="ach-tx"><strong>GATE AIR 2070/1.2L+</strong> in ME (Score: 696); AIR 2184/22K+ in XE. Entitled for NTPC's EET. <span style="color:var(--orange);">View ↗</span></div></a>
+        <div class="ach-it"><div class="ach-em">⚓</div><div class="ach-tx"><strong>Top 1.5%ile in NDA twice</strong>; B.Tech Cadet Entry call letter for Indian Navy.</div></div>
+        <div class="ach-it"><div class="ach-em">🥇</div><div class="ach-tx"><strong>1st/20+ national teams</strong> — ₹10K, quadricycle design, NIT KKR Junkyard War.</div></div>
+        <div class="ach-it"><div class="ach-em">🥇</div><div class="ach-tx"><strong>1st/8+ teams</strong> — ₹10K, national-level innovative energy conversion event.</div></div>
+        <div class="ach-it"><div class="ach-em">🥈</div><div class="ach-tx"><strong>2nd/50+ national teams</strong> — ₹6K, Roller Coaster prototype design event.</div></div>
+        <div class="ach-it"><div class="ach-em">🏅</div><div class="ach-tx"><strong>10+ Certifications (2024):</strong> 5+ PM certifications at 93%+ avg · 2 from Oxford University.</div></div>
+        <div class="ach-it"><div class="ach-em">❤️</div><div class="ach-tx"><strong>Shiksha Initiative:</strong> 1,000+ hours mentoring 100+ children. Raised ₹3L+. 500+ book library Year 1.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="cta-sec" id="contact">
+  <div class="cta-inner rv">
+    <div class="cta-big">READY TO</div>
+    <div class="cta-sub">Work Together?</div>
+    <p class="cta-p">Open to Strategy, Growth &amp; Ops, Consulting, and Program Management roles. If the problem is hard and the team is sharp — let's talk.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn-primary" onclick="openModal('contactModal')">✉ &nbsp;Get in Touch →</button>
+      <button class="btn-secondary" onclick="openCVModal()">↓ Download CV</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
 <footer>
-  <div class="fl">© 2025 Sumit Yadav &nbsp;·&nbsp; IIM Calcutta MBA</div>
+  <div class="fl">© 2025 SUMIT YADAV &nbsp;·&nbsp; IIM CALCUTTA MBA &nbsp;·&nbsp; SUMITYADAV07.GITHUB.IO</div>
   <div class="fr">
     <a href="mailto:sumity2025&#64;email&#46;iimcal&#46;ac&#46;in">Email</a>
     <a href="https://www.linkedin.com/in/sumit-yadav1/" target="_blank">LinkedIn</a>
@@ -957,121 +987,160 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
   </div>
 </footer>
 
+<!-- ═══ CONTACT MODAL ═══ -->
+<div class="modal-ov" id="contactModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-eye">Let's Connect</div>
+      <div class="modal-title">GET IN<br/>TOUCH</div>
+      <div class="modal-sub">Open to full-time roles in Strategy, Growth, Operations, and Consulting. Response within 24 hours.</div>
+      <button class="modal-close" onclick="closeModal('contactModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <a href="mailto:sumity2025@email.iimcal.ac.in" class="mc-link"><div class="mc-ic">✉</div><div><div class="mc-lbl">Email</div><div class="mc-val">sumity2025@email.iimcal.ac.in</div></div></a>
+      <a href="tel:+919728502596" class="mc-link"><div class="mc-ic">📱</div><div><div class="mc-lbl">Phone</div><div class="mc-val">+91 9728502596</div></div></a>
+      <a href="https://linkedin.com/in/sumit-yadav1" target="_blank" class="mc-link"><div class="mc-ic">💼</div><div><div class="mc-lbl">LinkedIn</div><div class="mc-val">linkedin.com/in/sumit-yadav1</div></div></a>
+      <div class="mdiv"><span>or send a quick note</span></div>
+      <div class="form-row">
+        <div class="fg"><label>Name</label><input class="fi" type="text" placeholder="Your name"/></div>
+        <div class="fg"><label>Company</label><input class="fi" type="text" placeholder="Company"/></div>
+      </div>
+      <div class="fg"><label>Role / Opportunity</label><input class="fi" type="text" placeholder="e.g. Strategy Associate, Growth Manager..."/></div>
+      <div class="fg"><label>Message</label><textarea class="fta" placeholder="Tell me about the opportunity..."></textarea></div>
+      <button class="fsub" onclick="submitForm()">Send Message ↗</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CV MODAL ═══ -->
+<div class="cv-modal" id="cvModal">
+  <div class="cv-bar">
+    <div class="cv-bar-title">SUMIT YADAV — RESUME</div>
+    <div class="cv-bar-acts">
+      <div id="cvPagination" style="display:none;align-items:center;gap:8px;margin-right:8px;">
+        <button class="cvbtn cvbtn-close" onclick="cvPrevPage()" id="cvPrev">‹ Prev</button>
+        <span id="cvPageInfo" style="font-family:var(--mono);font-size:.62rem;color:var(--dim);"></span>
+        <button class="cvbtn cvbtn-close" onclick="cvNextPage()" id="cvNext">Next ›</button>
+      </div>
+      <a href="My_Resume.pdf" download class="cvbtn cvbtn-dl">↓ Download PDF</a>
+      <button class="cvbtn cvbtn-close" onclick="closeCVModal()">✕ Close</button>
+    </div>
+  </div>
+  <div class="cv-frame" id="cvFrame">
+    <div id="cvLoading" style="display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--dim);padding:60px;font-family:var(--mono);font-size:.68rem;">
+      <div style="width:26px;height:26px;border:2px solid rgba(255,255,255,.1);border-top-color:var(--orange);border-radius:50%;animation:spin .7s linear infinite;"></div>
+      Loading…
+    </div>
+    <canvas id="cvCanvas" style="display:none;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.5);"></canvas>
+    <div id="cvFallback" style="display:none;text-align:center;padding:60px 20px;">
+      <p style="font-size:1rem;color:var(--muted);margin-bottom:20px;">Preview not available</p>
+      <a href="My_Resume.pdf" download class="cvbtn cvbtn-dl">↓ Download Resume</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCRIPTS ═══ -->
 <script>
-// ── Custom cursor ──
-const cur=document.getElementById('cur'),curR=document.getElementById('curR');
-let mx=0,my=0,rx=0,ry=0;
+// ─ Cursor ─
+const cur=document.getElementById('cursor'),trail=document.getElementById('cursor-trail');
+let mx=0,my=0,tx=0,ty=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('a,button,.pcard,.ac,.rcard,.citem,.ach-i').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{curR.style.width='52px';curR.style.height='52px';curR.style.opacity='.5';});
-  el.addEventListener('mouseleave',()=>{curR.style.width='34px';curR.style.height='34px';curR.style.opacity='1';});
+(function loop(){tx+=(mx-tx)*.1;ty+=(my-ty)*.1;trail.style.left=tx+'px';trail.style.top=ty+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.fw-card,.acard,.pcard,.alist-item,.ach-it,.poster-card,.cert-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{trail.style.width='56px';trail.style.height='56px';trail.style.borderColor='rgba(224,90,30,.5)';cur.style.transform='translate(-50%,-50%) scale(1.5)';});
+  el.addEventListener('mouseleave',()=>{trail.style.width='40px';trail.style.height='40px';trail.style.borderColor='rgba(224,90,30,.35)';cur.style.transform='translate(-50%,-50%) scale(1)';});
 });
 
-// ── Nav ──
+// ─ Nav ─
 const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>12),{passive:true});
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
 
-// ── Mobile menu ──
+// ─ Mobile menu ─
 function openMob(){document.getElementById('mob').classList.add('open');document.body.style.overflow='hidden';}
 function closeMob(){document.getElementById('mob').classList.remove('open');document.body.style.overflow='';}
 
-// ── Modals ──
-function openModal(id){
-  document.getElementById(id).classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(id){
-  document.getElementById(id).classList.remove('open');
-  if(!document.querySelector('.modal-overlay.open')&&!document.querySelector('.cv-modal.open'))
-    document.body.style.overflow='';
-}
-// close on overlay click
-document.getElementById('contactModal').addEventListener('click',function(e){
-  if(e.target===this)closeModal('contactModal');
-});
+// ─ Modal ─
+function openModal(id){document.getElementById(id).style.display='flex';document.body.style.overflow='hidden';}
+function closeModal(id){document.getElementById(id).style.display='none';document.body.style.overflow='';}
+document.getElementById('contactModal').addEventListener('click',function(e){if(e.target===this){this.style.display='none';document.body.style.overflow='';}});
+function submitForm(){alert('Thanks! Sumit will get back to you within 24 hours. ✓');closeModal('contactModal');}
 
-// ── CV Modal with PDF.js ──
+// ─ CV Modal ─
 let pdfDoc=null,cvPage=1;
-function openCVModal(){
-  document.getElementById('cvModal').classList.add('open');
-  document.body.style.overflow='hidden';
-  if(!pdfDoc) loadPDF();
-}
+function openCVModal(){document.getElementById('cvModal').classList.add('open');document.body.style.overflow='hidden';if(!pdfDoc)loadPDF();}
+function closeCVModal(){document.getElementById('cvModal').classList.remove('open');document.body.style.overflow='';}
 function loadPDF(){
-  const script=document.createElement('script');
-  script.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-  script.onload=()=>{
+  const s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+  s.onload=()=>{
     pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     pdfjsLib.getDocument('My_Resume.pdf').promise.then(pdf=>{
       pdfDoc=pdf;
-      document.getElementById('cvPageInfo').textContent='Page 1 of '+pdf.numPages;
-      if(pdf.numPages>1){document.getElementById('cvPagination').style.display='block';}
+      if(pdf.numPages>1)document.getElementById('cvPagination').style.display='flex';
       renderCVPage(1);
-    }).catch(()=>showCVFallback());
+    }).catch(showCVFallback);
   };
-  script.onerror=()=>showCVFallback();
-  document.head.appendChild(script);
+  s.onerror=showCVFallback;
+  document.head.appendChild(s);
 }
 function renderCVPage(n){
   document.getElementById('cvLoading').style.display='flex';
   document.getElementById('cvCanvas').style.display='none';
   pdfDoc.getPage(n).then(page=>{
-    const vp=page.getViewport({scale:window.devicePixelRatio>1?2:1.5});
+    const sc=window.devicePixelRatio>1?2:1.5;
+    const vp=page.getViewport({scale:sc});
     const canvas=document.getElementById('cvCanvas');
-    const ctx=canvas.getContext('2d');
     canvas.height=vp.height;canvas.width=vp.width;
-    canvas.style.width=Math.min(vp.width/window.devicePixelRatio,860)+'px';
-    canvas.style.height='auto';
-    page.render({canvasContext:ctx,viewport:vp}).promise.then(()=>{
+    canvas.style.width=Math.min(vp.width/sc,860)+'px';canvas.style.height='auto';
+    page.render({canvasContext:canvas.getContext('2d'),viewport:vp}).promise.then(()=>{
       document.getElementById('cvLoading').style.display='none';
       canvas.style.display='block';
       document.getElementById('cvPageInfo').textContent='Page '+n+' of '+pdfDoc.numPages;
       document.getElementById('cvPrev').disabled=n<=1;
       document.getElementById('cvNext').disabled=n>=pdfDoc.numPages;
+      cvPage=n;
     });
   });
 }
-function cvPrevPage(){if(cvPage>1){cvPage--;renderCVPage(cvPage);}}
-function cvNextPage(){if(pdfDoc&&cvPage<pdfDoc.numPages){cvPage++;renderCVPage(cvPage);}}
-function showCVFallback(){
-  document.getElementById('cvLoading').style.display='none';
-  document.getElementById('cvFallback').style.display='block';
+function cvPrevPage(){if(cvPage>1)renderCVPage(cvPage-1);}
+function cvNextPage(){if(pdfDoc&&cvPage<pdfDoc.numPages)renderCVPage(cvPage+1);}
+function showCVFallback(){document.getElementById('cvLoading').style.display='none';document.getElementById('cvFallback').style.display='block';}
+
+// ─ Counter animations ─
+function animateCounter(el,target,isDecimal){
+  let v=0;const dur=1800;const step=14;const inc=target/(dur/step);
+  const fmt=n=>isDecimal?parseFloat(n).toFixed(2):target>=1000?Math.round(n).toLocaleString('en-IN'):Math.round(n);
+  const tm=setInterval(()=>{v=Math.min(v+inc,target);el.textContent=fmt(v);if(v>=target){el.textContent=fmt(target);clearInterval(tm);}},step);
 }
-
-// ── Form submit ──
-function submitForm(){
-  alert('Thanks! Sumit will get back to you within 24 hours. ✓');
-  closeModal('contactModal');
-}
-
-// ── Scroll reveal ──
-const sr=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');sr.unobserve(x.target);}});},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>sr.observe(el));
-
-// ── Counter (skip decimal stats) ──
-const cn=new IntersectionObserver(e=>{
-  e.forEach(x=>{
-    if(!x.isIntersecting)return;
-    x.target.querySelectorAll('span.ac').forEach(s=>{
-      const raw=s.textContent.trim();
-      const t=parseFloat(raw.replace(/,/g,''));
-      if(isNaN(t)||raw.includes('.')&&t<100)return; // skip 99.64 etc
-      let v=0;const dur=1600;const step=16;const inc=t/(dur/step);
-      const fmt=n=>t>=1000?Math.round(n).toLocaleString('en-IN'):Math.round(n);
-      const tm=setInterval(()=>{v=Math.min(v+inc,t);s.textContent=fmt(v);if(v>=t)clearInterval(tm);},step);
+const cntObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.querySelectorAll('.cnt').forEach(el=>{
+      const t=parseFloat(el.dataset.target);
+      animateCounter(el,t,false);
     });
-    cn.unobserve(x.target);
+    e.target.querySelectorAll('.cnt-dec').forEach(el=>{
+      const t=parseFloat(el.dataset.target);
+      animateCounter(el,t,true);
+    });
+    cntObs.unobserve(e.target);
   });
-},{threshold:.3});
-document.querySelectorAll('.ic,.hstat').forEach(el=>cn.observe(el));
+},{threshold:.4});
+document.querySelectorAll('.stats-row').forEach(el=>cntObs.observe(el));
 
-// ── Drag-scroll reel ──
-const rw=document.querySelector('.reel-wrap');
-let down=false,sx,sl;
-rw.addEventListener('mousedown',e=>{down=true;sx=e.pageX-rw.offsetLeft;sl=rw.scrollLeft;});
-['mouseleave','mouseup'].forEach(ev=>rw.addEventListener(ev,()=>down=false));
-rw.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();rw.scrollLeft=sl-(e.pageX-rw.offsetLeft-sx)*1.5;});
+// ─ Scroll reveal ─
+const rvObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rvObs.unobserve(e.target);}});
+},{threshold:.05,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv,.rv2,.stagger-kids').forEach(el=>rvObs.observe(el));
+
+// ─ Drag-scroll poster rows ─
+document.querySelectorAll('.poster-row').forEach(row=>{
+  let down=false,sx,sl;
+  row.addEventListener('mousedown',e=>{down=true;sx=e.pageX;sl=row.scrollLeft;row.style.cursor='grabbing';});
+  ['mouseup','mouseleave'].forEach(ev=>row.addEventListener(ev,()=>{down=false;row.style.cursor='grab';}));
+  row.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();row.scrollLeft=sl-(e.pageX-sx)*1.4;});
+});
 </script>
 </body>
 </html>
